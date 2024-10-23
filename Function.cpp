@@ -5,14 +5,16 @@
 
 using namespace std;
 
+Game_Class* Player = nullptr;
+Enemy_Class* Enemy = nullptr;
+bool Exit_the_battle = false;
+bool Skip_Hod = false;
+
 void SetTextColor(int color)
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, color);
 }
-
-Game_Class* Player = nullptr;
-Enemy_Class* Enemy = nullptr;
 
 void Text_To_Confirm_The_Selection()
 {
@@ -117,9 +119,6 @@ Game_Class* Selecting_A_Game_Character()
 	}
 	return Player;
 }
-
-bool Skip_Hod = false;
-bool Exit_the_battle = false;
 
 //void Initialization_Check(Game_Class Player, Enemy_Class Enemy)
 //{
