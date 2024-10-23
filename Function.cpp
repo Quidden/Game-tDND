@@ -31,10 +31,10 @@ void Text_To_Confirm_The_Selection()
 Game_Class& Selecting_A_Game_Character()
 {
 
-	static Bastard_Class Bastard("Bastard", "Aggressive enemy", 100, 15, 5);
-	static Knight_Class  Knight("Knight", "asdasd", 110, 20, 10);
-	static Bandit_Class  Bandit("Bandit", "aspfoasf", 90, 10, 5);
-	static Drow_Class    Drow("Drow", "Shadowy figure", 120, 10, 5);
+	 Bastard_Class Bastard("Bastard", "Aggressive enemy", 100, 15, 5);
+	 Knight_Class  Knight("Knight", "asdasd", 110, 20, 10);
+	 Bandit_Class  Bandit("Bandit", "aspfoasf", 90, 10, 5);
+	 Drow_Class    Drow("Drow", "Shadowy figure", 120, 10, 5);
 
 	int Subverification = 2;
 
