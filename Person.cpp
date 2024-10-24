@@ -23,14 +23,6 @@ Drow_Class::Drow_Class(std::string Name, std::string Description, int HP, int Da
 Enemy_Class::Enemy_Class(std::string Name, std::string Description, int HP, int Damage, int Die_Bonus, int Reward)
 	:Person_Class(Name, Description, HP, Damage, Die_Bonus) {}
 
-Knight_Class  Knight_Obj(    "Knight",      "asdasd",           110, 20, 10);
-Bandit_Class  Bandit_Obj(    "Bandit",      "aspfoasf",         90, 10, 5);
-Drow_Class    Drow_Obj(      "Drow",        "Shadowy figure",   120, 10, 5);
-Enemy_Class   Goblin_Obj(    "Goblin",      "asdasdasd",        100, 10, 5, 1);
-Enemy_Class   Skeleton_Obj(  "Skeleton",    "asdasdasd",        100, 10, 5, 1);
-Enemy_Class   Dark_Obj(      "Dark",        "asdasdasd",        100, 10, 5, 1);
-Enemy_Class   Shadow_Obj(    "Shadow",      "asdasdasd",        100, 10, 5, 1);
-Enemy_Class   King_Obj(      "King",        "asdasdasd",        100, 10, 5, 1);
 
 bool Person_Class::Is_Alive()
 {
@@ -92,41 +84,4 @@ void Drow_Class::Abilites()
 			target->HP -= 2;
 		}
 	}
-}
-
-Bastard_Class& Get_Bastard_Obj()
-{
-	return(Bastard_Obj);
-}
-Knight_Class& Get_Knight_Obj()
-{
-	return(Knight_Obj);
-}
-Bandit_Class& Get_Bandit_Obj()
-{
-	return(Bandit_Obj);
-}
-Drow_Class& Get_Drow_Obj()
-{
-	return(Drow_Obj);
-}
-Enemy_Class& Get_Goblin_Obj()
-{
-	return(Goblin_Obj);
-}
-Enemy_Class& Get_Skeleton_Obj()
-{
-	return(Skeleton_Obj);
-}
-Enemy_Class& Get_Dark_Obj()
-{
-	return(Dark_Obj);
-}
-Enemy_Class& Get_Shadow_Obj()
-{
-	return(Shadow_Obj);
-}
-Enemy_Class& Get_King_Obj()
-{
-	return(King_Obj);
 }

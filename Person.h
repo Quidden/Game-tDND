@@ -82,13 +82,3 @@ public:
 
 
 };
-
-Bastard_Class& Get_Bastard_Obj();
-Knight_Class& Get_Knight_Obj();
-Bandit_Class& Get_Bandit_Obj();
-Drow_Class& Get_Drow_Obj();
-Enemy_Class& Get_Goblin_Obj();
-Enemy_Class& Get_Skeleton_Obj();
-Enemy_Class& Get_Dark_Obj();
-Enemy_Class& Get_Shadow_Obj();
-Enemy_Class& Get_King_Obj();
