@@ -4,9 +4,10 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <memory> 
 using namespace std;
 
-Game_Class& Selecting_A_Game_Character();
+Game_Class* Selecting_A_Game_Character();
 int Rundom_Number_Die_Value();
 void Battle(Game_Class& Player);
 
@@ -20,13 +21,14 @@ int main()
 
     srand(time(nullptr));
 
-    Game_Class& Player = Selecting_A_Game_Character();
-    cout << "Selected Character: " << Player.Name << " - " << Player.Description << endl;
+    Game_Class* Player = Selecting_A_Game_Character();
+    cout << "Selected Character: " << Player->Name << " - " << Player->Description << endl;
 
     int Random_Value = Random_Number_Die_Value();
 
-    Battle(Player);
+    Battle(*Player);
 
+    delete Player;
 }
 
 

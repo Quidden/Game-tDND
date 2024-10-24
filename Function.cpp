@@ -28,13 +28,8 @@ void Text_To_Confirm_The_Selection()
 	cout << "If you want to change your character press 2" << endl;
 }
 
-Game_Class& Selecting_A_Game_Character()
+Game_Class* Selecting_A_Game_Character()
 {
-
-	 Bastard_Class Bastard("Bastard", "Aggressive enemy", 100, 15, 5);
-	 Knight_Class  Knight("Knight", "asdasd", 110, 20, 10);
-	 Bandit_Class  Bandit("Bandit", "aspfoasf", 90, 10, 5);
-	 Drow_Class    Drow("Drow", "Shadowy figure", 120, 10, 5);
 
 	int Subverification = 2;
 
@@ -60,14 +55,19 @@ Game_Class& Selecting_A_Game_Character()
 		case 1:
 		{
 			cout << "You've chosen a hero Bastard" << endl;
-			Bastard.Display_Status();
+			Bastard_Class* temp = new Bastard_Class("Bastard", "Aggressive enemy", 100, 15, 5);
+			temp->Display_Status();
 			cout << endl;
 			Text_To_Confirm_The_Selection();
 
 			cin >> Subverification;
 			if (Subverification == 1)
 			{
-				return Bastard;
+				return temp; 
+			}
+			else
+			{
+				delete temp; 
 			}
 			system("cls");
 			break;
@@ -75,14 +75,19 @@ Game_Class& Selecting_A_Game_Character()
 		case 2:
 		{
 			cout << "You've chosen a hero Knight" << endl;
-			Knight.Display_Status();
+			Knight_Class* temp = new Knight_Class("Knight", "asdasd", 110, 20, 10);
+			temp->Display_Status();
 			cout << endl;
 			Text_To_Confirm_The_Selection();
 
 			cin >> Subverification;
 			if (Subverification == 1)
 			{
-				return Knight;
+				return temp;
+			}
+			else
+			{
+				delete temp;
 			}
 			system("cls");
 			break;
@@ -90,14 +95,19 @@ Game_Class& Selecting_A_Game_Character()
 		case 3:
 		{
 			cout << "You've chosen a hero Bandit" << endl;
-			Bandit.Display_Status();
+			Bandit_Class* temp = new Bandit_Class("Bandit", "aspfoasf", 90, 10, 5);
+			temp->Display_Status();
 			cout << endl;
 			Text_To_Confirm_The_Selection();
 
 			cin >> Subverification;
 			if (Subverification == 1)
 			{
-				return Bandit;
+				return temp;
+			}
+			else
+			{
+				delete temp;
 			}
 			system("cls");
 			break;
@@ -105,14 +115,19 @@ Game_Class& Selecting_A_Game_Character()
 		case 4:
 		{
 			cout << "You've chosen a hero Drow" << endl;
-			Drow.Display_Status();
+			Drow_Class* temp = new Drow_Class("Drow", "Shadowy figure", 120, 10, 5);
+			temp->Display_Status();
 			cout << endl;
 			Text_To_Confirm_The_Selection();
 
 			cin >> Subverification;
 			if (Subverification == 1)
 			{
-				return Drow;
+				return temp;
+			}
+			else
+			{
+				delete temp;
 			}
 			system("cls");
 			break;
