@@ -205,6 +205,8 @@ void The_Player_Move(Game_Class& Player, Enemy_Class& Enemy)
 
 void Battle(Game_Class& Player)
 {
+	system("cls");
+
 	Enemy_Class   Goblin("Goblin", "asdasdasd", 100, 10, 5, 1);
 	Enemy_Class   Skeleton("Skeleton", "asdasdasd", 100, 10, 5, 1);
 	Enemy_Class   Dark("Dark", "asdasdasd", 100, 10, 5, 1);
