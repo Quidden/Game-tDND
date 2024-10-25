@@ -31,6 +31,6 @@ int main()
     delete Player;
 }
 
-
+//Test
 // if an object is required for a few function, create it in main
 // if it's function specific create the object in a corresponding function
