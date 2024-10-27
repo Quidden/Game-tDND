@@ -7,60 +7,60 @@ void SetTextColor2(int color)
 	SetConsoleTextAttribute(hConsole, color);
 }
 
-Person_Class::Person_Class() : Name(""), Description(""), HP(0), Damage(0), Die_Bonus(0) {}
-Person_Class::Person_Class(std::string Name, std::string Description, int HP, int Damage, int Die_Bonus)
-	: Name(Name), Description(Description), HP(HP), Damage(Damage), Die_Bonus(Die_Bonus) {}
-Game_Class::Game_Class(std::string Name, std::string Description, int HP, int Damage, int Die_Bonus)
-	:Person_Class(Name, Description, HP, Damage, Die_Bonus) {}
-Bastard_Class::Bastard_Class(std::string Name, std::string Description, int HP, int Damage, int Die_Bonus)
-	: Game_Class(Name, Description, HP, Damage, Die_Bonus) {}
-Knight_Class::Knight_Class(std::string Name, std::string Description, int HP, int Damage, int Die_Bonus)
-	: Game_Class(Name, Description, HP, Damage, Die_Bonus) {}
-Bandit_Class::Bandit_Class(std::string Name, std::string Description, int HP, int Damage, int Die_Bonus)
-	: Game_Class(Name, Description, HP, Damage, Die_Bonus) {}
-Drow_Class::Drow_Class(std::string Name, std::string Description, int HP, int Damage, int Die_Bonus)
-	: Game_Class(Name, Description, HP, Damage, Die_Bonus) {}
-Enemy_Class::Enemy_Class(std::string Name, std::string Description, int HP, int Damage, int Die_Bonus, int Reward)
-	:Person_Class(Name, Description, HP, Damage, Die_Bonus) {}
+PersonClass::PersonClass() : Name(""), Description(""), HP(0), Damage(0), DieBonus(0) {}
+PersonClass::PersonClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
+	: Name(Name), Description(Description), HP(HP), Damage(Damage), DieBonus(DieBonus) {}
+GameClass::GameClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
+	:PersonClass(Name, Description, HP, Damage, DieBonus) {}
+BastardClass::BastardClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
+	: GameClass(Name, Description, HP, Damage, DieBonus) {}
+KnightClass::KnightClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
+	: GameClass(Name, Description, HP, Damage, DieBonus) {}
+BanditClass::BanditClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
+	: GameClass(Name, Description, HP, Damage, DieBonus) {}
+DrowClass::DrowClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
+	: GameClass(Name, Description, HP, Damage, DieBonus) {}
+EnemyClass::EnemyClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus, int Reward)
+	:PersonClass(Name, Description, HP, Damage, DieBonus) {}
 
 
-bool Person_Class::Is_Alive()
+bool PersonClass::IsAlive()
 {
 	return HP > 0;
 }
-void Person_Class::Display_Status()
+void PersonClass::DisplayStatus()
 {
-	std::cout << Name << ": " << HP << " HP, Damage " << Damage << ", Die Bonus " << Die_Bonus << std::endl;
+	std::cout << Name << ": " << HP << " HP, Damage " << Damage << ", Die Bonus " << DieBonus << std::endl;
 }
 
-void Bastard_Class::Abilites()
+void BastardClass::Abilites()
 {
 	int chance = rand() % 100 + 1;
 	if (chance <= 10)
 	{
 		SetTextColor2(3);
 		std::cout << Name << "Bastard exit the battle" << std::endl;
-		Exit_the_battle = true;
+		ExitTheBattle = true;
 	}
 	else
 	{
-		Exit_the_battle = false;
+		ExitTheBattle = false;
 	}
 }
-void Knight_Class::Abilites()
+void KnightClass::Abilites()
 {
 
 	int chance = rand() % 100 + 1;
 	if (chance <= 30)
 	{
-		Skip_Hod = true;
+		SkipHod = true;
 	}
 	else
 	{
-		Skip_Hod = false;
+		SkipHod = false;
 	}
 }
-void Bandit_Class::Abilites()
+void BanditClass::Abilites()
 {
 	int chance = rand() % 100 + 1;
 	if (chance <= 60)
@@ -70,7 +70,7 @@ void Bandit_Class::Abilites()
 		this->Damage *= 2;
 	}
 }
-void Drow_Class::Abilites()
+void DrowClass::Abilites()
 {
 	int chance = rand() % 100 + 1;
 	if (chance <= 10)
