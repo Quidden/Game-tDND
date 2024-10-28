@@ -4,9 +4,14 @@
 #include "Person.h"
 
 using namespace std;
-
-bool Exit_the_battle = false;
-bool Skip_Hod = false;
+//void Initialization_Check(Game_Class Player, Enemy_Class Enemy)
+//{
+//	if (Player == nullptr || Enemy == nullptr)
+//	{
+//		std::cerr << "Player or Enemy is not initialized!" << std::endl;
+//		return;
+//	}
+//}
 
 //void charter()
 //{
@@ -22,13 +27,27 @@ void SetTextColor(int color)
 	SetConsoleTextAttribute(hConsole, color);
 }
 
-void Text_To_Confirm_The_Selection()
+void TextToConfirmTheSelection()
 {
 	cout << "If you really want to play as this character press 1" << endl;
 	cout << "If you want to change your character press 2" << endl;
 }
 
-Game_Class* Selecting_A_Game_Character()
+void HeroInfoSelecting(GameClass* temp, int& Subverification)
+{
+	temp->DisplayStatus();
+	cout << temp->Description << endl;
+	cout << endl;
+	TextToConfirmTheSelection();
+
+	cin >> Subverification;
+	if(Subverification != 1)
+	{
+		delete temp;
+	}
+}
+
+GameClass* SelectingGameCharacter()
 {
 
 	int Subverification = 2;
@@ -55,19 +74,11 @@ Game_Class* Selecting_A_Game_Character()
 		case 1:
 		{
 			cout << "You've chosen a hero Bastard" << endl;
-			Bastard_Class* temp = new Bastard_Class("Bastard", "Aggressive enemy", 100, 15, 5);
-			temp->Display_Status();
-			cout << endl;
-			Text_To_Confirm_The_Selection();
-
-			cin >> Subverification;
+			BastardClass* temp = new BastardClass("Bastard", "A relentless and aggressive enemy who fights with brute strength and little regard for anything but victory.", 100, 15, 5);
+			HeroInfoSelecting(temp, Subverification);
 			if (Subverification == 1)
 			{
-				return temp; 
-			}
-			else
-			{
-				delete temp; 
+				return temp;
 			}
 			system("cls");
 			break;
@@ -75,39 +86,23 @@ Game_Class* Selecting_A_Game_Character()
 		case 2:
 		{
 			cout << "You've chosen a hero Knight" << endl;
-			Knight_Class* temp = new Knight_Class("Knight", "asdasd", 110, 20, 10);
-			temp->Display_Status();
-			cout << endl;
-			Text_To_Confirm_The_Selection();
-
-			cin >> Subverification;
+			KnightClass* temp = new KnightClass("Knight", "A noble and honorable warrior, dedicated to defending the weak and striking down evil with formidable might and resilience.", 110, 20, 10);
+			HeroInfoSelecting(temp, Subverification);
 			if (Subverification == 1)
 			{
 				return temp;
 			}
-			else
-			{
-				delete temp;
-			}
 			system("cls");
-			break;
+			break;	
 		}
 		case 3:
 		{
 			cout << "You've chosen a hero Bandit" << endl;
-			Bandit_Class* temp = new Bandit_Class("Bandit", "aspfoasf", 90, 10, 5);
-			temp->Display_Status();
-			cout << endl;
-			Text_To_Confirm_The_Selection();
-
-			cin >> Subverification;
+			BanditClass* temp = new BanditClass("Bandit", " A cunning and ruthless rogue, skilled in ambushes and quick attacks, always searching for an opportunity to take advantage.", 90, 10, 5);
+			HeroInfoSelecting(temp, Subverification);
 			if (Subverification == 1)
 			{
 				return temp;
-			}
-			else
-			{
-				delete temp;
 			}
 			system("cls");
 			break;
@@ -115,19 +110,11 @@ Game_Class* Selecting_A_Game_Character()
 		case 4:
 		{
 			cout << "You've chosen a hero Drow" << endl;
-			Drow_Class* temp = new Drow_Class("Drow", "Shadowy figure", 120, 10, 5);
-			temp->Display_Status();
-			cout << endl;
-			Text_To_Confirm_The_Selection();
-
-			cin >> Subverification;
+			DrowClass* temp = new DrowClass("Drow", "A shadowy figure from the depths, mysterious and dangerous, using dark arts and stealth to overcome opponents.", 120, 10, 5);
+			HeroInfoSelecting(temp, Subverification);
 			if (Subverification == 1)
 			{
 				return temp;
-			}
-			else
-			{
-				delete temp;
 			}
 			system("cls");
 			break;
@@ -140,19 +127,10 @@ Game_Class* Selecting_A_Game_Character()
 	}
 }
 
-//void Initialization_Check(Game_Class Player, Enemy_Class Enemy)
-//{
-//	if (Player == nullptr || Enemy == nullptr)
-//	{
-//		std::cerr << "Player or Enemy is not initialized!" << std::endl;
-//		return;
-//	}
-//}
-
-void The_Enemy_Move(Game_Class& Player, Enemy_Class& Enemy)
+void TheEnemyMove(GameClass& Player, EnemyClass& Enemy)
 {
 
-	if (!Skip_Hod)
+	if (!Player.SkipHod)
 	{
 		cout << "" << endl;
 		SetTextColor(12);
@@ -161,9 +139,9 @@ void The_Enemy_Move(Game_Class& Player, Enemy_Class& Enemy)
 
 		Player.HP -= Enemy.Damage;
 		SetTextColor(12);
-		Enemy.Display_Status();
+		Enemy.DisplayStatus();
 		SetTextColor(10);
-		Player.Display_Status();
+		Player.DisplayStatus();
 	}
 	else
 	{
@@ -171,14 +149,14 @@ void The_Enemy_Move(Game_Class& Player, Enemy_Class& Enemy)
 		cout << "Enemy is stunned and cannot take damage this turn" << endl;
 	}
 
-	if (!Player.Is_Alive())
+	if (!Player.IsAlive())
 	{
 		SetTextColor(6);
 		cout << Enemy.Name << " You are defeated" << endl;
 	}
 }
 
-void The_Player_Move(Game_Class& Player, Enemy_Class& Enemy)
+void ThePlayerMove(GameClass& Player, EnemyClass& Enemy)
 {
 	cout << "" << endl;
 	SetTextColor(10);
@@ -189,12 +167,12 @@ void The_Player_Move(Game_Class& Player, Enemy_Class& Enemy)
 
 	Enemy.HP -= Player.Damage;
 	SetTextColor(10);
-	Player.Display_Status();
+	Player.DisplayStatus();
 
-	if (Enemy.Is_Alive())
+	if (Enemy.IsAlive())
 	{
 		SetTextColor(12);
-		Enemy.Display_Status();
+		Enemy.DisplayStatus();
 	}
 	else
 	{
@@ -203,44 +181,44 @@ void The_Player_Move(Game_Class& Player, Enemy_Class& Enemy)
 	}
 }
 
-void Battle(Game_Class& Player)
+void Battle(GameClass& Player)
 {
 	system("cls");
 
-	Enemy_Class   Goblin("Goblin", "asdasdasd", 100, 10, 5, 1);
-	Enemy_Class   Skeleton("Skeleton", "asdasdasd", 100, 10, 5, 1);
-	Enemy_Class   Dark("Dark", "asdasdasd", 100, 10, 5, 1);
-	Enemy_Class   Shadow("Shadow", "asdasdasd", 100, 10, 5, 1);
-	Enemy_Class   King("King", "asdasdasd", 100, 10, 5, 1);
+	EnemyClass   Goblin("Goblin", "asdasdasd", 100, 10, 5, 1);
+	EnemyClass   Skeleton("Skeleton", "asdasdasd", 100, 10, 5, 1);
+	EnemyClass   Dark("Dark", "asdasdasd", 100, 10, 5, 1);
+	EnemyClass   Shadow("Shadow", "asdasdasd", 100, 10, 5, 1);
+	EnemyClass   King("King", "asdasdasd", 100, 10, 5, 1);
 
-	Enemy_Class& Enemy = Goblin;
+	EnemyClass& Enemy = Goblin;
 	
 	cout << "A fight breaks out between "<< Player.Name << " end "<< Enemy.Name << endl;
-	cout << "To make a move in a battle press “Enter”" << endl;
+	cout << "To make a move in a battle press 'Enter'" << endl;
 
 	cin.get();
 	
 	//Initialization_Check(Player, Enemy);
 
-	while (Player.Is_Alive() && Enemy.Is_Alive() && Exit_the_battle == false)
+	while (Player.IsAlive() && Enemy.IsAlive() && !Player.ExitTheBattle)
 	{
 
-        The_Player_Move(Player, Enemy);
+        ThePlayerMove(Player, Enemy);
 		cin.get();
 
-		if (Player.Name == "Bastard" && dynamic_cast<Bastard_Class*>(&Player)->Exit_the_battle)
+		if (Player.Name == "Bastard" && dynamic_cast<BastardClass*>(&Player)->ExitTheBattle)
 		{
 			break;
 		}
 
 		if (Player.Name == "Knight")
 		{
-			Skip_Hod = dynamic_cast<Knight_Class*>(&Player)->Skip_Hod;
+			Player.SkipHod = dynamic_cast<KnightClass*>(&Player)->SkipHod;
 		}
 
-		if (Enemy.Is_Alive())
+		if (Enemy.IsAlive())
 		{
-			The_Enemy_Move(Player, Enemy);
+			TheEnemyMove(Player, Enemy);
 			cin.get();
 		}
 		system("cls");

@@ -7,11 +7,11 @@
 #include <memory> 
 using namespace std;
 
-Game_Class* Selecting_A_Game_Character();
-int Rundom_Number_Die_Value();
-void Battle(Game_Class& Player);
+GameClass* SelectingGameCharacter();
+int RundomNumberDieValue();
+void Battle(GameClass& Player);
 
-int Random_Number_Die_Value()
+int RandomNumberDieValue()
 {
     return rand() % 100 + 1;
 }
@@ -21,10 +21,10 @@ int main()
 
     srand(time(nullptr));
 
-    Game_Class* Player = Selecting_A_Game_Character();
+    GameClass* Player = SelectingGameCharacter();
     cout << "Selected Character: " << Player->Name << " - " << Player->Description << endl;
 
-    int Random_Value = Random_Number_Die_Value();
+    int Random_Value = RandomNumberDieValue();
 
     Battle(*Player);
 
