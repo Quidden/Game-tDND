@@ -4,9 +4,14 @@
 #include "Person.h"
 
 using namespace std;
-
-bool ExitTheBattle = false;
-bool SkipHod = false;
+//void Initialization_Check(Game_Class Player, Enemy_Class Enemy)
+//{
+//	if (Player == nullptr || Enemy == nullptr)
+//	{
+//		std::cerr << "Player or Enemy is not initialized!" << std::endl;
+//		return;
+//	}
+//}
 
 //void charter()
 //{
@@ -26,6 +31,20 @@ void TextToConfirmTheSelection()
 {
 	cout << "If you really want to play as this character press 1" << endl;
 	cout << "If you want to change your character press 2" << endl;
+}
+
+void HeroInfoSelecting(GameClass* temp, int& Subverification)
+{
+	temp->DisplayStatus();
+	cout << temp->Description << endl;
+	cout << endl;
+	TextToConfirmTheSelection();
+
+	cin >> Subverification;
+	if(Subverification != 1)
+	{
+		delete temp;
+	}
 }
 
 GameClass* SelectingGameCharacter()
@@ -55,19 +74,11 @@ GameClass* SelectingGameCharacter()
 		case 1:
 		{
 			cout << "You've chosen a hero Bastard" << endl;
-			BastardClass* temp = new BastardClass("Bastard", "Aggressive enemy", 100, 15, 5);
-			temp->DisplayStatus();
-			cout << endl;
-			TextToConfirmTheSelection();
-
-			cin >> Subverification;
+			BastardClass* temp = new BastardClass("Bastard", "A relentless and aggressive enemy who fights with brute strength and little regard for anything but victory.", 100, 15, 5);
+			HeroInfoSelecting(temp, Subverification);
 			if (Subverification == 1)
 			{
-				return temp; 
-			}
-			else
-			{
-				delete temp; 
+				return temp;
 			}
 			system("cls");
 			break;
@@ -75,39 +86,23 @@ GameClass* SelectingGameCharacter()
 		case 2:
 		{
 			cout << "You've chosen a hero Knight" << endl;
-			KnightClass* temp = new KnightClass("Knight", "asdasd", 110, 20, 10);
-			temp->DisplayStatus();
-			cout << endl;
-			TextToConfirmTheSelection();
-
-			cin >> Subverification;
+			KnightClass* temp = new KnightClass("Knight", "A noble and honorable warrior, dedicated to defending the weak and striking down evil with formidable might and resilience.", 110, 20, 10);
+			HeroInfoSelecting(temp, Subverification);
 			if (Subverification == 1)
 			{
 				return temp;
 			}
-			else
-			{
-				delete temp;
-			}
 			system("cls");
-			break;
+			break;	
 		}
 		case 3:
 		{
 			cout << "You've chosen a hero Bandit" << endl;
-			BanditClass* temp = new BanditClass("Bandit", "aspfoasf", 90, 10, 5);
-			temp->DisplayStatus();
-			cout << endl;
-			TextToConfirmTheSelection();
-
-			cin >> Subverification;
+			BanditClass* temp = new BanditClass("Bandit", " A cunning and ruthless rogue, skilled in ambushes and quick attacks, always searching for an opportunity to take advantage.", 90, 10, 5);
+			HeroInfoSelecting(temp, Subverification);
 			if (Subverification == 1)
 			{
 				return temp;
-			}
-			else
-			{
-				delete temp;
 			}
 			system("cls");
 			break;
@@ -115,19 +110,11 @@ GameClass* SelectingGameCharacter()
 		case 4:
 		{
 			cout << "You've chosen a hero Drow" << endl;
-			DrowClass* temp = new DrowClass("Drow", "Shadowy figure", 120, 10, 5);
-			temp->DisplayStatus();
-			cout << endl;
-			TextToConfirmTheSelection();
-
-			cin >> Subverification;
+			DrowClass* temp = new DrowClass("Drow", "A shadowy figure from the depths, mysterious and dangerous, using dark arts and stealth to overcome opponents.", 120, 10, 5);
+			HeroInfoSelecting(temp, Subverification);
 			if (Subverification == 1)
 			{
 				return temp;
-			}
-			else
-			{
-				delete temp;
 			}
 			system("cls");
 			break;
@@ -140,19 +127,10 @@ GameClass* SelectingGameCharacter()
 	}
 }
 
-//void Initialization_Check(Game_Class Player, Enemy_Class Enemy)
-//{
-//	if (Player == nullptr || Enemy == nullptr)
-//	{
-//		std::cerr << "Player or Enemy is not initialized!" << std::endl;
-//		return;
-//	}
-//}
-
 void TheEnemyMove(GameClass& Player, EnemyClass& Enemy)
 {
 
-	if (!SkipHod)
+	if (!Player.SkipHod)
 	{
 		cout << "" << endl;
 		SetTextColor(12);
@@ -216,13 +194,13 @@ void Battle(GameClass& Player)
 	EnemyClass& Enemy = Goblin;
 	
 	cout << "A fight breaks out between "<< Player.Name << " end "<< Enemy.Name << endl;
-	cout << "To make a move in a battle press “Enter”" << endl;
+	cout << "To make a move in a battle press 'Enter'" << endl;
 
 	cin.get();
 	
 	//Initialization_Check(Player, Enemy);
 
-	while (Player.IsAlive() && Enemy.IsAlive() && ExitTheBattle == false)
+	while (Player.IsAlive() && Enemy.IsAlive() && !Player.ExitTheBattle)
 	{
 
         ThePlayerMove(Player, Enemy);
@@ -235,7 +213,7 @@ void Battle(GameClass& Player)
 
 		if (Player.Name == "Knight")
 		{
-			SkipHod = dynamic_cast<KnightClass*>(&Player)->SkipHod;
+			Player.SkipHod = dynamic_cast<KnightClass*>(&Player)->SkipHod;
 		}
 
 		if (Enemy.IsAlive())

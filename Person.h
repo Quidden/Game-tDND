@@ -23,6 +23,9 @@ class GameClass : public PersonClass
 {
 public:
 
+	bool ExitTheBattle = false;
+	bool SkipHod = false;
+
 	virtual void Abilites() = 0;
 
 	GameClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus);
@@ -32,6 +35,7 @@ public:
 class BastardClass : public GameClass
 {
 public:
+
 
 	BastardClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus);
 

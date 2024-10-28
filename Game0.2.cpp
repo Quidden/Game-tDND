@@ -11,7 +11,7 @@ GameClass* SelectingGameCharacter();
 int RundomNumberDieValue();
 void Battle(GameClass& Player);
 
-int Random_Number_Die_Value()
+int RandomNumberDieValue()
 {
     return rand() % 100 + 1;
 }
@@ -24,7 +24,7 @@ int main()
     GameClass* Player = SelectingGameCharacter();
     cout << "Selected Character: " << Player->Name << " - " << Player->Description << endl;
 
-    int Random_Value = Random_Number_Die_Value();
+    int Random_Value = RandomNumberDieValue();
 
     Battle(*Player);
 
