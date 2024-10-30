@@ -2,87 +2,86 @@
 #include <string>
 #include <iostream>
 
-class PersonClass
+class PersonC
 {
 public:
-	virtual ~PersonClass() = default;
+	virtual ~PersonC() = default;
 
-	std::string Name;
-	std::string Description;
-	int HP;
-	int Damage;
-	int DieBonus;
+	std::string name;
+	std::string description;
+	int hp;
+	int damage;
+	int die_bonus;
 
 	bool IsAlive();
 	void DisplayStatus();
 
-	PersonClass();
-	PersonClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus);
+	PersonC();
+	PersonC(std::string name, std::string description, int hp, int damage, int die_bonus);
 };
-class GameClass : public PersonClass
+class GameC : public PersonC
 {
 public:
 
-	bool ExitTheBattle = false;
-	bool SkipHod = false;
+	bool exit_the_battle = false;
+	bool skip_hod = false;
 
 	virtual void Abilites() = 0;
 
-	GameClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus);
+	GameC(std::string name, std::string description, int hp, int damage, int die_bonus);
 
 };
 
-class BastardClass : public GameClass
+class BastardC : public GameC
 {
 public:
 
 
-	BastardClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus);
+	BastardC(std::string name, std::string description, int hp, int damage, int die_bonus);
 
-	bool ExitTheBattle = false;
+	bool exit_the_battle = false;
 
 	void Abilites() override;
 };
-class KnightClass : public GameClass
+class KnightC : public GameC
 {
 private:
 	int x;
 
 public:
 
-	KnightClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus);
+	KnightC(std::string name, std::string description, int hp, int damage, int die_bonus);
 
-	bool SkipHod = false;
-
-	void Abilites() override;
-};
-class BanditClass : public GameClass
-{
-public:
-
-	BanditClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus);
-
-	void Abilites() override;
-
-};
-class DrowClass : public GameClass
-{
-public:
-
-	DrowClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus);
-
-	PersonClass* target;
+	bool skip_hod = false;
 
 	void Abilites() override;
 };
-
-
-class EnemyClass : public PersonClass
+class BanditC : public GameC
 {
 public:
-	int Reward;
 
-	EnemyClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus, int Reward);
+	BanditC(std::string name, std::string description, int hp, int damage, int die_bonus);
 
+	void Abilites() override;
+
+};
+class DrowC : public GameC
+{
+public:
+
+	DrowC(std::string name, std::string description, int hp, int damage, int die_bonus);
+
+	PersonC* target;
+
+	void Abilites() override;
+};
+
+
+class EnemyC : public PersonC
+{
+public:
+	int reward;
+
+	EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward);
 
 };
