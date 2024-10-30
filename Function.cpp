@@ -4,22 +4,6 @@
 #include "Person.h"
 
 using namespace std;
-//void Initialization_Check(Game_Class Player, Enemy_Class Enemy)
-//{
-//	if (Player == nullptr || Enemy == nullptr)
-//	{
-//		std::cerr << "Player or Enemy is not initialized!" << std::endl;
-//		return;
-//	}
-//}
-
-//void charter()
-//{
-//	Bastard_Class Bastard("Bastard", "Aggressive enemy", 100, 15, 5);
-//	Knight_Class  Knight("Knight", "asdasd", 110, 20, 10);
-//	Bandit_Class  Bandit("Bandit", "aspfoasf", 90, 10, 5);
-//	Drow_Class    Drow("Drow", "Shadowy figure", 120, 10, 5);
-//}
 
 void SetTextColor(int color)
 {
@@ -51,6 +35,7 @@ GameClass* SelectingGameCharacter()
 {
 
 	int Subverification = 2;
+	GameClass* temp = nullptr;
 
 	while (Subverification == 2)
 	{
@@ -73,58 +58,37 @@ GameClass* SelectingGameCharacter()
 		{
 		case 1:
 		{
-			cout << "You've chosen a hero Bastard" << endl;
-			BastardClass* temp = new BastardClass("Bastard", "A relentless and aggressive enemy who fights with brute strength and little regard for anything but victory.", 100, 15, 5);
-			HeroInfoSelecting(temp, Subverification);
-			if (Subverification == 1)
-			{
-				return temp;
-			}
-			system("cls");
+			
+			temp = new BastardClass("Bastard", "A relentless and aggressive enemy who fights with brute strength and little regard for anything but victory.", 100, 15, 5);
 			break;
 		}
 		case 2:
 		{
-			cout << "You've chosen a hero Knight" << endl;
-			KnightClass* temp = new KnightClass("Knight", "A noble and honorable warrior, dedicated to defending the weak and striking down evil with formidable might and resilience.", 110, 20, 10);
-			HeroInfoSelecting(temp, Subverification);
-			if (Subverification == 1)
-			{
-				return temp;
-			}
-			system("cls");
+			temp = new KnightClass("Knight", "A noble and honorable warrior, dedicated to defending the weak and striking down evil with formidable might and resilience.", 110, 20, 10);
 			break;	
 		}
 		case 3:
 		{
-			cout << "You've chosen a hero Bandit" << endl;
-			BanditClass* temp = new BanditClass("Bandit", " A cunning and ruthless rogue, skilled in ambushes and quick attacks, always searching for an opportunity to take advantage.", 90, 10, 5);
-			HeroInfoSelecting(temp, Subverification);
-			if (Subverification == 1)
-			{
-				return temp;
-			}
-			system("cls");
+			temp = new BanditClass("Bandit", " A cunning and ruthless rogue, skilled in ambushes and quick attacks, always searching for an opportunity to take advantage.", 90, 10, 5);
 			break;
 		}
 		case 4:
 		{
-			cout << "You've chosen a hero Drow" << endl;
-			DrowClass* temp = new DrowClass("Drow", "A shadowy figure from the depths, mysterious and dangerous, using dark arts and stealth to overcome opponents.", 120, 10, 5);
-			HeroInfoSelecting(temp, Subverification);
-			if (Subverification == 1)
-			{
-				return temp;
-			}
-			system("cls");
+			temp = new DrowClass("Drow", "A shadowy figure from the depths, mysterious and dangerous, using dark arts and stealth to overcome opponents.", 120, 10, 5);
 			break;
 		}
 		default:
-			cout << "Invalid choice. Please choose between 1-4." << endl;
 			system("cls");
 			break;
 		}
+		if(temp != nullptr)
+		{
+			cout << "You've chosen a hero " << temp->Name << endl;
+			HeroInfoSelecting(temp, Subverification);
+		}
+		system("cls");
 	}
+	return temp;
 }
 
 void TheEnemyMove(GameClass& Player, EnemyClass& Enemy)
