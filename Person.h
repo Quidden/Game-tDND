@@ -16,7 +16,6 @@ public:
 	bool IsAlive();
 	void DisplayStatus();
 
-	PersonC();
 	PersonC(std::string name, std::string description, int hp, int damage, int die_bonus);
 };
 class GameC : public PersonC

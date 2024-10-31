@@ -1,32 +1,36 @@
 #pragma once
 #include <string>
-class Item
+
+class ItemC
 {
 public:
-	std::string Name;
-	std::string Description;
-	int Rarity;
+	std::string name;
+	std::string description;
+	int rarity;
 	int price;
-	Item();
+	ItemC(std::string name, std::string description, int rarity, int price);
 };
 
-class HealthPotka : public Item
+class Health_PotkaC : public ItemC
 {
 public:
 	int health;
+	Health_PotkaC(std::string name, std::string description, int rarity, int price, int health);
 };
 
-class LuckestPotka : public Item
+class Luckest_PotkaC : public ItemC
 {
 public:
-	int bonusKub;
+	int die_bonus;
+	Luckest_PotkaC(std::string name, std::string description, int rarity, int price, int die_bonus);
 };
 
-class Weapon : public Item
+class Weapon : public ItemC
 {
 public:
 	int damage;
 	int slot;
+	Weapon(std::string name, std::string description, int rarity, int price, int damage, int slot);
 };
 
 class LongSword : public Weapon

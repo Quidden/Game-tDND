@@ -7,7 +7,6 @@ void SetTextColor2(int color)
 	SetConsoleTextAttribute(hConsole, color);
 }
 
-PersonC::PersonC() : name(""), description(""), hp(0), damage(0), die_bonus(0) {}
 PersonC::PersonC(std::string name, std::string description, int hp, int damage, int die_bonus)
 	: name(name), description(description), hp(hp), damage(damage), die_bonus(die_bonus) {}
 GameC::GameC(std::string name, std::string description, int hp, int damage, int die_bonus)
