@@ -8,4 +8,3 @@ Luckest_PotkaC::Luckest_PotkaC(std::string name, std::string description, int ra
     : ItemC(name, description, rarity, price), die_bonus(die_bonus) {}
 Weapon::Weapon(std::string name, std::string description, int rarity, int price, int damage, int slot)
     :ItemC(name, description, rarity, price), damage(damage), slot(slot) {}
-//test
