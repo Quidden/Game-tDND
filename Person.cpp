@@ -7,81 +7,80 @@ void SetTextColor2(int color)
 	SetConsoleTextAttribute(hConsole, color);
 }
 
-PersonClass::PersonClass() : Name(""), Description(""), HP(0), Damage(0), DieBonus(0) {}
-PersonClass::PersonClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
-	: Name(Name), Description(Description), HP(HP), Damage(Damage), DieBonus(DieBonus) {}
-GameClass::GameClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
-	:PersonClass(Name, Description, HP, Damage, DieBonus) {}
-BastardClass::BastardClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
-	: GameClass(Name, Description, HP, Damage, DieBonus) {}
-KnightClass::KnightClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
-	: GameClass(Name, Description, HP, Damage, DieBonus) {}
-BanditClass::BanditClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
-	: GameClass(Name, Description, HP, Damage, DieBonus) {}
-DrowClass::DrowClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus)
-	: GameClass(Name, Description, HP, Damage, DieBonus) {}
-EnemyClass::EnemyClass(std::string Name, std::string Description, int HP, int Damage, int DieBonus, int Reward)
-	:PersonClass(Name, Description, HP, Damage, DieBonus) {}
+PersonC::PersonC(std::string name, std::string description, int hp, int damage, int die_bonus)
+	: name(name), description(description), hp(hp), damage(damage), die_bonus(die_bonus) {}
+GameC::GameC(std::string name, std::string description, int hp, int damage, int die_bonus)
+	:PersonC(name, description, hp, damage, die_bonus) {}
+BastardC::BastardC(std::string name, std::string description, int hp, int damage, int die_bonus)
+	: GameC(name, description, hp, damage, die_bonus) {}
+KnightC::KnightC(std::string name, std::string description, int hp, int damage, int die_bonus)
+	: GameC(name, description, hp, damage, die_bonus) {}
+BanditC::BanditC(std::string name, std::string description, int hp, int damage, int die_bonus)
+	: GameC(name, description, hp, damage, die_bonus) {}
+DrowC::DrowC(std::string name, std::string description, int hp, int damage, int die_bonus)
+	: GameC(name, description, hp, damage, die_bonus) {}
+EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward)
+	:PersonC(name, description, hp, damage, die_bonus) {}
 
 
-bool PersonClass::IsAlive()
+bool PersonC::IsAlive()
 {
-	return HP > 0;
+	return hp > 0;
 }
-void PersonClass::DisplayStatus()
+void PersonC::DisplayStatus()
 {
-	std::cout << Name << ": " << HP << " HP, Damage " << Damage << ", Die Bonus " << DieBonus << std::endl;
+	std::cout << name << ": " << hp << " HP, Damage " << damage << ", Die Bonus " << die_bonus << std::endl;
 }
 
-void BastardClass::Abilites()
+void BastardC::Abilites()
 {
 	int chance = rand() % 100 + 1;
 	if (chance <= 10)
 	{
 		SetTextColor2(3);
-		std::cout << Name << "Bastard exit the battle" << std::endl;
-		ExitTheBattle = true;
+		std::cout << name << "Bastard exit the battle" << std::endl;
+		exit_the_battle = true;
 	}
 	else
 	{
-		ExitTheBattle = false;
+		exit_the_battle = false;
 	}
 }
-void KnightClass::Abilites()
+void KnightC::Abilites()
 {
 
 	int chance = rand() % 100 + 1;
 	if (chance <= 30)
 	{
-		SkipHod = true;
+		skip_hod = true;
 	}
 	else
 	{
-		SkipHod = false;
+		skip_hod = false;
 	}
 }
-void BanditClass::Abilites()
+void BanditC::Abilites()
 {
 	int chance = rand() % 100 + 1;
 	if (chance <= 60)
 	{
 		SetTextColor2(3);
-		std::cout << Name << "Double damag" << std::endl;
-		this->Damage *= 2;
+		std::cout << name << "Double damag" << std::endl;
+		this->damage *= 2;
 	}
 }
-void DrowClass::Abilites()
+void DrowC::Abilites()
 {
 	int chance = rand() % 100 + 1;
 	if (chance <= 10)
 	{
 		SetTextColor2(3);
-		std::cout << Name << "Took two damage" << std::endl;
-		this->Damage += 2;
+		std::cout << name << "Took two damage" << std::endl;
+		this->damage += 2;
 
 		if (target != nullptr)
 		{
-			target->HP -= 2;
+			target->hp -= 2;
 		}
 	}
 }

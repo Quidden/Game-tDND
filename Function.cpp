@@ -4,22 +4,6 @@
 #include "Person.h"
 
 using namespace std;
-//void Initialization_Check(Game_Class Player, Enemy_Class Enemy)
-//{
-//	if (Player == nullptr || Enemy == nullptr)
-//	{
-//		std::cerr << "Player or Enemy is not initialized!" << std::endl;
-//		return;
-//	}
-//}
-
-//void charter()
-//{
-//	Bastard_Class Bastard("Bastard", "Aggressive enemy", 100, 15, 5);
-//	Knight_Class  Knight("Knight", "asdasd", 110, 20, 10);
-//	Bandit_Class  Bandit("Bandit", "aspfoasf", 90, 10, 5);
-//	Drow_Class    Drow("Drow", "Shadowy figure", 120, 10, 5);
-//}
 
 void SetTextColor(int color)
 {
@@ -33,10 +17,10 @@ void TextToConfirmTheSelection()
 	cout << "If you want to change your character press 2" << endl;
 }
 
-void HeroInfoSelecting(GameClass* temp, int& Subverification)
+void HeroInfoSelecting(GameC* temp, int& Subverification)
 {
 	temp->DisplayStatus();
-	cout << temp->Description << endl;
+	cout << temp->description << endl;
 	cout << endl;
 	TextToConfirmTheSelection();
 
@@ -47,10 +31,11 @@ void HeroInfoSelecting(GameClass* temp, int& Subverification)
 	}
 }
 
-GameClass* SelectingGameCharacter()
+GameC* SelectingGameCharacter()
 {
 
 	int Subverification = 2;
+	GameC* temp = nullptr;
 
 	while (Subverification == 2)
 	{
@@ -73,71 +58,50 @@ GameClass* SelectingGameCharacter()
 		{
 		case 1:
 		{
-			cout << "You've chosen a hero Bastard" << endl;
-			BastardClass* temp = new BastardClass("Bastard", "A relentless and aggressive enemy who fights with brute strength and little regard for anything but victory.", 100, 15, 5);
-			HeroInfoSelecting(temp, Subverification);
-			if (Subverification == 1)
-			{
-				return temp;
-			}
-			system("cls");
+			
+			temp = new BastardC("Bastard", "A relentless and aggressive enemy who fights with brute strength and little regard for anything but victory.", 100, 15, 5);
 			break;
 		}
 		case 2:
 		{
-			cout << "You've chosen a hero Knight" << endl;
-			KnightClass* temp = new KnightClass("Knight", "A noble and honorable warrior, dedicated to defending the weak and striking down evil with formidable might and resilience.", 110, 20, 10);
-			HeroInfoSelecting(temp, Subverification);
-			if (Subverification == 1)
-			{
-				return temp;
-			}
-			system("cls");
+			temp = new KnightC("Knight", "A noble and honorable warrior, dedicated to defending the weak and striking down evil with formidable might and resilience.", 110, 20, 10);
 			break;	
 		}
 		case 3:
 		{
-			cout << "You've chosen a hero Bandit" << endl;
-			BanditClass* temp = new BanditClass("Bandit", " A cunning and ruthless rogue, skilled in ambushes and quick attacks, always searching for an opportunity to take advantage.", 90, 10, 5);
-			HeroInfoSelecting(temp, Subverification);
-			if (Subverification == 1)
-			{
-				return temp;
-			}
-			system("cls");
+			temp = new BanditC("Bandit", " A cunning and ruthless rogue, skilled in ambushes and quick attacks, always searching for an opportunity to take advantage.", 90, 10, 5);
 			break;
 		}
 		case 4:
 		{
-			cout << "You've chosen a hero Drow" << endl;
-			DrowClass* temp = new DrowClass("Drow", "A shadowy figure from the depths, mysterious and dangerous, using dark arts and stealth to overcome opponents.", 120, 10, 5);
-			HeroInfoSelecting(temp, Subverification);
-			if (Subverification == 1)
-			{
-				return temp;
-			}
-			system("cls");
+			temp = new DrowC("Drow", "A shadowy figure from the depths, mysterious and dangerous, using dark arts and stealth to overcome opponents.", 120, 10, 5);
 			break;
 		}
 		default:
-			cout << "Invalid choice. Please choose between 1-4." << endl;
 			system("cls");
 			break;
 		}
+		if(temp != nullptr)
+		{
+			cout << "You've chosen a hero " << temp->name << endl;
+			HeroInfoSelecting(temp, Subverification);
+		}
+		system("cls");
 	}
+	return temp;
 }
 
-void TheEnemyMove(GameClass& Player, EnemyClass& Enemy)
+void TheEnemyMove(GameC& Player, EnemyC& Enemy)
 {
 
-	if (!Player.SkipHod)
+	if (!Player.skip_hod)
 	{
 		cout << "" << endl;
 		SetTextColor(12);
 		cout << "Enemy's move" << endl;
 		cout << "" << endl;
 
-		Player.HP -= Enemy.Damage;
+		Player.hp -= Enemy.damage;
 		SetTextColor(12);
 		Enemy.DisplayStatus();
 		SetTextColor(10);
@@ -152,11 +116,11 @@ void TheEnemyMove(GameClass& Player, EnemyClass& Enemy)
 	if (!Player.IsAlive())
 	{
 		SetTextColor(6);
-		cout << Enemy.Name << " You are defeated" << endl;
+		cout << Enemy.name << " You are defeated" << endl;
 	}
 }
 
-void ThePlayerMove(GameClass& Player, EnemyClass& Enemy)
+void ThePlayerMove(GameC& Player, EnemyC& Enemy)
 {
 	cout << "" << endl;
 	SetTextColor(10);
@@ -165,7 +129,7 @@ void ThePlayerMove(GameClass& Player, EnemyClass& Enemy)
 
 	Player.Abilites();
 
-	Enemy.HP -= Player.Damage;
+	Enemy.hp -= Player.damage;
 	SetTextColor(10);
 	Player.DisplayStatus();
 
@@ -177,43 +141,43 @@ void ThePlayerMove(GameClass& Player, EnemyClass& Enemy)
 	else
 	{
 		SetTextColor(6);
-		cout << Enemy.Name << " defeated! You've won!" << endl;
+		cout << Enemy.name << " defeated! You've won!" << endl;
 	}
 }
 
-void Battle(GameClass& Player)
+void Battle(GameC& Player)
 {
 	system("cls");
 
-	EnemyClass   Goblin("Goblin", "asdasdasd", 100, 10, 5, 1);
-	EnemyClass   Skeleton("Skeleton", "asdasdasd", 100, 10, 5, 1);
-	EnemyClass   Dark("Dark", "asdasdasd", 100, 10, 5, 1);
-	EnemyClass   Shadow("Shadow", "asdasdasd", 100, 10, 5, 1);
-	EnemyClass   King("King", "asdasdasd", 100, 10, 5, 1);
+	EnemyC   Goblin("Goblin", "asdasdasd", 100, 10, 5, 1);
+	EnemyC   Skeleton("Skeleton", "asdasdasd", 100, 10, 5, 1);
+	EnemyC   Dark("Dark", "asdasdasd", 100, 10, 5, 1);
+	EnemyC   Shadow("Shadow", "asdasdasd", 100, 10, 5, 1);
+	EnemyC   King("King", "asdasdasd", 100, 10, 5, 1);
 
-	EnemyClass& Enemy = Goblin;
+	EnemyC& Enemy = Goblin;
 	
-	cout << "A fight breaks out between "<< Player.Name << " end "<< Enemy.Name << endl;
+	cout << "A fight breaks out between "<< Player.name << " end "<< Enemy.name << endl;
 	cout << "To make a move in a battle press 'Enter'" << endl;
 
 	cin.get();
 	
 	//Initialization_Check(Player, Enemy);
 
-	while (Player.IsAlive() && Enemy.IsAlive() && !Player.ExitTheBattle)
+	while (Player.IsAlive() && Enemy.IsAlive() && !Player.exit_the_battle)
 	{
 
         ThePlayerMove(Player, Enemy);
 		cin.get();
 
-		if (Player.Name == "Bastard" && dynamic_cast<BastardClass*>(&Player)->ExitTheBattle)
+		if (Player.name == "Bastard" && dynamic_cast<BastardC*>(&Player)->exit_the_battle)
 		{
 			break;
 		}
 
-		if (Player.Name == "Knight")
+		if (Player.name == "Knight")
 		{
-			Player.SkipHod = dynamic_cast<KnightClass*>(&Player)->SkipHod;
+			Player.skip_hod = dynamic_cast<KnightC*>(&Player)->skip_hod;
 		}
 
 		if (Enemy.IsAlive())

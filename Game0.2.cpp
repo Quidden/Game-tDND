@@ -7,9 +7,9 @@
 #include <memory> 
 using namespace std;
 
-GameClass* SelectingGameCharacter();
+GameC* SelectingGameCharacter();
 int RundomNumberDieValue();
-void Battle(GameClass& Player);
+void Battle(GameC& Player);
 
 int RandomNumberDieValue()
 {
@@ -21,8 +21,8 @@ int main()
 
     srand(time(nullptr));
 
-    GameClass* Player = SelectingGameCharacter();
-    cout << "Selected Character: " << Player->Name << " - " << Player->Description << endl;
+    GameC* Player = SelectingGameCharacter();
+    cout << "Selected Character: " << Player->name << " - " << Player->description << endl;
 
     int Random_Value = RandomNumberDieValue();
 
