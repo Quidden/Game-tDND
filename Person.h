@@ -75,7 +75,6 @@ public:
 	void Abilites() override;
 };
 
-
 class EnemyC : public PersonC
 {
 public:
