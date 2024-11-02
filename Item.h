@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 
+enum class WeaponType {Sword, Bow, Dagger};
+
 class ItemC
 {
 public:
@@ -40,7 +42,10 @@ class Weapon : public ItemC
 public:
 	int damage;
 	int slot;
-	Weapon(std::string name, std::string description, int rarity, int price, int damage, int slot);
+
+	WeaponType weapon_type;
+
+	Weapon(std::string name, std::string description, int rarity, int price, int damage, int slot, WeaponType weapon_type);
 	void Use() const override 
 	{
 		std::cout << "Using weapon: " << name << " with damage: " << damage << std::endl;

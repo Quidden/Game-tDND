@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Item.h"
+#include "Person.h"
 
 class Inventory 
 {
@@ -8,6 +9,19 @@ public:
     std::vector<ItemC*> items;      
     std::vector<ItemC*> activeItems; 
     int baseDamage = 10;             
+
+    void AddItem(Weapon* item, GameC* character) 
+    {
+        if (character->CanEquip(item->weapon_type))
+        {
+            items.push_back(item);
+            std::cout << character->name << " added item: " << item->name << std::endl;
+        }
+        else 
+        {
+            std::cout << character->name << " cannot equip " << item->name << std::endl;
+        }
+    }
 
     void AddItem(ItemC* item) 
     {

@@ -21,17 +21,11 @@ int main()
 {
     Inventory inventory;
 
-    ItemC* sword = new Weapon("Sword", "A sharp blade", 2, 100, 15, 1);
-    ItemC* shield = new Weapon("Shield", "Provides protection", 1, 80, 0, 2);
+    ItemC* sword = new Weapon("Sword", "A sharp blade", 2, 100, 15, 1, WeaponType::Sword);
+    ItemC* bow = new Weapon("Bow", "A ranged weapon", 3, 120, 10, 2, WeaponType::Bow);
     ItemC* healthPotion = new Health_PotkaC("Health Potion", "Restores health", 1, 50, 20);
 
-    inventory.AddItem(sword);
-    inventory.AddItem(shield);
     inventory.AddItem(healthPotion);
-
-    std::cout << "Displaying inventory for the first time:" << std::endl;
-    inventory.DisplayInventory();
-    cin.get();
 
     srand(time(nullptr));
 
@@ -47,15 +41,6 @@ int main()
     }
 
     int Random_Value = RandomNumberDieValue();
-
-    cin.get();
-    std::cout << "Attempting to display inventory and player status:" << std::endl;
-    inventory.DisplayInventory();
-    Player->DisplayStatus();
-    inventory.DisplayInventory();
-    Player->DisplayStatus();
-    std::cout << "Finished displaying inventory and player status." << std::endl;
-    cin.get();
 
     std::cout << "Starting Battle..." << std::endl;
     Battle(*Player);

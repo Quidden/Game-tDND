@@ -9,18 +9,18 @@ void SetTextColor2(int color)
 
 PersonC::PersonC(std::string name, std::string description, int hp, int damage, int die_bonus)
 	: name(name), description(description), hp(hp), damage(damage), die_bonus(die_bonus) {}
-GameC::GameC(std::string name, std::string description, int hp, int damage, int die_bonus)
-	:PersonC(name, description, hp, damage, die_bonus) {}
-BastardC::BastardC(std::string name, std::string description, int hp, int damage, int die_bonus)
-	: GameC(name, description, hp, damage, die_bonus) {}
-KnightC::KnightC(std::string name, std::string description, int hp, int damage, int die_bonus)
-	: GameC(name, description, hp, damage, die_bonus) {}
-BanditC::BanditC(std::string name, std::string description, int hp, int damage, int die_bonus)
-	: GameC(name, description, hp, damage, die_bonus) {}
-DrowC::DrowC(std::string name, std::string description, int hp, int damage, int die_bonus)
-	: GameC(name, description, hp, damage, die_bonus) {}
+GameC::GameC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
+	:PersonC(name, description, hp, damage, die_bonus) ,charter_type(charter_type) {}
+BastardC::BastardC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
+	: GameC(name, description, hp, damage, die_bonus, charter_type) {}
+KnightC::KnightC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
+	: GameC(name, description, hp, damage, die_bonus, charter_type) {}
+BanditC::BanditC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
+	: GameC(name, description, hp, damage, die_bonus, charter_type) {}
+DrowC::DrowC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
+	: GameC(name, description, hp, damage, die_bonus, charter_type) {}
 EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward)
-	:PersonC(name, description, hp, damage, die_bonus) {}
+	:PersonC(name, description, hp, damage, die_bonus), reward(reward) {}
 
 
 bool PersonC::IsAlive()
