@@ -25,8 +25,6 @@ int main()
     ItemC* bow = new Weapon("Bow", "A ranged weapon", 3, 120, 10, 2, WeaponType::Bow);
     ItemC* healthPotion = new Health_PotkaC("Health Potion", "Restores health", 1, 50, 20);
 
-    inventory.AddItem(healthPotion);
-
     srand(time(nullptr));
 
     GameC* Player = SelectingGameCharacter();
@@ -39,6 +37,13 @@ int main()
         std::cout << "Player selection failed!" << std::endl;
         return 1; 
     }
+
+    cin.get();
+    inventory.AddItem(healthPotion);
+    inventory.AddItem(sword);
+    cin.get();
+    inventory.DisplayInventory();
+    cin.get();
 
     int Random_Value = RandomNumberDieValue();
 
