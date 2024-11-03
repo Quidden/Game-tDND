@@ -3,11 +3,6 @@
 #include "Item.h"
 #include "Person.h"
 
-#include <iostream>
-#include <vector>
-#include "Item.h"
-#include "Person.h"
-
 class Inventory
 {
 public:
