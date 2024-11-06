@@ -4,7 +4,6 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
-#include <memory> 
 #include "Inventory.h"
 using namespace std;
 
@@ -41,12 +40,10 @@ int main()
     cin.get();
     inventory.AddItem(healthPotion, Player);
     inventory.AddItem(sword, Player);
+    inventory.AddItem(bow, Player);
     cin.get();
     inventory.DisplayInventory();
     cin.get();
-    cin.get();
-
-    int Random_Value = RandomNumberDieValue();
 
     std::cout << "Starting Battle..." << std::endl;
     Battle(*Player);
