@@ -1,1 +1,0 @@
-CMakeLists.txt not found in C:\Users\Quidden Laptop\CLionProjects\Game-tDND\.idea Select CMakeLists.txt
