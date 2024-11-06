@@ -39,8 +39,8 @@ int main()
     }
 
     cin.get();
-    inventory.AddItem(healthPotion);
-    inventory.AddItem(sword);
+    inventory.AddItem(healthPotion, Player);
+    inventory.AddItem(sword, Player);
     cin.get();
     inventory.DisplayInventory();
     cin.get();
