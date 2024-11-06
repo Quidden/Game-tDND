@@ -3,9 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-
+# ignore file
 .idea/
 cmake-build-debug/
+cmake-build-game-dungeon-01/
 
 # User-specific files
 *.rsuser
