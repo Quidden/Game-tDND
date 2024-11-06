@@ -44,6 +44,7 @@ int main()
     cin.get();
     inventory.DisplayInventory();
     cin.get();
+    cin.get();
 
     int Random_Value = RandomNumberDieValue();
 
