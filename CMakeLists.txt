@@ -6,9 +6,9 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(Game_tDND
-    Function.cpp
-    Game0.2.cpp
-    Item.cpp
-    Item.h
-    Person.cpp
-    Person.h)
+        Function.cpp
+        Game0.2.cpp
+        Inventory.cpp
+        Item.cpp
+        Person.cpp
+)
