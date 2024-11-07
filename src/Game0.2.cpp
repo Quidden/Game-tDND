@@ -4,7 +4,6 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
-#include "Inventory.h"
 #include "Function.h"
 
 using namespace std;
@@ -16,8 +15,6 @@ int RandomNumberDieValue()
 
 int main()
 {
-    Inventory inventory;
-
     ItemC* sword = new Weapon("Sword", "A sharp blade", 2, 100, 15, 1, WeaponType::Sword);
     ItemC* bow = new Weapon("Bow", "A ranged weapon", 3, 120, 10, 2, WeaponType::Bow);
     ItemC* healthPotion = new Health_PotkaC("Health Potion", "Restores health", 1, 50, 20);
@@ -34,15 +31,9 @@ int main()
         std::cout << "Player selection failed!" << std::endl;
         return 1; 
     }
-
     cin.get();
-    inventory.AddItem(healthPotion, Player);
-    inventory.AddItem(sword, Player);
-    inventory.AddItem(bow, Player);
-    cin.get();
-    inventory.DisplayInventory();
-    cin.get();
-
+    Player->inventory.AddItem(bow);
+    Player->EquipWeapon(1);
     std::cout << "Starting Battle..." << std::endl;
     Battle(*Player);
 
