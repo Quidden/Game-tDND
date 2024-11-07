@@ -9,7 +9,7 @@ public:
     std::vector<ItemC*> items;
     ItemC* equipped_weapon = nullptr;
  
-    void AddItem(ItemC* item, GameC* character)
+    void AddItem(ItemC* item, PlayerC* character)
     {
         if (Weapon* weapon = dynamic_cast<Weapon*>(item))
         {
@@ -30,7 +30,7 @@ public:
         }
     }
 
-    void EquipWeapon(int index, GameC* character)
+    void EquipWeapon(int index, PlayerC* character)
     {
         if (index >= 0 && index < items.size())
         {
@@ -57,7 +57,7 @@ public:
         }
     }
    
-    void UseItem(int index, GameC* character)
+    void UseItem(int index, PlayerC* character)
     {
         if (index >= 0 && index < items.size())
         {

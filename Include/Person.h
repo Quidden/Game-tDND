@@ -22,7 +22,7 @@ public:
 	PersonC(std::string name, std::string description, int hp, int damage, int die_bonus);
 };
 
-class GameC : public PersonC
+class PlayerC : public PersonC
 {
 public:
 
@@ -33,12 +33,12 @@ public:
 
 	virtual void Abilites() = 0;
 
-	GameC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
+	PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
 
 	virtual bool CanEquip(WeaponType weapon_type) const = 0;
 };
 
-class BastardC : public GameC
+class BastardC : public PlayerC
 {
 public:
 
@@ -54,7 +54,7 @@ public:
 		return true;
 	}
 };
-class KnightC : public GameC
+class KnightC : public PlayerC
 {
 public:
 
@@ -69,7 +69,7 @@ public:
 		return weapon_type == WeaponType::Sword;
 	}
 };
-class BanditC : public GameC
+class BanditC : public PlayerC
 {
 public:
 
@@ -82,7 +82,7 @@ public:
 		return weapon_type == WeaponType::Dagger;
 	}
 };
-class DrowC : public GameC
+class DrowC : public PlayerC
 {
 public:
 

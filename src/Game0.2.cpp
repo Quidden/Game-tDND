@@ -24,7 +24,7 @@ int main()
 
     srand(time(nullptr));
 
-    GameC* Player = SelectingGameCharacter();
+    PlayerC* Player = SelectingGameCharacter();
     if (Player != nullptr) 
     {
         std::cout << "Selected Character: " << Player->name << " - " << Player->description << std::endl;

@@ -9,16 +9,16 @@ void SetTextColor2(int color)
 
 PersonC::PersonC(std::string name, std::string description, int hp, int damage, int die_bonus)
 	: name(std::move(name)), description(std::move(description)), hp(hp), damage(damage), die_bonus(die_bonus) {}
-GameC::GameC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
+PlayerC::PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
 	:PersonC(std::move(name),std::move(description), hp, damage, die_bonus) ,charter_type(charter_type) {}
 BastardC::BastardC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
-	: GameC(std::move(name),std::move(description), hp, damage, die_bonus, charter_type) {}
+	: PlayerC(std::move(name),std::move(description), hp, damage, die_bonus, charter_type) {}
 KnightC::KnightC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
-	: GameC(std::move(name),std::move(description), hp, damage, die_bonus, charter_type) {}
+	: PlayerC(std::move(name),std::move(description), hp, damage, die_bonus, charter_type) {}
 BanditC::BanditC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
-	: GameC(std::move(name),std::move(description), hp, damage, die_bonus, charter_type) {}
+	: PlayerC(std::move(name),std::move(description), hp, damage, die_bonus, charter_type) {}
 DrowC::DrowC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
-	: GameC(std::move(name), std::move(description), hp, damage, die_bonus, charter_type) {}
+	: PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, charter_type) {}
 EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward)
 	:PersonC(std::move(name), std::move(description), hp, damage, die_bonus), reward(reward) {}
 

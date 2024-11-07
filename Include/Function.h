@@ -17,7 +17,7 @@ void TextToConfirmTheSelection()
 	cout << "If you want to change your character press 2" << endl;
 }
 
-void HeroInfoSelecting(GameC* temp, int& Subverification)
+void HeroInfoSelecting(PlayerC* temp, int& Subverification)
 {
 	temp->DisplayStatus();
 	cout << temp->description << endl;
@@ -31,11 +31,11 @@ void HeroInfoSelecting(GameC* temp, int& Subverification)
 	}
 }
 
-GameC* SelectingGameCharacter()
+PlayerC* SelectingGameCharacter()
 {
 
 	int Subverification = 2;
-	GameC* temp = nullptr;
+	PlayerC* temp = nullptr;
 
 	while (Subverification == 2)
 	{
@@ -91,7 +91,7 @@ GameC* SelectingGameCharacter()
 	return temp;
 }
 
-void TheEnemyMove(GameC& Player, EnemyC& Enemy)
+void TheEnemyMove(PlayerC& Player, EnemyC& Enemy)
 {
 
 	if (!Player.skip_hod)
@@ -120,7 +120,7 @@ void TheEnemyMove(GameC& Player, EnemyC& Enemy)
 	}
 }
 
-void ThePlayerMove(GameC& Player, EnemyC& Enemy)
+void ThePlayerMove(PlayerC& Player, EnemyC& Enemy)
 {
 	cout << "" << endl;
 	SetTextColor(10);
@@ -145,7 +145,7 @@ void ThePlayerMove(GameC& Player, EnemyC& Enemy)
 	}
 }
 
-void Battle(GameC& Player)
+void Battle(PlayerC& Player)
 {
 	system("cls");
 
