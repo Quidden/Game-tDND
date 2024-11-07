@@ -5,11 +5,9 @@
 #include <cstdlib>
 #include <ctime>
 #include "Inventory.h"
-using namespace std;
+#include "Function.h"
 
-GameC* SelectingGameCharacter();
-int RundomNumberDieValue();
-void Battle(GameC& Player);
+using namespace std;
 
 int RandomNumberDieValue()
 {

@@ -58,14 +58,14 @@ GameC* SelectingGameCharacter()
 		{
 		case 1:
 		{
-			
+
 			temp = new BastardC("Bastard", "A relentless and aggressive enemy who fights with brute strength and little regard for anything but victory.", 100, 15, 5, CharacterType::Bastard);
 			break;
 		}
 		case 2:
 		{
 			temp = new KnightC("Knight", "A noble and honorable warrior, dedicated to defending the weak and striking down evil with formidable might and resilience.", 110, 20, 10, CharacterType::Knight);
-			break;	
+			break;
 		}
 		case 3:
 		{
@@ -156,12 +156,12 @@ void Battle(GameC& Player)
 	EnemyC   King("King", "asdasdasd", 100, 10, 5, 1);
 
 	EnemyC& Enemy = Goblin;
-	
+
 	cout << "A fight breaks out between "<< Player.name << " end "<< Enemy.name << endl;
 	cout << "To make a move in a battle press 'Enter'" << endl;
 
 	cin.get();
-	
+
 	//Initialization_Check(Player, Enemy);
 
 	while (Player.IsAlive() && Enemy.IsAlive() && !Player.exit_the_battle)

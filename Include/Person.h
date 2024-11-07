@@ -21,6 +21,7 @@ public:
 
 	PersonC(std::string name, std::string description, int hp, int damage, int die_bonus);
 };
+
 class GameC : public PersonC
 {
 public:
@@ -55,9 +56,6 @@ public:
 };
 class KnightC : public GameC
 {
-private:
-	int x;
-
 public:
 
 	KnightC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
