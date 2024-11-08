@@ -4,12 +4,12 @@
 
 std::vector<ItemC *> items;
 
-void AddItem(ItemC *item)
+void InventoryC::AddItem(ItemC *item)
 {
     items.push_back(item);
     std::cout << "Added item: " << item->name << std::endl;
 }
-void DisplayInventory()
+void InventoryC::DisplayInventory()
 {
     std::cout << "Inventory contents:" << std::endl;
     for (int i = 0; i < items.size(); ++i)

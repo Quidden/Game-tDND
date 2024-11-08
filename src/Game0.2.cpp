@@ -31,6 +31,7 @@ int main()
         std::cout << "Player selection failed!" << std::endl;
         return 1; 
     }
+    InventoryRealization(*Player);
     cin.get();
     Player->inventory.AddItem(bow);
     Player->EquipWeapon(1);

@@ -7,9 +7,56 @@
 
 using namespace std;
 
-void InventoryRealization()
+void Inventory(PlayerC &Player)
 {
+    Player.inventory.DisplayInventory();
+    cout<<"What do you want to do?"<<endl;
+    cout<<"1.Equip an item   2.Use item   3.Sell an item   4.Exit inventory"<<endl;
+    int choice1;
+    cin>>choice1;
+    if (choice1 == 4)
+    {
+        system("cls");
+        return;
+    }
+    if (!(choice1 > 4))
+    {
+        system("cls");
+        cout<<"Invalid choice"<<endl;
+        cin.get();
+        return;
+    }
+    int index;
+    cin>>index;
     system("cls");
+    Player.inventory.DisplayInventory();
+    cout<<"Select the item you need by its number"<<endl;
+    if (choice1 == 1)
+    {
+        Player.EquipWeapon(index);
+    }
+    if (choice1 == 2)
+    {
+        Player.UseItem(index);
+    }
+    if (choice1 == 3)
+    {
+        Player.SellItem(index);
+    }
+}
+
+void InventoryRealization(PlayerC& Player)
+{
+    cout<<"If you want to go to inventory press 'y'"<<endl;
+    string choice;
+    cin>>choice;
+
+    if (choice != "y" || choice != "Y")
+        return;
+    system("cls");
+
+    Player.DisplayStatus();
+    Inventory(Player);
 }
 
 void SetTextColor(int color)
@@ -64,22 +111,22 @@ PlayerC *SelectingGameCharacter()
         {
             case 1:
             {
-                temp = new BastardC("Bastard", "A relentless and aggressive enemy who fights with brute strength and little regard for anything but victory.", 100, 15, 5, CharacterType::Bastard);
+                temp = new BastardC("Bastard", "A relentless and aggressive enemy who fights with brute strength and little regard for anything but victory.", 100, 15, 5, 0, CharacterType::Bastard);
                 break;
             }
             case 2:
             {
-                temp = new KnightC("Knight", "A noble and honorable warrior, dedicated to defending the weak and striking down evil with formidable might and resilience.", 110, 20, 10, CharacterType::Knight);
+                temp = new KnightC("Knight", "A noble and honorable warrior, dedicated to defending the weak and striking down evil with formidable might and resilience.", 110, 20, 10, 0,CharacterType::Knight);
                 break;
             }
             case 3:
             {
-                temp = new BanditC("Bandit", " A cunning and ruthless rogue, skilled in ambushes and quick attacks, always searching for an opportunity to take advantage.", 90, 10, 5, CharacterType::Bandit);
+                temp = new BanditC("Bandit", " A cunning and ruthless rogue, skilled in ambushes and quick attacks, always searching for an opportunity to take advantage.", 90, 10, 5, 0,CharacterType::Bandit);
                 break;
             }
             case 4:
             {
-                temp = new ArcherC("Drow", "A shadowy figure from the depths, mysterious and dangerous, using dark arts and stealth to overcome opponents.", 120, 10, 5, CharacterType::Drow);
+                temp = new ArcherC("Drow", "A shadowy figure from the depths, mysterious and dangerous, using dark arts and stealth to overcome opponents.", 120, 10, 5, 0,CharacterType::Drow);
                 break;
             }
             default:

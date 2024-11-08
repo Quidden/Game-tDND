@@ -11,24 +11,24 @@ PersonC::PersonC(std::string name, std::string description, int hp, int damage, 
     : name(std::move(name)), description(std::move(description)), hp(hp), damage(damage), die_bonus(die_bonus)
 {
 }
-PlayerC::PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
-    : PersonC(std::move(name), std::move(description), hp, damage, die_bonus), charter_type(charter_type)
+PlayerC::PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
+    : PersonC(std::move(name), std::move(description), hp, damage, die_bonus), wallet(wallet), charter_type(charter_type)
 {
 }
-BastardC::BastardC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
-    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, charter_type)
+BastardC::BastardC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
+    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
 {
 }
-KnightC::KnightC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
-    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, charter_type)
+KnightC::KnightC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
+    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
 {
 }
-BanditC::BanditC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
-    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, charter_type)
+BanditC::BanditC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
+    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
 {
 }
-ArcherC::ArcherC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type)
-    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, charter_type)
+ArcherC::ArcherC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet ,CharacterType charter_type)
+    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
 {
 }
 EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward)
@@ -142,11 +142,11 @@ int PlayerC::AdjustDamage(bool add)
     this->damage += add ? weapon_damage : -weapon_damage;
     return this->damage;
 }
-void PlayerC::SellItem(int index, int &player_gold)
+void PlayerC::SellItem(int index)
 {
     if (index >= 0 && index < items.size())
     {
-        player_gold += items[index]->price;
+        this->wallet += items[index]->price;
         std::cout << "Sold item: " << items[index]->name << " for " << items[index]->price << " gold." << std::endl;
         delete items[index];
         items.erase(items.begin() + index);

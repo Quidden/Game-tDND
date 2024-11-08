@@ -29,13 +29,16 @@ public:
 class PlayerC : public PersonC
 {
 public:
+
+    int wallet;
+
     InventoryC inventory;
     CharacterType charter_type;
 
     bool exit_the_battle = false;
     bool skip_hod = false;
 
-    PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
+    PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type);
     void TryAbility(int chanceThreshold, bool &effectFlag, const std::string &abilityMessage);
 
     std::vector<ItemC *> items;
@@ -44,7 +47,7 @@ public:
     void EquipWeapon(int index);
     void UseItem(int index);
     int AdjustDamage(bool add);
-    void SellItem(int index, int &player_gold);
+    void SellItem(int index);
     virtual void Abilites() = 0;
     virtual bool CanEquip(WeaponType weapon_type) const = 0;
 };
@@ -52,7 +55,7 @@ public:
 class BastardC : public PlayerC
 {
 public:
-    BastardC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
+    BastardC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type);
 
     bool exit_the_battle = false;
 
@@ -67,7 +70,7 @@ public:
 class KnightC : public PlayerC
 {
 public:
-    KnightC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
+    KnightC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type);
 
     bool skip_hod = false;
 
@@ -82,7 +85,7 @@ public:
 class BanditC : public PlayerC
 {
 public:
-    BanditC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
+    BanditC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type);
 
     void Abilites() override;
 
@@ -95,7 +98,7 @@ public:
 class ArcherC : public PlayerC
 {
 public:
-    ArcherC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
+    ArcherC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type);
 
     PersonC *target;
 
