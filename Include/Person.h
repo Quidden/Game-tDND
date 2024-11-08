@@ -7,7 +7,8 @@
 
 enum class CharacterType { Knight, Drow, Bandit, Bastard };
 
-class PersonC {
+class PersonC
+{
 public:
     virtual ~PersonC() = default;
 
@@ -24,7 +25,8 @@ public:
     PersonC(std::string name, std::string description, int hp, int damage, int die_bonus);
 };
 
-class PlayerC : public PersonC {
+class PlayerC : public PersonC
+{
 public:
     InventoryC inventory;
     CharacterType charter_type;
@@ -41,28 +43,36 @@ public:
     std::vector<ItemC *> items;
     ItemC *equipped_weapon = nullptr;
 
-    void EquipWeapon(int index) {
-        if (index < 0 || index >= items.size()) {
+    void EquipWeapon(int index)
+    {
+        if (index < 0 || index >= items.size())
+        {
             std::cout << "Invalid index." << std::endl;
             return;
         }
-        if (Weapon *weapon = dynamic_cast<Weapon *>(items[index])) {
-            if (this->CanEquip(weapon->weapon_type)) {
+        if (Weapon *weapon = dynamic_cast<Weapon *>(items[index]))
+        {
+            if (this->CanEquip(weapon->weapon_type))
+            {
                 equipped_weapon = weapon;
                 std::cout << this->name << " equipped " << weapon->name << std::endl;
-            } else {
+            } else
+            {
                 std::cout << this->name << " cannot equip this weapon type." << std::endl;
             }
-        } else {
+        } else
+        {
             std::cout << "Selected item is not a weapon." << std::endl;
         }
     }
 
-    void UseItem(int index) {
+    void UseItem(int index)
+    {
         if (!(index >= 0 && index < items.size()))
             std::cout << "Invalid index." << std::endl;
 
-        if (Health_PotkaC *potion = dynamic_cast<Health_PotkaC *>(items[index])) {
+        if (Health_PotkaC *potion = dynamic_cast<Health_PotkaC *>(items[index]))
+        {
             std::cout << "Using " << potion->name << " to restore " << potion->health << " health points." << std::endl;
             this->hp += potion->health;
             delete items[index];
@@ -71,23 +81,28 @@ public:
             std::cout << "Selected item is not a potion." << std::endl;
     }
 
-    int GetDamage() {
+    int GetDamage()
+    {
         this->damage += (equipped_weapon ? dynamic_cast<Weapon *>(equipped_weapon)->damage : 0);
         return this->damage;
     }
 
-    int UnGetDamage() {
+    int UnGetDamage()
+    {
         this->damage -= (equipped_weapon ? dynamic_cast<Weapon *>(equipped_weapon)->damage : 0);
         return this->damage;
     }
 
-    void SellItem(int index, int &player_gold) {
-        if (index >= 0 && index < items.size()) {
+    void SellItem(int index, int &player_gold)
+    {
+        if (index >= 0 && index < items.size())
+        {
             player_gold += items[index]->price;
             std::cout << "Sold item: " << items[index]->name << " for " << items[index]->price << " gold." << std::endl;
             delete items[index];
             items.erase(items.begin() + index);
-        } else {
+        } else
+        {
             std::cout << "Invalid index." << std::endl;
         }
     }
@@ -100,7 +115,8 @@ public:
     }*/
 };
 
-class BastardC : public PlayerC {
+class BastardC : public PlayerC
+{
 public:
     BastardC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
 
@@ -108,12 +124,14 @@ public:
 
     void Abilites() override;
 
-    bool CanEquip(WeaponType weapon_type) const override {
+    bool CanEquip(WeaponType weapon_type) const override
+    {
         return true;
     }
 };
 
-class KnightC : public PlayerC {
+class KnightC : public PlayerC
+{
 public:
     KnightC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
 
@@ -121,23 +139,27 @@ public:
 
     void Abilites() override;
 
-    bool CanEquip(WeaponType weapon_type) const override {
+    bool CanEquip(WeaponType weapon_type) const override
+    {
         return weapon_type == WeaponType::Sword;
     }
 };
 
-class BanditC : public PlayerC {
+class BanditC : public PlayerC
+{
 public:
     BanditC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
 
     void Abilites() override;
 
-    bool CanEquip(WeaponType weapon_type) const override {
+    bool CanEquip(WeaponType weapon_type) const override
+    {
         return weapon_type == WeaponType::Dagger;
     }
 };
 
-class DrowC : public PlayerC {
+class DrowC : public PlayerC
+{
 public:
     DrowC(std::string name, std::string description, int hp, int damage, int die_bonus, CharacterType charter_type);
 
@@ -145,12 +167,14 @@ public:
 
     void Abilites() override;
 
-    bool CanEquip(WeaponType weapon_type) const override {
+    bool CanEquip(WeaponType weapon_type) const override
+    {
         return weapon_type == WeaponType::Bow;
     }
 };
 
-class EnemyC : public PersonC {
+class EnemyC : public PersonC
+{
 public:
     int reward;
 
