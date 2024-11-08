@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
+#include <memory>
 #include <iostream>
 
-enum class WeaponType {Sword, Bow, Dagger};
+enum class WeaponType : uint8_t {Sword, Bow, Dagger};
 
 class ItemC
 {
