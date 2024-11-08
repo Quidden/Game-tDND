@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include "Person.h"
 
 enum class WeaponType {Sword, Bow, Dagger};
 
