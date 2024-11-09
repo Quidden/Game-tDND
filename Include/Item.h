@@ -53,7 +53,12 @@ public:
 	}
 };
 
-class LongSword : public Weapon
+class SpecificWeapon : public Weapon
+{
+	virtual void WeaponAbilites();
+};
+
+class LongSword : public SpecificWeapon
 {
 public:
 	void CSWA2C() //Can stun with a 20% chance
@@ -62,7 +67,7 @@ public:
 	}
 };
 
-class LSMagical : public Weapon
+class LSMagical : public SpecificWeapon
 {
 public:
 	void WA2CTHWMD() //With a 20% chance to hit with magic damage.
@@ -71,7 +76,7 @@ public:
 	}
 };
 
-class LSLegendary : public Weapon
+class LSLegendary : public SpecificWeapon
 {
 public:
 	void WA8COWAND() //With an 80% chance of winning any duel.
@@ -80,7 +85,7 @@ public:
 	}
 };
 
-class dagger : public Weapon
+class dagger : public SpecificWeapon
 {
 public:
 	void WA1COKI() //With a 10% chance of killing instantly
@@ -89,7 +94,7 @@ public:
 	}
 };
 
-class DMagical : public Weapon
+class DMagical : public SpecificWeapon
 {
 public:
 	void WA5COKI() //With a 50% chance of killing instantly
@@ -98,7 +103,7 @@ public:
 	}
 };
 
-class DLegendaryl : public Weapon
+class DLegendaryl : public SpecificWeapon
 {
 public:
 	void ILB1() //Increases luck by +10
@@ -107,7 +112,7 @@ public:
 	}
 };
 
-class Bow : public Weapon
+class Bow : public SpecificWeapon
 {
 public:
 	void CTA1DC() //Can take a 10 damage crit
@@ -116,7 +121,7 @@ public:
 	}
 };
 
-class BLegendary : public Weapon
+class BLegendary : public SpecificWeapon
 {
 public:
 	void AYTMTFAAHA9CTK() //Allows you to make the first attack and have a 90% chance to kill 

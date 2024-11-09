@@ -11,26 +11,32 @@ PersonC::PersonC(std::string name, std::string description, int hp, int damage, 
     : name(std::move(name)), description(std::move(description)), hp(hp), damage(damage), die_bonus(die_bonus)
 {
 }
+
 PlayerC::PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
     : PersonC(std::move(name), std::move(description), hp, damage, die_bonus), wallet(wallet), charter_type(charter_type)
 {
 }
+
 BastardC::BastardC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
     : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
 {
 }
+
 KnightC::KnightC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
     : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
 {
 }
+
 BanditC::BanditC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
     : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
 {
 }
-ArcherC::ArcherC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet ,CharacterType charter_type)
+
+ArcherC::ArcherC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
     : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
 {
 }
+
 EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward)
     : PersonC(std::move(name), std::move(description), hp, damage, die_bonus), reward(reward)
 {
@@ -41,6 +47,7 @@ bool PersonC::IsAlive()
 {
     return hp > 0;
 }
+
 void PersonC::DisplayStatus()
 {
     std::cout << name << ": " << hp << " HP, Damage " << damage << ", Die Bonus " << die_bonus << std::endl;
@@ -54,8 +61,7 @@ void PlayerC::TryAbility(int chanceThreshold, bool &effectFlag, const std::strin
         effectFlag = true;
         SetTextColor2(3);
         std::cout << name << " " << abilityMessage << std::endl;
-    }
-    else
+    } else
     {
         effectFlag = false;
     }
@@ -65,10 +71,12 @@ void BastardC::Abilites()
 {
     TryAbility(10, exit_the_battle, "Bastard exits the battle");
 }
+
 void KnightC::Abilites()
 {
     TryAbility(30, skip_hod, "Knight skips the turn");
 }
+
 void BanditC::Abilites()
 {
     int chance = rand() % 100 + 1;
@@ -79,6 +87,7 @@ void BanditC::Abilites()
         this->damage *= 2;
     }
 }
+
 void ArcherC::Abilites()
 {
     int chance = rand() % 100 + 1;
@@ -119,6 +128,7 @@ void PlayerC::EquipWeapon(int index)
     equipped_weapon = weapon;
     std::cout << this->name << " equipped " << weapon->name << std::endl;
 }
+
 void PlayerC::UseItem(int index)
 {
     if (index < 0 || index >= items.size())
@@ -136,12 +146,14 @@ void PlayerC::UseItem(int index)
     }
     std::cin.get();
 }
+
 int PlayerC::AdjustDamage(bool add)
 {
     int weapon_damage = equipped_weapon ? dynamic_cast<Weapon *>(equipped_weapon)->damage : 0;
     this->damage += add ? weapon_damage : -weapon_damage;
     return this->damage;
 }
+
 void PlayerC::SellItem(int index)
 {
     if (index >= 0 && index < items.size())
