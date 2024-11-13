@@ -4,8 +4,28 @@
 #include "Person.h"
 #include <Windows.h>
 #include "Inventory.h"
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN    "\033[36m"
+#define WHITE   "\033[37m"
+#define BOLD    "\033[1m"
 
 using namespace std;
+
+void ErrorOutput(std::string error, bool error_type)
+{
+    system("cls");
+    std::cout << RED << error << RESET;
+    cin.get();
+    if(error_type)
+    {
+        return;
+    }
+}
 
 void Inventory(PlayerC &Player)
 {
@@ -21,10 +41,7 @@ void Inventory(PlayerC &Player)
     }
     if (!(choice1 > 4))
     {
-        system("cls");
-        cout << "Invalid choice" << endl;
-        cin.get();
-        return;
+        ErrorOutput ("Invalid Input", true);
     }
     int index;
     cin >> index;

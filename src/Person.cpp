@@ -1,5 +1,6 @@
 #include "Person.h"
 #include <Windows.h>
+#include "Function.h"
 
 void SetTextColor2(int color)
 {
@@ -108,22 +109,16 @@ void PlayerC::EquipWeapon(int index)
 {
     if (index < 0 || index >= items.size())
     {
-        std::cout << "Invalid index." << std::endl;
-        std::cin.get();
-        return;
+       ErrorOutput("Invalid index. ", true);
     }
     auto *weapon = dynamic_cast<Weapon *>(items[index]);
     if (!weapon)
     {
-        std::cout << "Selected item is not a weapon." << std::endl;
-        std::cin.get();
-        return;
+        ErrorOutput("Selected item is not a weapon.", true);
     }
     if (!this->CanEquip(weapon->weapon_type))
     {
-        std::cout << this->name << " cannot equip this weapon type." << std::endl;
-        std::cin.get();
-        return;
+        ErrorOutput("cannot equip this weapon type.", true);
     }
     equipped_weapon = weapon;
     std::cout << this->name << " equipped " << weapon->name << std::endl;
@@ -133,7 +128,7 @@ void PlayerC::UseItem(int index)
 {
     if (index < 0 || index >= items.size())
     {
-        std::cout << "Invalid index." << std::endl;
+        ErrorOutput("Invalid index. ", false);
     } else if (auto *potion = dynamic_cast<Health_PotkaC *>(items[index]))
     {
         std::cout << "Using " << potion->name << " to restore " << potion->health << " health points." << std::endl;
@@ -142,7 +137,7 @@ void PlayerC::UseItem(int index)
         items.erase(items.begin() + index);
     } else
     {
-        std::cout << "Selected item is not a potion." << std::endl;
+        ErrorOutput("Selected item is not a potion.", false);
     }
     std::cin.get();
 }
@@ -164,6 +159,6 @@ void PlayerC::SellItem(int index)
         items.erase(items.begin() + index);
     } else
     {
-        std::cout << "Invalid index." << std::endl;
+        ErrorOutput("Invalid index. ", false);
     }
 }
