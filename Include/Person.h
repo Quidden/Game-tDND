@@ -55,7 +55,7 @@ public:
 class BastardC : public PlayerC
 {
 public:
-    BastardC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type);
+    using PlayerC::PlayerC;
 
     bool exit_the_battle = false;
 
@@ -70,7 +70,7 @@ public:
 class KnightC : public PlayerC
 {
 public:
-    KnightC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type);
+    using PlayerC::PlayerC;
 
     bool skip_hod = false;
 
@@ -85,7 +85,7 @@ public:
 class BanditC : public PlayerC
 {
 public:
-    BanditC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type);
+    using PlayerC::PlayerC;
 
     void Abilites() override;
 
@@ -98,7 +98,7 @@ public:
 class ArcherC : public PlayerC
 {
 public:
-    ArcherC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type);
+    using PlayerC::PlayerC;
 
     PersonC *target;
 

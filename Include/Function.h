@@ -16,6 +16,16 @@
 
 using namespace std;
 
+void SetAttributeColor(PlayerC &Player, Weapon &Weapon)
+{
+    int new_damage = Player.damage + Weapon.damage;
+
+    if(new_damage > Player.damage)
+        std::cout<<GREEN<<"+("<<Weapon.damage<<")"<<RESET;
+    if (new_damage < Player.damage)
+        std::cout<<RED<<"-("<<Weapon.damage<<")"<<RESET;
+}
+
 void ErrorOutput(std::string error, bool error_type)
 {
     system("cls");

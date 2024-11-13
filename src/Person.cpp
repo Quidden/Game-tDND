@@ -18,26 +18,6 @@ PlayerC::PlayerC(std::string name, std::string description, int hp, int damage, 
 {
 }
 
-BastardC::BastardC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
-    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
-{
-}
-
-KnightC::KnightC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
-    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
-{
-}
-
-BanditC::BanditC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
-    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
-{
-}
-
-ArcherC::ArcherC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
-    : PlayerC(std::move(name), std::move(description), hp, damage, die_bonus, wallet, charter_type)
-{
-}
-
 EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward)
     : PersonC(std::move(name), std::move(description), hp, damage, die_bonus), reward(reward)
 {
