@@ -18,7 +18,10 @@ using namespace std;
 
 void SetAttributeColor(PlayerC &Player, Weapon &Weapon)
 {
-    int new_damage = Player.damage + Weapon.damage;
+    int extra_damage = 0
+    for ( int i = 0; i < Player.equipped_weapon; i++)
+        extra_damage += Player.equipped_weapon[i].damage;
+    int new_damage = Player.damage + extra_damage;
 
     if(new_damage > Player.damage)
         std::cout<<GREEN<<"+("<<Weapon.damage<<")"<<RESET;
@@ -26,15 +29,12 @@ void SetAttributeColor(PlayerC &Player, Weapon &Weapon)
         std::cout<<RED<<"-("<<Weapon.damage<<")"<<RESET;
 }
 
-void ErrorOutput(std::string error, bool error_type)
+bool ErrorOutput(std::string error, bool error_type)
 {
     system("cls");
     std::cout << RED << error << RESET;
     cin.get();
-    if(error_type)
-    {
-        return;
-    }
+    return true;
 }
 
 void Inventory(PlayerC &Player)
@@ -43,6 +43,7 @@ void Inventory(PlayerC &Player)
     cout << "What do you want to do?" << endl;
     cout << "1.Equip an item   2.Use item   3.Sell an item   4.Exit inventory" << endl;
     int choice1;
+    bool flag = false;
     cin >> choice1;
     if (choice1 == 4)
     {
@@ -52,7 +53,10 @@ void Inventory(PlayerC &Player)
     if (!(choice1 > 4))
     {
         ErrorOutput ("Invalid Input", true);
+        return ;
+
     }
+
     int index;
     cin >> index;
     system("cls");

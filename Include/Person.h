@@ -31,6 +31,7 @@ class PlayerC : public PersonC
 public:
 
     int wallet;
+    int max_num_of_weapons;
 
     InventoryC inventory;
     CharacterType charter_type;
@@ -42,7 +43,7 @@ public:
     void TryAbility(int chanceThreshold, bool &effectFlag, const std::string &abilityMessage);
 
     std::vector<ItemC *> items;
-    ItemC *equipped_weapon = nullptr;
+    Weapon *equipped_weapon = nullptr;
 
     void EquipWeapon(int index);
     void UseItem(int index);
