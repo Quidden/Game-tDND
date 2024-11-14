@@ -4,21 +4,13 @@
 #include "Person.h"
 #include <Windows.h>
 #include "Inventory.h"
-#define RESET   "\033[0m"
-#define RED     "\033[31m"
-#define GREEN   "\033[32m"
-#define YELLOW  "\033[33m"
-#define BLUE    "\033[34m"
-#define MAGENTA "\033[35m"
-#define CYAN    "\033[36m"
-#define WHITE   "\033[37m"
-#define BOLD    "\033[1m"
+#include "Untill.h"
 
 using namespace std;
 
 void SetAttributeColor(PlayerC &Player, Weapon &Weapon)
 {
-    int extra_damage = 0
+    int extra_damage = 0;
     for ( int i = 0; i < Player.equipped_weapon; i++)
         extra_damage += Player.equipped_weapon[i].damage;
     int new_damage = Player.damage + extra_damage;
@@ -27,14 +19,6 @@ void SetAttributeColor(PlayerC &Player, Weapon &Weapon)
         std::cout<<GREEN<<"+("<<Weapon.damage<<")"<<RESET;
     if (new_damage < Player.damage)
         std::cout<<RED<<"-("<<Weapon.damage<<")"<<RESET;
-}
-
-bool ErrorOutput(std::string error, bool error_type)
-{
-    system("cls");
-    std::cout << RED << error << RESET;
-    cin.get();
-    return true;
 }
 
 void Inventory(PlayerC &Player)
