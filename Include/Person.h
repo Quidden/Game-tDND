@@ -7,6 +7,11 @@
 #include <vector>
 
 enum class CharacterType : uint8_t { Knight, Drow, Bandit, Bastard };
+struct EquipResult
+{
+    bool success;
+    Weapon* weapon;
+};
 
 class PersonC
 {
@@ -45,7 +50,8 @@ public:
     std::vector<ItemC *> items;
     Weapon *equipped_weapon = nullptr;
 
-    void EquipWeapon(int index);
+    EquipResult EquipError(int index);
+    void EquipAction(Weapon* weapon);
     void UseItem(int index);
     int AdjustDamage(bool add);
     void SellItem(int index);

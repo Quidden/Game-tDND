@@ -85,24 +85,27 @@ void ArcherC::Abilites()
     }
 }
 
-void PlayerC::EquipWeapon(int index)
+EquipResult PlayerC::EquipError(int index)
 {
-    bool error_action = nullptr;
-    while (error_action == nullptr || error_action == true)
-    error_action = false;
+    bool error_action = false;
     if (index < 0 || index >= items.size())
-    {
-       error_action = ErrorOutput("Invalid index. ");
-    }
+       error_action = ErrorOutput("Invalid index.");
+
     auto *weapon = dynamic_cast<Weapon *>(items[index]);
     if (!weapon)
-    {
         error_action = ErrorOutput("Selected item is not a weapon.");
-    }
+
     if (!this->CanEquip(weapon->weapon_type))
-    {
         error_action = ErrorOutput("cannot equip this weapon type.");
-    }
+
+    if(error_action)
+        return {true, nullptr};
+
+    return {false, weapon};
+}
+
+void PlayerC::EquipAction(Weapon* weapon)
+{
     equipped_weapon = weapon;
     std::cout << this->name << " equipped " << weapon->name << std::endl;
 }
@@ -126,12 +129,6 @@ void PlayerC::UseItem(int index)
     std::cin.get();
 }
 
-int PlayerC::AdjustDamage(bool add)
-{
-    int weapon_damage = equipped_weapon ? dynamic_cast<Weapon *>(equipped_weapon)->damage : 0;
-    this->damage += add ? weapon_damage : -weapon_damage;
-    return this->damage;
-}
 
 void PlayerC::SellItem(int index)
 {
@@ -143,6 +140,6 @@ void PlayerC::SellItem(int index)
         items.erase(items.begin() + index);
     } else
     {
-        ErrorOutput("Invalid index. ", false);
+        ErrorOutput("Invalid index. ");
     }
 }
