@@ -31,10 +31,13 @@ int main()
         std::cout << "Player selection failed!" << std::endl;
         return 1; 
     }
+
     Player->inventory.AddItem(bow);
     Player->inventory.AddItem(sword);
     Player->inventory.AddItem(healthPotion);
+
     InventoryRealization(*Player);
+
     cin.get();
     std::cout << "Starting Battle..." << std::endl;
     Battle(*Player);

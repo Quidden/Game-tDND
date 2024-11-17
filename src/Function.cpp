@@ -52,8 +52,10 @@ void Inventory(PlayerC &Player)
     Player.inventory.DisplayInventory();
     cout << "What do you want to do?" << endl;
     cout << "1.Equip an item   2.Use item   3.Sell an item   4.Exit inventory" << endl;
+
     int choice1;
     cin >> choice1;
+
     if (choice1 == 4)
     {
         system("cls");
@@ -64,19 +66,23 @@ void Inventory(PlayerC &Player)
         ErrorOutput("invalid index");
         return ;
     }
+
     system("cls");
     Player.inventory.DisplayInventory();
+
     cout << "Select the item you need by its number" << endl;
     int index;
-    cin>>index;
+
     EquipResult result = Player.EquipError(index);
     if (choice1 == 1)
     {
-        while (result.success)
+        do
         {
             cin>>index;
             Player.EquipError(index);
         }
+        while (result.success);
+
         Player.EquipAction(result.weapon);
     }
     if (choice1 == 2)
@@ -96,11 +102,8 @@ void InventoryRealization(PlayerC &Player)
     cin >> choice;
 
     if (choice != "y" && choice != "Y")
-    {
         return;
-    }
 
-    cin.get();
     system("cls");
 
     Player.DisplayStatus();
@@ -150,7 +153,7 @@ PlayerC *SelectingGameCharacter()
         cout << "Enter your choice (1-4): ";
         cout << endl;
 
-        int choice = 0;
+        int choice;
         cin >> choice;
 
         system("cls");

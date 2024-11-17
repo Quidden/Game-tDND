@@ -126,7 +126,6 @@ void PlayerC::UseItem(int index)
     {
         ErrorOutput("Selected item is not a potion.");
     }
-    std::cin.get();
 }
 
 
