@@ -13,8 +13,8 @@ PersonC::PersonC(std::string name, std::string description, int hp, int damage, 
 {
 }
 
-PlayerC::PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type)
-    : PersonC(std::move(name), std::move(description), hp, damage, die_bonus), wallet(wallet), charter_type(charter_type)
+PlayerC::PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, int max_num_of_weapons, CharacterType charter_type)
+    : PersonC(std::move(name), std::move(description), hp, damage, die_bonus),max_num_of_weapons(max_num_of_weapons), wallet(wallet), charter_type(charter_type)
 {
 }
 
@@ -87,18 +87,21 @@ void ArcherC::Abilites()
 
 void PlayerC::EquipWeapon(int index)
 {
+    bool error_action = nullptr;
+    while (error_action == nullptr || error_action == true)
+    error_action = false;
     if (index < 0 || index >= items.size())
     {
-       ErrorOutput("Invalid index. ", true);
+       error_action = ErrorOutput("Invalid index. ");
     }
     auto *weapon = dynamic_cast<Weapon *>(items[index]);
     if (!weapon)
     {
-        ErrorOutput("Selected item is not a weapon.", true);
+        error_action = ErrorOutput("Selected item is not a weapon.");
     }
     if (!this->CanEquip(weapon->weapon_type))
     {
-        ErrorOutput("cannot equip this weapon type.", true);
+        error_action = ErrorOutput("cannot equip this weapon type.");
     }
     equipped_weapon = weapon;
     std::cout << this->name << " equipped " << weapon->name << std::endl;
@@ -108,8 +111,9 @@ void PlayerC::UseItem(int index)
 {
     if (index < 0 || index >= items.size())
     {
-        ErrorOutput("Invalid index. ", false);
-    } else if (auto *potion = dynamic_cast<Health_PotkaC *>(items[index]))
+        ErrorOutput("Invalid index. ");
+    }
+    else if (auto *potion = dynamic_cast<Health_PotkaC *>(items[index]))
     {
         std::cout << "Using " << potion->name << " to restore " << potion->health << " health points." << std::endl;
         this->hp += potion->health;
@@ -117,7 +121,7 @@ void PlayerC::UseItem(int index)
         items.erase(items.begin() + index);
     } else
     {
-        ErrorOutput("Selected item is not a potion.", false);
+        ErrorOutput("Selected item is not a potion.");
     }
     std::cin.get();
 }

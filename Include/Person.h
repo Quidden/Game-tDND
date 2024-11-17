@@ -39,7 +39,7 @@ public:
     bool exit_the_battle = false;
     bool skip_hod = false;
 
-    PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, CharacterType charter_type);
+    PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, int max_num_of_weapons, CharacterType charter_type);
     void TryAbility(int chanceThreshold, bool &effectFlag, const std::string &abilityMessage);
 
     std::vector<ItemC *> items;
@@ -57,6 +57,8 @@ class BastardC : public PlayerC
 {
 public:
     using PlayerC::PlayerC;
+
+    std::vector<Weapon*> equpted_item;
 
     bool exit_the_battle = false;
 

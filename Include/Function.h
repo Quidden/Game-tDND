@@ -36,9 +36,8 @@ void Inventory(PlayerC &Player)
     }
     if (!(choice1 > 4))
     {
-        ErrorOutput ("Invalid Input", true);
+        ErrorOutput ("Invalid Input");
         return ;
-
     }
 
     int index;

@@ -9,7 +9,7 @@
 #define WHITE   "\033[37m"
 #define BOLD    "\033[1m"
 
-bool ErrorOutput(std::string error, bool error_type)
+bool ErrorOutput(std::string error)
 {
     system("cls");
     std::cout << RED << error << RESET;
