@@ -68,6 +68,7 @@ void Inventory(PlayerC &Player)
     Player.inventory.DisplayInventory();
     cout << "Select the item you need by its number" << endl;
     int index;
+    cin>>index;
     EquipResult result = Player.EquipError(index);
     if (choice1 == 1)
     {
@@ -94,7 +95,7 @@ void InventoryRealization(PlayerC &Player)
     string choice;
     cin >> choice;
 
-    if (choice != "y" || choice != "Y")
+    if (choice != "y" && choice != "Y")
     {
         return;
     }

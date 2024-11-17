@@ -36,7 +36,6 @@ int main()
     Player->inventory.AddItem(healthPotion);
     InventoryRealization(*Player);
     cin.get();
-    Player->EquipError(1);
     std::cout << "Starting Battle..." << std::endl;
     Battle(*Player);
 
