@@ -47,11 +47,10 @@ public:
     PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, int max_num_of_weapons, CharacterType charter_type);
     void TryAbility(int chanceThreshold, bool &effectFlag, const std::string &abilityMessage);
 
-    std::vector<ItemC *> items;
     std::vector<Weapon *> equipped_weapons;
 
     EquipResult EquipError(int index);
-    void EquipAction(Weapon* weapon);
+    void EquipAction(Weapon* weapon, int index);
     bool UseItem(int index);
     int AdjustDamage(bool add);
     bool SellItem(int index);

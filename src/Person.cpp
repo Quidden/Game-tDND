@@ -88,41 +88,50 @@ void ArcherC::Abilites()
 EquipResult PlayerC::EquipError(int index)
 {
     bool error_action = false;
-    if (index < 0 || index >= items.size())
+    if (index < 0 || index >= inventory.items.size())
        error_action = ErrorOutput("Invalid index.");
 
-    auto *weapon = dynamic_cast<Weapon *>(items[index]);
+    auto *weapon = dynamic_cast<Weapon *>(inventory.items[index]);
     if (!weapon)
         error_action = ErrorOutput("Selected item is not a weapon.");
 
     if (!this->CanEquip(weapon->weapon_type))
         error_action = ErrorOutput("cannot equip this weapon type.");
 
+    if(equipped_weapons.size() >= max_num_of_weapons)
+        error_action = ErrorOutput("You cannot equip more weapons.");
+
     if(error_action)
+    {
         return {true, nullptr};
+    }
 
     return {false, weapon};
 }
 
-void PlayerC::EquipAction(Weapon* weapon)
+void PlayerC::EquipAction(Weapon* weapon, int index)
 {
     equipped_weapons.push_back(weapon);
+    inventory.items.erase(inventory.items.begin() + index);
+
+    this->damage += weapon->damage;
+
     std::cout << this->name << " equipped " << weapon->name << std::endl;
 }
 
 bool PlayerC::UseItem(int index)
 {
-    if (index < 0 || index >= items.size())
+    if (index < 0 || index >= inventory.items.size())
     {
         ErrorOutput("Invalid index. ");
         return false;
     }
-    if (auto *potion = dynamic_cast<Health_PotkaC *>(items[index]))
+    if (auto *potion = dynamic_cast<Health_PotkaC *>(inventory.items[index]))
     {
         std::cout << "Using " << potion->name << " to restore " << potion->health << " health points." << std::endl;
         this->hp += potion->health;
-        delete items[index];
-        items.erase(items.begin() + index);
+        delete inventory.items[index];
+        inventory.items.erase(inventory.items.begin() + index);
     } else
     {
         ErrorOutput("Selected item is not a potion.");
@@ -134,12 +143,12 @@ bool PlayerC::UseItem(int index)
 
 bool PlayerC::SellItem(int index)
 {
-    if (index >= 0 && index < items.size())
+    if (index >= 0 && index < inventory.items.size())
     {
-        this->wallet += items[index]->price;
-        std::cout << "Sold item: " << items[index]->name << " for " << items[index]->price << " gold." << std::endl;
-        delete items[index];
-        items.erase(items.begin() + index);
+        this->wallet += inventory.items[index]->price;
+        std::cout << "Sold item: " << inventory.items[index]->name << " for " << inventory.items[index]->price << " gold." << std::endl;
+        delete inventory.items[index];
+        inventory.items.erase(inventory.items.begin() + index);
     } else
     {
         ErrorOutput("Invalid index. ");
