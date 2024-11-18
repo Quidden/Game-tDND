@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Game_tDND.dir/src/Function.cpp.obj"
+  "CMakeFiles/Game_tDND.dir/src/Function.cpp.obj.d"
   "CMakeFiles/Game_tDND.dir/src/Game0.2.cpp.obj"
   "CMakeFiles/Game_tDND.dir/src/Game0.2.cpp.obj.d"
   "CMakeFiles/Game_tDND.dir/src/Inventory.cpp.obj"

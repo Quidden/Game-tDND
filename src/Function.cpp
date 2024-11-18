@@ -43,55 +43,71 @@ bool ErrorOutput(std::string error)
 
 void Inventory(PlayerC &Player)
 {
-    // if (Player.inventory.items.empty())
-    // {
-    //     std::cout << "Your inventory is empty!" << std::endl;
-    //     return;
-    // }
-
-    Player.inventory.DisplayInventory();
-    cout << "What do you want to do?" << endl;
-    cout << "1.Equip an item   2.Use item   3.Sell an item   4.Exit inventory" << endl;
-
-    int choice1;
-    cin >> choice1;
-
-    if (choice1 == 4)
+    while (true)
     {
-        system("cls");
-        return;
-    }
-    if (choice1 > 4 || choice1 < 1)
-    {
-        ErrorOutput("invalid index");
-        return ;
-    }
+        // if (Player.inventory.items.empty())
+        // {
+        //     std::cout << "Your inventory is empty!" << std::endl;
+        //     return;
+        // }
 
-    system("cls");
-    Player.inventory.DisplayInventory();
+        Player.inventory.DisplayInventory();
+        cout << "What do you want to do?" << endl;
+        cout << "1.Equip an item   2.Use item   3.Sell an item   4.Exit inventory" << endl;
 
-    cout << "Select the item you need by its number" << endl;
-    int index;
+        int choice1;
+        cin >> choice1;
 
-    EquipResult result = Player.EquipError(index);
-    if (choice1 == 1)
-    {
-        do
+        if (choice1 == 4)
         {
-            cin>>index;
-            Player.EquipError(index);
+            system("cls");
+            return;
         }
-        while (result.success);
+        if (choice1 > 4 || choice1 < 1)
+        {
+            ErrorOutput("invalid index");
+            continue;
+        }
 
-        Player.EquipAction(result.weapon);
-    }
-    if (choice1 == 2)
-    {
-        Player.UseItem(index);
-    }
-    if (choice1 == 3)
-    {
-        Player.SellItem(index);
+        system("cls");
+        Player.inventory.DisplayInventory();
+
+        cout << "Select the item you need by its number" << endl;
+        int index;
+        cin >> index;
+
+        if (choice1 == 1)
+        {
+            EquipResult result = Player.EquipError(index);
+            Player.EquipError(index);
+            if(result.success)
+            {
+                system("cls");
+                continue;
+            }
+            Player.EquipAction(result.weapon);
+            break;
+        }
+        if (choice1 == 2)
+        {
+            if(!Player.UseItem(index))
+            {
+                system("cls");
+                continue;
+            }
+            Player.UseItem(index);
+            break;
+        }
+        if (choice1 == 3)
+        {
+            if(!Player.SellItem(index))
+            {
+                system("cls");
+                continue;
+            }
+            Player.SellItem(index);
+            break;
+        }
     }
 }
 

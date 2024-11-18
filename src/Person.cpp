@@ -106,17 +106,18 @@ EquipResult PlayerC::EquipError(int index)
 
 void PlayerC::EquipAction(Weapon* weapon)
 {
-    equipped_weapon = weapon;
+    equipped_weapons.push_back(weapon);
     std::cout << this->name << " equipped " << weapon->name << std::endl;
 }
 
-void PlayerC::UseItem(int index)
+bool PlayerC::UseItem(int index)
 {
     if (index < 0 || index >= items.size())
     {
         ErrorOutput("Invalid index. ");
+        return false;
     }
-    else if (auto *potion = dynamic_cast<Health_PotkaC *>(items[index]))
+    if (auto *potion = dynamic_cast<Health_PotkaC *>(items[index]))
     {
         std::cout << "Using " << potion->name << " to restore " << potion->health << " health points." << std::endl;
         this->hp += potion->health;
@@ -125,11 +126,13 @@ void PlayerC::UseItem(int index)
     } else
     {
         ErrorOutput("Selected item is not a potion.");
+        return false;
     }
+    return true;
 }
 
 
-void PlayerC::SellItem(int index)
+bool PlayerC::SellItem(int index)
 {
     if (index >= 0 && index < items.size())
     {
@@ -140,5 +143,7 @@ void PlayerC::SellItem(int index)
     } else
     {
         ErrorOutput("Invalid index. ");
+        return false;
     }
+    return true;
 }

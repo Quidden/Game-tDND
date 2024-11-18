@@ -48,13 +48,13 @@ public:
     void TryAbility(int chanceThreshold, bool &effectFlag, const std::string &abilityMessage);
 
     std::vector<ItemC *> items;
-    Weapon *equipped_weapon = nullptr;
+    std::vector<Weapon *> equipped_weapons;
 
     EquipResult EquipError(int index);
     void EquipAction(Weapon* weapon);
-    void UseItem(int index);
+    bool UseItem(int index);
     int AdjustDamage(bool add);
-    void SellItem(int index);
+    bool SellItem(int index);
     virtual void Abilites() = 0;
     virtual bool CanEquip(WeaponType weapon_type) const = 0;
 };

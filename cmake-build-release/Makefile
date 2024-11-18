@@ -128,6 +128,30 @@ Game_tDND/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Game_tDND.dir\build.make CMakeFiles/Game_tDND.dir/build
 .PHONY : Game_tDND/fast
 
+src/Function.obj: src/Function.cpp.obj
+.PHONY : src/Function.obj
+
+# target to build an object file
+src/Function.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Game_tDND.dir\build.make CMakeFiles/Game_tDND.dir/src/Function.cpp.obj
+.PHONY : src/Function.cpp.obj
+
+src/Function.i: src/Function.cpp.i
+.PHONY : src/Function.i
+
+# target to preprocess a source file
+src/Function.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Game_tDND.dir\build.make CMakeFiles/Game_tDND.dir/src/Function.cpp.i
+.PHONY : src/Function.cpp.i
+
+src/Function.s: src/Function.cpp.s
+.PHONY : src/Function.s
+
+# target to generate assembly for a file
+src/Function.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Game_tDND.dir\build.make CMakeFiles/Game_tDND.dir/src/Function.cpp.s
+.PHONY : src/Function.cpp.s
+
 src/Game0.2.obj: src/Game0.2.cpp.obj
 .PHONY : src/Game0.2.obj
 
@@ -233,6 +257,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Game_tDND
+	@echo ... src/Function.obj
+	@echo ... src/Function.i
+	@echo ... src/Function.s
 	@echo ... src/Game0.2.obj
 	@echo ... src/Game0.2.i
 	@echo ... src/Game0.2.s

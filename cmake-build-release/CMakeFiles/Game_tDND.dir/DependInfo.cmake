@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/Users/Quidden Laptop/CLionProjects/Game-tDND/src/Function.cpp" "CMakeFiles/Game_tDND.dir/src/Function.cpp.obj" "gcc" "CMakeFiles/Game_tDND.dir/src/Function.cpp.obj.d"
   "C:/Users/Quidden Laptop/CLionProjects/Game-tDND/src/Game0.2.cpp" "CMakeFiles/Game_tDND.dir/src/Game0.2.cpp.obj" "gcc" "CMakeFiles/Game_tDND.dir/src/Game0.2.cpp.obj.d"
   "C:/Users/Quidden Laptop/CLionProjects/Game-tDND/src/Inventory.cpp" "CMakeFiles/Game_tDND.dir/src/Inventory.cpp.obj" "gcc" "CMakeFiles/Game_tDND.dir/src/Inventory.cpp.obj.d"
   "C:/Users/Quidden Laptop/CLionProjects/Game-tDND/src/Item.cpp" "CMakeFiles/Game_tDND.dir/src/Item.cpp.obj" "gcc" "CMakeFiles/Game_tDND.dir/src/Item.cpp.obj.d"
