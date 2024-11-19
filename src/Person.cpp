@@ -105,7 +105,7 @@ EquipResult PlayerC::EquipError(int index)
     if (!equipted_item)
         error_action = ErrorOutput("You've chosen an unequipped item.");
 
-    if (!this->CanEquip(equipted_item->weapon_type))
+    if (!this->CanEquip(equipted_item->Item_Type))
         error_action = ErrorOutput("You cannot equip this type of item on a hero.");
 
     if(equipped_items.size() >= max_num_of_weapons)

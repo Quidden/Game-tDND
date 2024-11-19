@@ -13,7 +13,7 @@ public:
 	int rarity;
 	int price;
 	ItemC(std::string name, std::string description, int rarity, int price);
-	virtual void Use() const = 0;
+	virtual ~ItemC() = default;
 };
 
 class Health_PotkaC : public ItemC
@@ -21,10 +21,7 @@ class Health_PotkaC : public ItemC
 public:
 	int health;
 	Health_PotkaC(std::string name, std::string description, int rarity, int price, int health);
-	void Use() const override 
-	{
-		std::cout << "Using " << name << " to restore " << health << " health points." << std::endl;
-	}
+
 };
 
 class Luckest_PotkaC : public ItemC
@@ -32,10 +29,7 @@ class Luckest_PotkaC : public ItemC
 public:
 	int die_bonus;
 	Luckest_PotkaC(std::string name, std::string description, int rarity, int price, int die_bonus);
-	void Use() const override 
-	{
-		std::cout << "Using " << name << " to restore " << die_bonus << " Luckest points." << std::endl;
-	}
+
 };
 
 class Equipted_Items : public ItemC{};
@@ -45,13 +39,9 @@ class Equipten_Items_Vector : public Equipted_Items
 public:
 	int damage;
 
-	Equipted_Item_Type weapon_type;
+	Equipted_Item_Type Item_Type;
 
 	Equipten_Items_Vector(std::string name, std::string description, int rarity, int price, int damage, int slot, Equipted_Item_Type weapon_type);
-	void Use() const override 
-	{
-		std::cout << "Using weapon: " << name << " with damage: " << damage << std::endl;
-	}
 };
 
 class SpecificWeapon : public Equipted_Items
@@ -131,7 +121,12 @@ public:
 	}
 };
 
-class Armor : public Equipted_Items, Luckest_PotkaC
+class Armor : public Equipted_Items
 {
+public:
+
 	int armor;
+	int die_bonus_armor;
+	Armor(std::string name, std::string description, int rarity, int price, int armor, int die_bonus_armor);
+
 };
