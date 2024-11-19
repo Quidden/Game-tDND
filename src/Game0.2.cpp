@@ -15,9 +15,10 @@ int RandomNumberDieValue()
 
 int main()
 {
-    ItemC* sword = new Equipten_Items_Vector("Sword", "A sharp blade", 2, 100, 15, 1, Equipted_Item_Type::Sword);
-    ItemC* bow = new Equipten_Items_Vector("Bow", "A ranged weapon", 3, 120, 10, 2, Equipted_Item_Type::Bow);
+    ItemC* sword = new Equipten_Items_Vector("Sword", "A sharp blade", 2, 100, 15, Equipted_Item_Type::Sword);
+    ItemC* bow = new Equipten_Items_Vector("Bow", "A ranged weapon", 3, 120, 10, Equipted_Item_Type::Bow);
     ItemC* healthPotion = new Health_PotkaC("Health Potion", "Restores health", 1, 50, 20);
+    Equipted_Items* armor = new Armor("Armor", "Armor of the health", 1, 50, 20, 20, Equipted_Item_Type::Armor);
 
     srand(time(nullptr));
 
@@ -35,6 +36,7 @@ int main()
     Player->inventory.AddItem(bow);
     Player->inventory.AddItem(sword);
     Player->inventory.AddItem(healthPotion);
+    Player->inventory.AddItem(armor);
 
     InventoryRealization(*Player);
 

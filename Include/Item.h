@@ -32,7 +32,12 @@ public:
 
 };
 
-class Equipted_Items : public ItemC{};
+class Equipted_Items : public ItemC
+{
+public:
+	Equipted_Items(const std::string& name, const std::string& description, int rarity, int price)
+	   : ItemC(name, description, rarity, price) {}
+};
 
 class Equipten_Items_Vector : public Equipted_Items
 {
@@ -40,8 +45,7 @@ public:
 	int damage;
 
 	Equipted_Item_Type Item_Type;
-
-	Equipten_Items_Vector(std::string name, std::string description, int rarity, int price, int damage, int slot, Equipted_Item_Type weapon_type);
+	Equipten_Items_Vector(const std::string& name, const std::string& description, int rarity, int price, int damage, Equipted_Item_Type weapon_type);
 };
 
 class SpecificWeapon : public Equipted_Items
@@ -127,6 +131,5 @@ public:
 
 	int armor;
 	int die_bonus_armor;
-	Armor(std::string name, std::string description, int rarity, int price, int armor, int die_bonus_armor);
-
+	Armor(const std::string& name, const std::string& description, int rarity, int price, int armor, int die_bonus_armor, Equipted_Item_Type weapon_type);
 };
