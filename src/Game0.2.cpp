@@ -16,10 +16,10 @@ int RandomNumberDieValue()
 int main()
 {
     //test
-    ItemC* sword = new Equipten_Items_Vector("Sword", "A sharp blade", 2, 100, 15, Equipted_Item_Type::Sword);
-    ItemC* bow = new Equipten_Items_Vector("Bow", "A ranged weapon", 3, 120, 10, Equipted_Item_Type::Bow);
+    ItemC* sword = new Equipten_Items_Class("Sword", "A sharp blade", 2, 100, 15, Equipted_Item_Type::Sword);
+    ItemC* bow = new Equipten_Items_Class("Bow", "A ranged weapon", 3, 120, 10, Equipted_Item_Type::Bow);
     ItemC* healthPotion = new Health_PotkaC("Health Potion", "Restores health", 1, 50, 20);
-    Equipted_Items* armor = new Armor("Armor", "Armor of the health", 1, 50, 20, 20, Equipted_Item_Type::Armor);
+    Equipted_Items_Base* armor = new Armor("Armor", "Armor of the health", 1, 50, 20, 20, Equipted_Item_Type::Armor);
 
     srand(time(nullptr));
 

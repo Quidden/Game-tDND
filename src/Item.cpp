@@ -6,8 +6,8 @@ Health_PotkaC::Health_PotkaC(std::string name, std::string description, int rari
     : ItemC(name, description, rarity, price), health(health) {}
 Luckest_PotkaC::Luckest_PotkaC(std::string name, std::string description, int rarity, int price, int die_bonus)
     : ItemC(name, description, rarity, price), die_bonus(die_bonus) {}
-Equipten_Items_Vector::Equipten_Items_Vector(const std::string& name, const std::string& description, int rarity, int price, int damage, Equipted_Item_Type weapon_type)
-    : Equipted_Items(name, description, rarity, price), damage(damage), Item_Type(weapon_type) {}
+Equipten_Items_Class::Equipten_Items_Class(const std::string& name, const std::string& description, int rarity, int price, int damage, Equipted_Item_Type weapon_type)
+    : Equipted_Items_Base(name, description, rarity, price, weapon_type), damage(damage) {}
 Armor::Armor(const std::string& name, const std::string& description, int rarity, int price, int armor, int die_bonus_armor, Equipted_Item_Type weapon_type)
-    : Equipted_Items(name, description, rarity, price), armor(armor), die_bonus_armor(die_bonus_armor) {}
+    : Equipted_Items_Base(name, description, rarity, price, weapon_type), armor(armor), die_bonus_armor(die_bonus_armor) {}
 

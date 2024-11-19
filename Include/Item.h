@@ -32,23 +32,25 @@ public:
 
 };
 
-class Equipted_Items : public ItemC
+class Equipted_Items_Base : public ItemC
 {
 public:
-	Equipted_Items(const std::string& name, const std::string& description, int rarity, int price)
+	Equipted_Item_Type Item_Type;
+	Equipted_Items_Base(const std::string& name, const std::string& description, int rarity, int price, Equipted_Item_Type Item_Type)
 	   : ItemC(name, description, rarity, price) {}
+
+
 };
 
-class Equipten_Items_Vector : public Equipted_Items
+class Equipten_Items_Class : public Equipted_Items_Base
 {
 public:
 	int damage;
 
-	Equipted_Item_Type Item_Type;
-	Equipten_Items_Vector(const std::string& name, const std::string& description, int rarity, int price, int damage, Equipted_Item_Type weapon_type);
+	Equipten_Items_Class(const std::string& name, const std::string& description, int rarity, int price, int damage, Equipted_Item_Type weapon_type);
 };
 
-class SpecificWeapon : public Equipted_Items
+class SpecificWeapon : public Equipted_Items_Base
 {
 	virtual void WeaponAbilites();
 };
@@ -125,7 +127,7 @@ public:
 	}
 };
 
-class Armor : public Equipted_Items
+class Armor : public Equipted_Items_Base
 {
 public:
 

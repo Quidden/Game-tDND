@@ -10,7 +10,7 @@ enum class CharacterType : uint8_t { Knight, Drow, Bandit, Bastard };
 struct EquipResult
 {
     bool success;
-    Equipten_Items_Vector* weapon;
+    Equipted_Items_Base* Item;
 };
 
 class PersonC
@@ -47,10 +47,10 @@ public:
     PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, int max_num_of_weapons, CharacterType charter_type);
     void TryAbility(int chanceThreshold, bool &effectFlag, const std::string &abilityMessage);
 
-    std::vector<Equipten_Items_Vector *> equipped_items;
+    std::vector<Equipted_Items_Base *> equipped_items;
 
     EquipResult EquipError(int index);
-    void EquipAction(Equipten_Items_Vector* Equipted_Items, int index);
+    void EquipAction(Equipted_Items_Base* Equipted_Items, int index);
     bool UseItem(int index);
     int AdjustDamage(bool add);
     bool SellItem(int index);
@@ -63,7 +63,7 @@ class BastardC : public PlayerC
 public:
     using PlayerC::PlayerC;
 
-    std::vector<Equipten_Items_Vector*> equpted_item;
+    std::vector<Equipted_Items_Base*> equpted_item;
 
     bool exit_the_battle = false;
 

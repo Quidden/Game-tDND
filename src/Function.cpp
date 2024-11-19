@@ -85,7 +85,7 @@ void Inventory(PlayerC &Player)
                 system("cls");
                 continue;
             }
-            Player.EquipAction(result.weapon, index);
+            Player.EquipAction(result.Item, index);
             break;
         }
         if (choice1 == 2)

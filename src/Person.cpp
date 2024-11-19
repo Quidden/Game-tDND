@@ -101,7 +101,7 @@ EquipResult PlayerC::EquipError(int index)
     if (index < 0 || index >= inventory.items.size())
        error_action = ErrorOutput("Invalid index.");
 
-    auto *equipted_item = dynamic_cast<Equipten_Items_Vector *>(inventory.items[index]);
+    auto *equipted_item = dynamic_cast<Equipted_Items_Base *>(inventory.items[index]);
     if (!equipted_item)
         error_action = ErrorOutput("You've chosen an unequipped item.");
 
@@ -119,7 +119,7 @@ EquipResult PlayerC::EquipError(int index)
     return {false, equipted_item};
 }
 
-void PlayerC::EquipAction(Equipten_Items_Vector* Equipted_Items, int index)
+void PlayerC::EquipAction(Equipted_Items_Base* Equipted_Items, int index)
 {
     equipped_items.push_back(Equipted_Items);
     inventory.items.erase(inventory.items.begin() + index);
