@@ -15,6 +15,7 @@ int RandomNumberDieValue()
 
 int main()
 {
+    //test
     ItemC* sword = new Equipten_Items_Vector("Sword", "A sharp blade", 2, 100, 15, Equipted_Item_Type::Sword);
     ItemC* bow = new Equipten_Items_Vector("Bow", "A ranged weapon", 3, 120, 10, Equipted_Item_Type::Bow);
     ItemC* healthPotion = new Health_PotkaC("Health Potion", "Restores health", 1, 50, 20);

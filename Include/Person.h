@@ -86,7 +86,7 @@ public:
 
     bool CanEquip(Equipted_Item_Type weapon_type) const override
     {
-        return weapon_type == Equipted_Item_Type::Sword;
+        return weapon_type == Equipted_Item_Type::Sword || weapon_type == Equipted_Item_Type::Armor;
     }
 };
 
@@ -114,7 +114,7 @@ public:
 
     bool CanEquip(Equipted_Item_Type weapon_type) const override
     {
-        return weapon_type == Equipted_Item_Type::Bow;
+        return weapon_type == Equipted_Item_Type::Bow || weapon_type == Equipted_Item_Type::Armor;
     }
 };
 
