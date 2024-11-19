@@ -15,8 +15,8 @@ int RandomNumberDieValue()
 
 int main()
 {
-    ItemC* sword = new Weapon("Sword", "A sharp blade", 2, 100, 15, 1, WeaponType::Sword);
-    ItemC* bow = new Weapon("Bow", "A ranged weapon", 3, 120, 10, 2, WeaponType::Bow);
+    ItemC* sword = new Equipten_Items_Vector("Sword", "A sharp blade", 2, 100, 15, 1, Equipted_Item_Type::Sword);
+    ItemC* bow = new Equipten_Items_Vector("Bow", "A ranged weapon", 3, 120, 10, 2, Equipted_Item_Type::Bow);
     ItemC* healthPotion = new Health_PotkaC("Health Potion", "Restores health", 1, 50, 20);
 
     srand(time(nullptr));
@@ -37,6 +37,10 @@ int main()
     Player->inventory.AddItem(healthPotion);
 
     InventoryRealization(*Player);
+
+    cin.get();
+    Player->DisplayStatus();
+    cin.get();
 
     cin.get();
     std::cout << "Starting Battle..." << std::endl;

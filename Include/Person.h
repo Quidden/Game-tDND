@@ -10,7 +10,7 @@ enum class CharacterType : uint8_t { Knight, Drow, Bandit, Bastard };
 struct EquipResult
 {
     bool success;
-    Weapon* weapon;
+    Equipten_Items_Vector* weapon;
 };
 
 class PersonC
@@ -47,15 +47,15 @@ public:
     PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, int max_num_of_weapons, CharacterType charter_type);
     void TryAbility(int chanceThreshold, bool &effectFlag, const std::string &abilityMessage);
 
-    std::vector<Weapon *> equipped_weapons;
+    std::vector<Equipten_Items_Vector *> equipped_items;
 
     EquipResult EquipError(int index);
-    void EquipAction(Weapon* weapon, int index);
+    void EquipAction(Equipten_Items_Vector* Equipted_Items, int index);
     bool UseItem(int index);
     int AdjustDamage(bool add);
     bool SellItem(int index);
     virtual void Abilites() = 0;
-    virtual bool CanEquip(WeaponType weapon_type) const = 0;
+    virtual bool CanEquip(Equipted_Item_Type weapon_type) const = 0;
 };
 
 class BastardC : public PlayerC
@@ -63,13 +63,13 @@ class BastardC : public PlayerC
 public:
     using PlayerC::PlayerC;
 
-    std::vector<Weapon*> equpted_item;
+    std::vector<Equipten_Items_Vector*> equpted_item;
 
     bool exit_the_battle = false;
 
     void Abilites() override;
 
-    bool CanEquip(WeaponType weapon_type) const override
+    bool CanEquip(Equipted_Item_Type weapon_type) const override
     {
         return true;
     }
@@ -84,9 +84,9 @@ public:
 
     void Abilites() override;
 
-    bool CanEquip(WeaponType weapon_type) const override
+    bool CanEquip(Equipted_Item_Type weapon_type) const override
     {
-        return weapon_type == WeaponType::Sword;
+        return weapon_type == Equipted_Item_Type::Sword;
     }
 };
 
@@ -97,9 +97,9 @@ public:
 
     void Abilites() override;
 
-    bool CanEquip(WeaponType weapon_type) const override
+    bool CanEquip(Equipted_Item_Type weapon_type) const override
     {
-        return weapon_type == WeaponType::Dagger;
+        return weapon_type == Equipted_Item_Type::Dagger;
     }
 };
 
@@ -112,9 +112,9 @@ public:
 
     void Abilites() override;
 
-    bool CanEquip(WeaponType weapon_type) const override
+    bool CanEquip(Equipted_Item_Type weapon_type) const override
     {
-        return weapon_type == WeaponType::Bow;
+        return weapon_type == Equipted_Item_Type::Bow;
     }
 };
 

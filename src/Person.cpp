@@ -1,12 +1,9 @@
 #include "Person.h"
 #include <Windows.h>
 #include "Function.h"
-
-void SetTextColor2(int color)
-{
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, color);
-}
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define RESET   "\033[0m"
 
 PersonC::PersonC(std::string name, std::string description, int hp, int damage, int die_bonus)
     : name(std::move(name)), description(std::move(description)), hp(hp), damage(damage), die_bonus(die_bonus)
@@ -31,7 +28,23 @@ bool PersonC::IsAlive()
 
 void PersonC::DisplayStatus()
 {
-    std::cout << name << ": " << hp << " HP, Damage " << damage << ", Die Bonus " << die_bonus << std::endl;
+    //int hp_bonus = 0;
+    int damage_bonus = 0;
+
+    if (auto* Player = dynamic_cast<PlayerC*>(this))
+    {
+        //If you want to add a new element, just enter a new value into the internal if as already done here
+        for (const auto& items : Player->equipped_items) //range cycle!!!
+        {
+            if (!items) continue;
+                damage_bonus += items->damage;
+        }
+    }
+    if(damage_bonus >= 0)
+        std::cout << name << ": " << hp << " HP, Damage " << damage <<GREEN<<"("<<damage_bonus<<")"<<RESET<<", Die Bonus " << die_bonus << std::endl;
+    else
+        std::cout << name << ": " << hp << " HP, Damage " << damage <<RED<<"("<<damage_bonus<<")"<<RESET<<", Die Bonus " << die_bonus << std::endl;
+
 }
 
 void PlayerC::TryAbility(int chanceThreshold, bool &effectFlag, const std::string &abilityMessage)
@@ -40,7 +53,6 @@ void PlayerC::TryAbility(int chanceThreshold, bool &effectFlag, const std::strin
     if (chance <= chanceThreshold)
     {
         effectFlag = true;
-        SetTextColor2(3);
         std::cout << name << " " << abilityMessage << std::endl;
     } else
     {
@@ -63,7 +75,6 @@ void BanditC::Abilites()
     int chance = rand() % 100 + 1;
     if (chance <= 60)
     {
-        SetTextColor2(3);
         std::cout << name << "Double damag" << std::endl;
         this->damage *= 2;
     }
@@ -74,7 +85,6 @@ void ArcherC::Abilites()
     int chance = rand() % 100 + 1;
     if (chance <= 10)
     {
-        SetTextColor2(3);
         std::cout << name << "Took two damage" << std::endl;
         this->damage += 2;
 
@@ -91,37 +101,37 @@ EquipResult PlayerC::EquipError(int index)
     if (index < 0 || index >= inventory.items.size())
        error_action = ErrorOutput("Invalid index.");
 
-    auto *weapon = dynamic_cast<Weapon *>(inventory.items[index]);
-    if (!weapon)
-        error_action = ErrorOutput("Selected item is not a weapon.");
+    auto *equipted_item = dynamic_cast<Equipten_Items_Vector *>(inventory.items[index]);
+    if (!equipted_item)
+        error_action = ErrorOutput("You've chosen an unequipped item.");
 
-    if (!this->CanEquip(weapon->weapon_type))
-        error_action = ErrorOutput("cannot equip this weapon type.");
+    if (!this->CanEquip(equipted_item->weapon_type))
+        error_action = ErrorOutput("You cannot equip this type of item on a hero.");
 
-    if(equipped_weapons.size() >= max_num_of_weapons)
-        error_action = ErrorOutput("You cannot equip more weapons.");
+    if(equipped_items.size() >= max_num_of_weapons)
+        error_action = ErrorOutput("You can't equip more items.");
 
     if(error_action)
     {
         return {true, nullptr};
     }
 
-    return {false, weapon};
+    return {false, equipted_item};
 }
 
-void PlayerC::EquipAction(Weapon* weapon, int index)
+void PlayerC::EquipAction(Equipten_Items_Vector* Equipted_Items, int index)
 {
-    equipped_weapons.push_back(weapon);
+    equipped_items.push_back(Equipted_Items);
     inventory.items.erase(inventory.items.begin() + index);
 
-    this->damage += weapon->damage;
+    this->damage += Equipted_Items->damage;
 
-    std::cout << this->name << " equipped " << weapon->name << std::endl;
+    std::cout << this->name << " equipped " << Equipted_Items->name << std::endl;
 }
 
 bool PlayerC::UseItem(int index)
 {
-    if (index < 0 || index >= inventory.items.size())
+    if (index < 0 || index > inventory.items.size())
     {
         ErrorOutput("Invalid index. ");
         return false;
@@ -130,16 +140,20 @@ bool PlayerC::UseItem(int index)
     {
         std::cout << "Using " << potion->name << " to restore " << potion->health << " health points." << std::endl;
         this->hp += potion->health;
-        delete inventory.items[index];
+        if (inventory.items[index] != nullptr)
+        {
+            delete inventory.items[index];
+            inventory.items[index] = nullptr;
+        }
         inventory.items.erase(inventory.items.begin() + index);
-    } else
+    }
+    else
     {
         ErrorOutput("Selected item is not a potion.");
         return false;
     }
     return true;
 }
-
 
 bool PlayerC::SellItem(int index)
 {

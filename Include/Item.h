@@ -3,7 +3,7 @@
 #include <memory>
 #include <iostream>
 
-enum class WeaponType : uint8_t {Sword, Bow, Dagger};
+enum class Equipted_Item_Type : uint8_t {Sword, Bow, Dagger, Armor};
 
 class ItemC
 {
@@ -38,22 +38,23 @@ public:
 	}
 };
 
-class Weapon : public ItemC
+class Equipted_Items : public ItemC{};
+
+class Equipten_Items_Vector : public Equipted_Items
 {
 public:
 	int damage;
-	int slot;
 
-	WeaponType weapon_type;
+	Equipted_Item_Type weapon_type;
 
-	Weapon(std::string name, std::string description, int rarity, int price, int damage, int slot, WeaponType weapon_type);
+	Equipten_Items_Vector(std::string name, std::string description, int rarity, int price, int damage, int slot, Equipted_Item_Type weapon_type);
 	void Use() const override 
 	{
 		std::cout << "Using weapon: " << name << " with damage: " << damage << std::endl;
 	}
 };
 
-class SpecificWeapon : public Weapon
+class SpecificWeapon : public Equipted_Items
 {
 	virtual void WeaponAbilites();
 };
@@ -128,4 +129,9 @@ public:
 	{
 
 	}
+};
+
+class Armor : public Equipted_Items, Luckest_PotkaC
+{
+	int armor;
 };
