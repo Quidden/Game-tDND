@@ -55,7 +55,7 @@ public:
     int AdjustDamage(bool add);
     bool SellItem(int index);
     virtual void Abilites() = 0;
-    virtual bool CanEquip(Equipted_Item_Type weapon_type) const = 0;
+    virtual bool CanEquip(Equipted_Item_Type item_equip_seccess) const = 0;
 };
 
 class BastardC : public PlayerC
@@ -69,7 +69,7 @@ public:
 
     void Abilites() override;
 
-    bool CanEquip(Equipted_Item_Type weapon_type) const override
+    bool CanEquip(Equipted_Item_Type item_equip_seccess) const override
     {
         return true;
     }
@@ -84,9 +84,9 @@ public:
 
     void Abilites() override;
 
-    bool CanEquip(Equipted_Item_Type weapon_type) const override
+    bool CanEquip(Equipted_Item_Type item_equip_seccess) const override
     {
-        return weapon_type == Equipted_Item_Type::Sword || weapon_type == Equipted_Item_Type::Armor;
+        return item_equip_seccess == Equipted_Item_Type::Sword || item_equip_seccess == Equipted_Item_Type::Armor;
     }
 };
 
@@ -97,9 +97,9 @@ public:
 
     void Abilites() override;
 
-    bool CanEquip(Equipted_Item_Type weapon_type) const override
+    bool CanEquip(Equipted_Item_Type item_equip_seccess) const override
     {
-        return weapon_type == Equipted_Item_Type::Dagger;
+        return item_equip_seccess == Equipted_Item_Type::Dagger;
     }
 };
 
@@ -112,9 +112,9 @@ public:
 
     void Abilites() override;
 
-    bool CanEquip(Equipted_Item_Type weapon_type) const override
+    bool CanEquip(Equipted_Item_Type item_equip_seccess) const override
     {
-        return weapon_type == Equipted_Item_Type::Bow || weapon_type == Equipted_Item_Type::Armor;
+        return item_equip_seccess == Equipted_Item_Type::Bow || item_equip_seccess == Equipted_Item_Type::Armor;
     }
 };
 

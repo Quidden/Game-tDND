@@ -36,8 +36,10 @@ void PersonC::DisplayStatus()
         //If you want to add a new element, just enter a new value into the internal if as already done here
         for (const auto& items : Player->equipped_items) //range cycle!!!
         {
-            if (!items) continue;
-                damage_bonus += items->damage;
+            if (auto* weapon = dynamic_cast<Equipten_Items_Class*>(items))
+            {
+                damage_bonus += weapon->damage;
+            }
         }
     }
     if(damage_bonus >= 0)
@@ -124,7 +126,12 @@ void PlayerC::EquipAction(Equipted_Items_Base* Equipted_Items, int index)
     equipped_items.push_back(Equipted_Items);
     inventory.items.erase(inventory.items.begin() + index);
 
-    this->damage += Equipted_Items->damage;
+    if (auto* weapon = dynamic_cast<Equipten_Items_Class*>(Equipted_Items)) //Understand type casting
+    {
+        this->damage += weapon->damage;
+    }
+
+    //this->damage += Equipted_Items->damage;
 
     std::cout << this->name << " equipped " << Equipted_Items->name << std::endl;
 }
