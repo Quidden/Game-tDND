@@ -107,6 +107,10 @@ EquipResult PlayerC::EquipError(int index)
     if (!equipted_item)
         error_action = ErrorOutput("You've chosen an unequipped item.");
 
+    std::cin.get();
+    std::cout << RED <<"Trying to equip item of type: " << RESET << static_cast<int>(equipted_item->Item_Type) << std::endl;
+    std::cin.get();
+
     if (!this->CanEquip(equipted_item->Item_Type))
         error_action = ErrorOutput("You cannot equip this type of item on a hero.");
 
