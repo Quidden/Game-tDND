@@ -109,6 +109,8 @@ EquipResult PlayerC::EquipError(int index)
 
     std::cin.get();
     std::cout << RED <<"Trying to equip item of type: " << RESET << static_cast<int>(equipted_item->Item_Type) << std::endl;
+    std::cout << RED <<"Trying to equip item of type: " << RESET <<static_cast<int>(equipted_item->Item_Type) << std::endl;
+    std::cout << RED <<"Knight can equip this type: " << RESET <<(equipted_item->Item_Type == Equipted_Item_Type::Sword ? "Yes" : "No") << std::endl;
     std::cin.get();
 
     if (!this->CanEquip(equipted_item->Item_Type))

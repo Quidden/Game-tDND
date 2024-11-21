@@ -37,7 +37,7 @@ class Equipted_Items_Base : public ItemC
 public:
 	Equipted_Item_Type Item_Type;
 	Equipted_Items_Base(const std::string& name, const std::string& description, int rarity, int price, Equipted_Item_Type Item_Type)
-	   : ItemC(name, description, rarity, price) {}
+	   : ItemC(name, description, rarity, price), Item_Type(Item_Type) {}
 };
 
 class Equipten_Items_Class : public Equipted_Items_Base
@@ -45,7 +45,7 @@ class Equipten_Items_Class : public Equipted_Items_Base
 public:
 	int damage;
 
-	Equipten_Items_Class(const std::string& name, const std::string& description, int rarity, int price, int damage, Equipted_Item_Type weapon_type);
+	Equipten_Items_Class(const std::string& name, const std::string& description, int rarity, int price, int damage, Equipted_Item_Type Item_Type);
 };
 
 class SpecificWeapon : public Equipted_Items_Base
@@ -130,5 +130,5 @@ class Armor : public Equipted_Items_Base
 public:
 	int armor;
 	int die_bonus_armor;
-	Armor(const std::string& name, const std::string& description, int rarity, int price, int armor, int die_bonus_armor, Equipted_Item_Type weapon_type);
+	Armor(const std::string& name, const std::string& description, int rarity, int price, int armor, int die_bonus_armor, Equipted_Item_Type Item_Type);
 };

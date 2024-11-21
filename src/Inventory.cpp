@@ -6,7 +6,7 @@ std::vector<ItemC *> items;
 
 void InventoryC::AddItem(ItemC *item)
 {
-    items.push_back(item);
+    this->items.push_back(item);
     std::cout << "Added item: " << item->name << std::endl;
 }
 void InventoryC::DisplayInventory()
@@ -17,4 +17,5 @@ void InventoryC::DisplayInventory()
         std::cout << i << ": " << items[i]->name << " - " << items[i]->description << std::endl;
     }
 }
+
 
