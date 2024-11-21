@@ -117,7 +117,7 @@ void InventoryRealization(PlayerC &Player)
     string choice;
     cin >> choice;
 
-    if (choice != "y" && choice != "Y")
+    if (choice.lower() != "y")
         return;
 
     system("cls");
@@ -134,8 +134,8 @@ void SetTextColor(int color)
 
 void TextToConfirmTheSelection()
 {
-    cout << "If you really want to play as this character press 1" << endl;
-    cout << "If you want to change your character press 2" << endl;
+    cout << "If you really want to play as this character press 1" << endl
+         << "If you want to change your character press 2" << endl;
 }
 
 void HeroInfoSelecting(PlayerC *temp, int &Subverification)

@@ -17,18 +17,18 @@ class PersonC
 {
 public:
     virtual ~PersonC() = default;
+    bool IsAlive();
 
+    void DisplayStatus();
+    PersonC(std::string name, std::string description, int hp, int damage, int die_bonus);
+
+protected:
     std::string name;
     std::string description;
     int hp;
     int damage;
     int die_bonus;
 
-    bool IsAlive();
-
-    void DisplayStatus();
-
-    PersonC(std::string name, std::string description, int hp, int damage, int die_bonus);
 };
 
 class PlayerC : public PersonC
@@ -62,6 +62,7 @@ class BastardC : public PlayerC
 {
 public:
     using PlayerC::PlayerC;
+    std::string description = "ss";
 
     std::vector<Equipted_Items_Base*> equpted_item;
 

@@ -40,12 +40,12 @@ public:
 	   : ItemC(name, description, rarity, price), Item_Type(Item_Type) {}
 };
 
-class Equipten_Items_Class : public Equipted_Items_Base
+class Equipten_Weapon_Class : public Equipted_Items_Base
 {
 public:
 	int damage;
 
-	Equipten_Items_Class(const std::string& name, const std::string& description, int rarity, int price, int damage, Equipted_Item_Type Item_Type);
+	Equipten_Weapon_Class(const std::string& name, const std::string& description, int rarity, int price, int damage, Equipted_Item_Type Item_Type);
 };
 
 class SpecificWeapon : public Equipted_Items_Base
