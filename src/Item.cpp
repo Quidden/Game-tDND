@@ -11,3 +11,4 @@ Equipten_Items_Class::Equipten_Items_Class(const std::string& name, const std::s
 Armor::Armor(const std::string& name, const std::string& description, int rarity, int price, int armor, int die_bonus_armor, Equipted_Item_Type weapon_type)
     : Equipted_Items_Base(name, description, rarity, price, weapon_type), armor(armor), die_bonus_armor(die_bonus_armor) {}
 
+

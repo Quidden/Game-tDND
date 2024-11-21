@@ -23,10 +23,11 @@ int main()
     cin.get();
     Equipted_Items_Base* sword = new Equipten_Items_Class("Sword", "A sharp blade", 2, 100, 15, Equipted_Item_Type::Sword);
     std::cout << "Created Sword with type: " << static_cast<int>(sword->Item_Type) << std::endl;
-    Equipted_Items_Base* armor = new Armor("Armor", "Armor of the health", 1, 50, 20, 20, Equipted_Item_Type::Armor);
-    std::cout << "Created Armor with type: " << static_cast<int>(armor->Item_Type) << std::endl;
+    // Equipted_Items_Base* armor = new Armor("Armor", "Armor of the health", 1, 50, 20, 20, Equipted_Item_Type::Armor);
+    // std::cout << "Created Armor with type: " << static_cast<int>(armor->Item_Type) << std::endl;
     cin.get();
     srand(time(nullptr));
+
 
     PlayerC* Player = SelectingGameCharacter();
     if (Player != nullptr) 
@@ -42,7 +43,7 @@ int main()
     Player->inventory.AddItem(bow);
     Player->inventory.AddItem(sword);
     Player->inventory.AddItem(healthPotion);
-    Player->inventory.AddItem(armor);
+    //Player->inventory.AddItem(armor);
 
     InventoryRealization(*Player);
 

@@ -6,7 +6,7 @@
 #include "Inventory.h"
 #include <vector>
 
-enum class CharacterType : uint8_t { Knight, Drow, Bandit, Bastard };
+enum class CharacterType { Knight, Drow, Bandit, Bastard };
 struct EquipResult
 {
     bool success;
