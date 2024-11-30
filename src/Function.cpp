@@ -28,28 +28,10 @@ bool ErrorOutput(std::string error)
     return true;
 }
 
-// void SetAttributeColor(PlayerC &Player, Weapon &Weapon)
-// {
-//     int extra_damage = 0;
-//     for ( int i = 0; i < Player.equipped_weapon; i++)
-//         extra_damage += Player.equipped_weapon[i].damage;
-//     int new_damage = Player.damage + extra_damage;
-//
-//     if(new_damage > Player.damage)
-//         std::cout<<GREEN<<"+("<<Weapon.damage<<")"<<RESET;
-//     if (new_damage < Player.damage)
-//         std::cout<<RED<<"-("<<Weapon.damage<<")"<<RESET;
-// }
-
 void Inventory(PlayerC &Player)
 {
     while (true)
     {
-        // if (Player.inventory.items.empty())
-        // {
-        //     std::cout << "Your inventory is empty!" << std::endl;
-        //     return;
-        // }
 
         Player.inventory.DisplayInventory();
         cout << "What do you want to do?" << endl;
@@ -285,14 +267,14 @@ void Battle(PlayerC &Player)
         ThePlayerMove(Player, Enemy);
         cin.get();
 
-        if (Player.name == "Bastard" && dynamic_cast<BastardC *>(&Player)->exit_the_battle)
+        if (Player.name == "Bastard" && Player.exit_the_battle)
         {
             break;
         }
 
         if (Player.name == "Knight")
         {
-            Player.skip_hod = dynamic_cast<KnightC *>(&Player)->skip_hod;
+            Player.skip_hod = true;
         }
 
         if (Enemy.IsAlive())

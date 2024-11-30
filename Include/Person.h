@@ -22,7 +22,6 @@ public:
     void DisplayStatus();
     PersonC(std::string name, std::string description, int hp, int damage, int die_bonus);
 
-protected:
     std::string name;
     std::string description;
     int hp;

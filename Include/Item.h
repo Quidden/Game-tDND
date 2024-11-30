@@ -14,6 +14,19 @@ public:
 	int price;
 	ItemC(std::string name, std::string description, int rarity, int price);
 	virtual ~ItemC() = default;
+
+	virtual bool IsType(const std::type_info& type) const
+	{
+		return typeid(*this) == type;
+	}
+
+	template <typename T>
+	T* AsType()
+	{
+		if (IsType(typeid(T)))
+			return static_cast<T*>(this);
+		return nullptr;
+	}
 };
 
 class Health_PotkaC : public ItemC
