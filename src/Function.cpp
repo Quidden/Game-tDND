@@ -99,7 +99,7 @@ void InventoryRealization(PlayerC &Player)
     string choice;
     cin >> choice;
 
-    if (choice.lower() != "y")
+    if (tolower(choice[0]) != 'y')
         return;
 
     system("cls");

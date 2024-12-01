@@ -15,15 +15,16 @@ public:
 	ItemC(std::string name, std::string description, int rarity, int price);
 	virtual ~ItemC() = default;
 
-	virtual bool IsType(const std::type_info& type) const
+	template <typename T>
+   bool IsType() const
 	{
-		return typeid(*this) == type;
+		return typeid(*this) == typeid(T);
 	}
 
 	template <typename T>
 	T* AsType()
 	{
-		if (IsType(typeid(T)))
+		if (IsType<T>())
 			return static_cast<T*>(this);
 		return nullptr;
 	}

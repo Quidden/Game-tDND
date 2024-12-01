@@ -36,7 +36,7 @@ void PersonC::DisplayStatus()
         //If you want to add a new element, just enter a new value into the internal if as already done here
         for (const auto& items : Player->equipped_items) //range cycle!!!
         {
-            if (auto* weapon = dynamic_cast<Equipten_Weapon_Class*>(items))
+            if (auto* weapon = items->AsType<Equipten_Weapon_Class>())
             {
                 damage_bonus += weapon->damage;
             }
@@ -100,18 +100,28 @@ void ArcherC::Abilites()
 EquipResult PlayerC::EquipError(int index)
 {
     bool error_action = false;
+    Equipted_Items_Base* equipted_item = nullptr;
+
     if (index < 0 || index >= inventory.items.size())
        error_action = ErrorOutput("Invalid index.");
 
-    auto *equipted_item = dynamic_cast<Equipted_Items_Base *>(inventory.items[index]);
+    if(!inventory.items[index]->IsType<Equipted_Items_Base>())
+        error_action = ErrorOutput("You've chosen an unequipped item.");
+    else
+        auto* equipted_item = inventory.items[index]->AsType<Equipted_Items_Base>();
+
+
     if (!equipted_item)
         error_action = ErrorOutput("You've chosen an unequipped item.");
 
-    std::cin.get();
-    std::cout << RED <<"Trying to equip item of type: " << RESET << static_cast<int>(equipted_item->Item_Type) << std::endl;
-    std::cout << RED <<"Trying to equip item of type: " << RESET <<static_cast<int>(equipted_item->Item_Type) << std::endl;
-    std::cout << RED <<"Knight can equip this type: " << RESET <<(equipted_item->Item_Type == Equipted_Item_Type::Sword ? "Yes" : "No") << std::endl;
-    std::cin.get();
+        /*if(!error_action)
+        {
+            std::cin.get();
+            std::cout << RED <<"Trying to equip item of type: " << RESET << static_cast<int>(equipted_item->Item_Type) << std::endl;
+            std::cout << RED <<"Trying to equip item of type: " << RESET <<static_cast<int>(equipted_item->Item_Type) << std::endl;
+            std::cout << RED <<"Knight can equip this type: " << RESET <<(equipted_item->Item_Type == Equipted_Item_Type::Sword ? "Yes" : "No") << std::endl;
+            std::cin.get();
+        }*/
 
     if (!this->CanEquip(equipted_item->Item_Type))
         error_action = ErrorOutput("You cannot equip this type of item on a hero.");
@@ -132,9 +142,9 @@ void PlayerC::EquipAction(Equipted_Items_Base* Equipted_Items, int index)
     equipped_items.push_back(Equipted_Items);
     inventory.items.erase(inventory.items.begin() + index);
 
-    if (auto* weapon = dynamic_cast<Equipten_Weapon_Class*>(Equipted_Items)) //Understand type casting
+    if (Equipted_Items->IsType<Equipten_Weapon_Class>())
     {
-        this->damage += weapon->damage;
+        this->damage += Equipted_Items->AsType<Equipten_Weapon_Class>()->damage;
     }
 
     //this->damage += Equipted_Items->damage;
@@ -149,15 +159,12 @@ bool PlayerC::UseItem(int index)
         ErrorOutput("Invalid index. ");
         return false;
     }
-    if (auto *potion = dynamic_cast<Health_PotkaC *>(inventory.items[index]))
+    if (inventory.items[index]->IsType<Health_PotkaC>())
     {
+        auto* potion = inventory.items[index]->AsType<Health_PotkaC>();
         std::cout << "Using " << potion->name << " to restore " << potion->health << " health points." << std::endl;
         this->hp += potion->health;
-        if (inventory.items[index] != nullptr)
-        {
-            delete inventory.items[index];
-            inventory.items[index] = nullptr;
-        }
+        delete inventory.items[index];
         inventory.items.erase(inventory.items.begin() + index);
     }
     else
