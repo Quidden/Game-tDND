@@ -17,8 +17,6 @@
 #define WHITE   "\033[37m"
 #define BOLD    "\033[1m"
 
-
-
 using namespace std;
 bool ErrorOutput(std::string error)
 {
@@ -160,22 +158,22 @@ PlayerC *SelectingGameCharacter()
         {
             case 1:
             {
-                temp = new BastardC("Bastard", "A relentless and aggressive enemy who fights with brute strength and little regard for anything but victory.", 100, 15, 5, 0, 2, CharacterType::Bastard);
+                temp = new BastardC(100, 15, 5, 0, 2, CharacterType::Bastard);
                 break;
             }
             case 2:
             {
-                temp = new KnightC("Knight", "A noble and honorable warrior, dedicated to defending the weak and striking down evil with formidable might and resilience.", 110, 20, 10, 0, 1,CharacterType::Knight);
+                temp = new KnightC(110, 20, 10, 0, 1,CharacterType::Knight);
                 break;
             }
             case 3:
             {
-                temp = new BanditC("Bandit", " A cunning and ruthless rogue, skilled in ambushes and quick attacks, always searching for an opportunity to take advantage.", 90, 10, 5, 0, 1,CharacterType::Bandit);
+                temp = new BanditC(90, 10, 5, 0, 1,CharacterType::Bandit);
                 break;
             }
             case 4:
             {
-                temp = new ArcherC("Drow", "A shadowy figure from the depths, mysterious and dangerous, using dark arts and stealth to overcome opponents.", 120, 10, 5, 0, 1,CharacterType::Drow);
+                temp = new ArcherC(120, 10, 5, 0, 1,CharacterType::Drow);
                 break;
             }
             default:

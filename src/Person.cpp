@@ -15,8 +15,8 @@ PlayerC::PlayerC(int hp, int damage, int die_bonus, int wallet, int max_num_of_w
 {
 }
 
-EnemyC::EnemyC(int hp, int damage, int die_bonus, int reward)
-    : (hp, damage, die_bonus), reward(reward)
+EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward)
+    : (name, description, hp, damage, die_bonus), reward(reward)
 {
 }
 
@@ -63,16 +63,22 @@ void PlayerC::TryAbility(int chanceThreshold, bool &effectFlag, const std::strin
     }
 }
 
+const std::string BastardC::className = "Bastard";
+const std::string BastardC::classDescription = "Test1";
 void BastardC::Abilites()
 {
     TryAbility(10, exit_the_battle, "Bastard exits the battle");
 }
 
+const std::string KnightC::className = "Knight";
+const std::string KnightC::classDescription = "Test2";
 void KnightC::Abilites()
 {
     TryAbility(30, skip_hod, "Knight skips the turn");
 }
 
+const std::string BanditC::className = "Bandit";
+const std::string BanditC::classDescription = "Test3";
 void BanditC::Abilites()
 {
     int chance = rand() % 100 + 1;
@@ -83,6 +89,8 @@ void BanditC::Abilites()
     }
 }
 
+const std::string ArcherC::className = "Archer";
+const std::string ArcherC::classDescription = "Test4";
 void ArcherC::Abilites()
 {
     int chance = rand() % 100 + 1;

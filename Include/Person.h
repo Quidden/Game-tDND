@@ -20,8 +20,6 @@ protected:
     int max_hp;
     int damage;
     int die_bonus;
-    static const std::string className;
-    static const std::string classDescription;
 
 public:
     virtual ~PersonC() = default;
@@ -67,9 +65,6 @@ protected:
 
 public:
 
-    const std::string& GetClassName() const override { return className; }
-    const std::string& GetClassDescription() const override { return classDescription; }
-
     PlayerC(int hp, int damage, int die_bonus,
             int wallet, int max_num_of_weapons, CharacterType charter_type);
 
@@ -109,7 +104,16 @@ public:
 
 class BastardC : public PlayerC
 {
+private:
+    static const std::string className;
+    static const std::string classDescription;
+
 public:
+
+
+    const std::string& GetClassName() const override { return className; }
+    const std::string& GetClassDescription() const override { return classDescription; }
+
     using PlayerC::PlayerC;
 
     std::vector<Equipted_Items_Base*> equpted_item;
@@ -127,6 +131,7 @@ class KnightC : public PlayerC
 private:
     static const std::string className;
     static const std::string classDescription;
+
 public:
 
     const std::string& GetClassName() const override { return className; }
@@ -148,6 +153,10 @@ public:
 
 class BanditC : public PlayerC
 {
+private:
+    static const std::string className;
+    static const std::string classDescription;
+
 public:
 
     const std::string& GetClassName() const override { return className; }
@@ -165,6 +174,10 @@ public:
 
 class ArcherC : public PlayerC
 {
+private:
+    static const std::string className;
+    static const std::string classDescription;
+
 public:
 
     const std::string& GetClassName() const override { return className; }
@@ -186,6 +199,5 @@ class EnemyC : public PersonC
 {
 public:
     int reward;
-
     EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward);
 };
