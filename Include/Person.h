@@ -17,8 +17,11 @@ class PersonC
 {
 protected:
     int hp;
+    int max_hp;
     int damage;
     int die_bonus;
+    static const std::string className;
+    static const std::string classDescription;
 
 public:
     virtual ~PersonC() = default;
@@ -31,6 +34,19 @@ public:
     virtual const std::string& GetClassDescription() const = 0;
 
     int GetHP() const { return hp; }
+    void SetHP(int new_hp)
+    {
+        if (new_hp > max_hp)
+            hp = max_hp;
+
+        else if (new_hp <= 0)
+        {
+            hp = 0;
+            std::cout << "The character has died!" << std::endl;
+        }
+        else
+            hp = new_hp;
+    }
     int GetDamage() const { return damage; }
     int GetDieBonus() const { return die_bonus; }
 };
@@ -51,7 +67,10 @@ protected:
 
 public:
 
-    PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus,
+    const std::string& GetClassName() const override { return className; }
+    const std::string& GetClassDescription() const override { return classDescription; }
+
+    PlayerC(int hp, int damage, int die_bonus,
             int wallet, int max_num_of_weapons, CharacterType charter_type);
 
     int GetWallet() const { return wallet; }
@@ -108,8 +127,11 @@ class KnightC : public PlayerC
 private:
     static const std::string className;
     static const std::string classDescription;
-
 public:
+
+    const std::string& GetClassName() const override { return className; }
+    const std::string& GetClassDescription() const override { return classDescription; }
+
     using PlayerC::PlayerC;
 
     void Abilites() override
@@ -122,14 +144,15 @@ public:
     {
         return item_equip_seccess == Equipted_Item_Type::Sword || item_equip_seccess == Equipted_Item_Type::Armor;
     }
-
-    const std::string& GetClassName() const override { return className; }
-    const std::string& GetClassDescription() const override { return classDescription; }
 };
 
 class BanditC : public PlayerC
 {
 public:
+
+    const std::string& GetClassName() const override { return className; }
+    const std::string& GetClassDescription() const override { return classDescription; }
+
     using PlayerC::PlayerC;
 
     void Abilites() override;
@@ -143,6 +166,10 @@ public:
 class ArcherC : public PlayerC
 {
 public:
+
+    const std::string& GetClassName() const override { return className; }
+    const std::string& GetClassDescription() const override { return classDescription; }
+
     using PlayerC::PlayerC;
 
     PersonC *target;

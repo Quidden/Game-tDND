@@ -5,21 +5,22 @@
 #define GREEN   "\033[32m"
 #define RESET   "\033[0m"
 
-PersonC::PersonC(std::string name, std::string description, int hp, int damage, int die_bonus)
-    : name(std::move(name)), description(std::move(description)), hp(hp), damage(damage), die_bonus(die_bonus)
+PersonC::PersonC(int hp, int damage, int die_bonus)
+    : hp(hp), damage(damage), die_bonus(die_bonus)
 {
 }
 
-PlayerC::PlayerC(std::string name, std::string description, int hp, int damage, int die_bonus, int wallet, int max_num_of_weapons, CharacterType charter_type)
-    : PersonC(std::move(name), std::move(description), hp, damage, die_bonus),max_num_of_weapons(max_num_of_weapons), wallet(wallet), charter_type(charter_type)
+PlayerC::PlayerC(int hp, int damage, int die_bonus, int wallet, int max_num_of_weapons, CharacterType charter_type)
+    : (hp, damage, die_bonus),max_num_of_weapons(max_num_of_weapons), wallet(wallet), charter_type(charter_type)
 {
 }
 
-EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward)
-    : PersonC(std::move(name), std::move(description), hp, damage, die_bonus), reward(reward)
+EnemyC::EnemyC(int hp, int damage, int die_bonus, int reward)
+    : (hp, damage, die_bonus), reward(reward)
 {
 }
 
+const std::string KnightC::className = "";
 
 bool PersonC::IsAlive()
 {
