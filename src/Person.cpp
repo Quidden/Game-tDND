@@ -20,8 +20,6 @@ EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, in
 {
 }
 
-const std::string KnightC::className = "";
-
 bool PersonC::IsAlive()
 {
     return hp > 0;
@@ -84,7 +82,7 @@ void BanditC::Abilites()
     int chance = rand() % 100 + 1;
     if (chance <= 60)
     {
-        std::cout << name << "Double damag" << std::endl;
+        std::cout <<  "Bandit get Double damag" << std::endl;
         this->damage *= 2;
     }
 }
@@ -96,7 +94,7 @@ void ArcherC::Abilites()
     int chance = rand() % 100 + 1;
     if (chance <= 10)
     {
-        std::cout << name << "Took two damage" << std::endl;
+        std::cout << "Archer get Took two damage" << std::endl;
         this->damage += 2;
 
         if (target != nullptr)
@@ -158,7 +156,7 @@ void PlayerC::EquipAction(Equipted_Items_Base* Equipted_Items, int index)
 
     //this->damage += Equipted_Items->damage;
 
-    std::cout << this->name << " equipped " << Equipted_Items->name << std::endl;
+    std::cout << this->GetClassName() << " equipped " << Equipted_Items->name << std::endl;
 }
 
 bool PlayerC::UseItem(int index)
