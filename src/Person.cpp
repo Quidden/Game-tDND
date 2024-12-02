@@ -20,47 +20,6 @@ EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, in
 {
 }
 
-bool PersonC::IsAlive()
-{
-    return hp > 0;
-}
-
-void PersonC::DisplayStatus()
-{
-    //int hp_bonus = 0;
-    int damage_bonus = 0;
-    auto* Player = dynamic_cast<PlayerC*>(this);
-    if (Player != nullptr)
-    {
-        //If you want to add a new element, just enter a new value into the internal if as already done here
-        for (const auto& items : Player->equipped_items) //range cycle!!!
-        {
-            if (auto* weapon = items->AsType<Equipten_Weapon_Class>())
-            {
-                damage_bonus += weapon->damage;
-            }
-        }
-    }
-    if(damage_bonus >= 0)
-        std::cout << name << ": " << hp << " HP, Damage " << damage <<GREEN<<"("<<damage_bonus<<")"<<RESET<<", Die Bonus " << die_bonus << std::endl;
-    else
-        std::cout << name << ": " << hp << " HP, Damage " << damage <<RED<<"("<<damage_bonus<<")"<<RESET<<", Die Bonus " << die_bonus << std::endl;
-
-}
-
-void PlayerC::TryAbility(int chanceThreshold, bool &effectFlag, const std::string &abilityMessage)
-{
-    int chance = rand() % 100 + 1;
-    if (chance <= chanceThreshold)
-    {
-        effectFlag = true;
-        std::cout << name << " " << abilityMessage << std::endl;
-    } else
-    {
-        effectFlag = false;
-    }
-}
-
 const std::string BastardC::className = "Bastard";
 const std::string BastardC::classDescription = "Test1";
 void BastardC::Abilites()
@@ -101,6 +60,48 @@ void ArcherC::Abilites()
         {
             target->hp -= 2;
         }
+    }
+}
+
+
+bool PersonC::IsAlive()
+{
+    return hp > 0;
+}
+
+void PersonC::DisplayStatus(const PlayerC& player)
+{
+    //int hp_bonus = 0;
+    int damage_bonus = 0;
+    auto* Player = dynamic_cast<PlayerC*>(this);
+    if (Player != nullptr)
+    {
+        //If you want to add a new element, just enter a new value into the internal if as already done here
+        for (const auto& items : Player->equipped_items) //range cycle!!!
+        {
+            if (auto* weapon = items->AsType<Equipten_Weapon_Class>())
+            {
+                damage_bonus += weapon->damage;
+            }
+        }
+    }
+    if(damage_bonus >= 0)
+        std::cout << player.GetClassName() << ": " << hp << " HP, Damage " << damage <<GREEN<<"("<<damage_bonus<<")"<<RESET<<", Die Bonus " << die_bonus << std::endl;
+    else
+        std::cout << player.GetClassName() << ": " << hp << " HP, Damage " << damage <<RED<<"("<<damage_bonus<<")"<<RESET<<", Die Bonus " << die_bonus << std::endl;
+
+}
+
+void PlayerC::TryAbility(int chanceThreshold, bool &effectFlag, const std::string &abilityMessage)
+{
+    int chance = rand() % 100 + 1;
+    if (chance <= chanceThreshold)
+    {
+        effectFlag = true;
+        std::cout << name << " " << abilityMessage << std::endl;
+    } else
+    {
+        effectFlag = false;
     }
 }
 

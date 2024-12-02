@@ -25,11 +25,8 @@ public:
     virtual ~PersonC() = default;
     bool IsAlive();
 
-    void DisplayStatus();
+    void DisplayStatus(const PersonC& player);
     PersonC(int hp, int damage, int die_bonus);
-
-    virtual const std::string& GetClassName() const = 0;
-    virtual const std::string& GetClassDescription() const = 0;
 
     int GetHP() const { return hp; }
     void SetHP(int new_hp)
@@ -64,6 +61,9 @@ protected:
     CharacterType charter_type;
 
 public:
+
+    virtual const std::string& GetClassName() const = 0;
+    virtual const std::string& GetClassDescription() const = 0;
 
     PlayerC(int hp, int damage, int die_bonus,
             int wallet, int max_num_of_weapons, CharacterType charter_type);
@@ -139,11 +139,7 @@ public:
 
     using PlayerC::PlayerC;
 
-    void Abilites() override
-    {
-        std::cout << GetClassName() << " blocks and skips the turn!" << std::endl;
-        SetSkipTurn(true);
-    }
+    void Abilites() override;
 
     bool CanEquip(Equipted_Item_Type item_equip_seccess) const override
     {
