@@ -199,7 +199,7 @@ void TheEnemyMove(PlayerC &Player, EnemyC &Enemy)
         cout << "Enemy's move" << endl;
         cout << "" << endl;
 
-        Player.hp -= Enemy.damage;
+        Player.SetHP(Player.GetHP() -= Enemy.GetHP());
         SetTextColor(12);
         Enemy.DisplayStatus();
         SetTextColor(10);
