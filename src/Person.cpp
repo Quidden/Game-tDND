@@ -11,12 +11,12 @@ PersonC::PersonC(int hp, int damage, int die_bonus)
 }
 
 PlayerC::PlayerC(int hp, int damage, int die_bonus, int wallet, int max_num_of_weapons, CharacterType charter_type)
-    : (hp, damage, die_bonus),max_num_of_weapons(max_num_of_weapons), wallet(wallet), charter_type(charter_type)
+    : PersonC(hp, damage, die_bonus),max_num_of_weapons(max_num_of_weapons), wallet(wallet), charter_type(charter_type)
 {
 }
 
 EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward)
-    : (name, description, hp, damage, die_bonus), reward(reward)
+    : PersonC(hp, damage, die_bonus), name(name), description(description),reward(reward)
 {
 }
 
@@ -58,7 +58,7 @@ void ArcherC::Abilites()
 
         if (target != nullptr)
         {
-            target->hp -= 2;
+            target->SetHP(target->GetHP() - 2);
         }
     }
 }

@@ -19,6 +19,8 @@ protected:
     int max_hp;
     int damage;
     int die_bonus;
+    std::string name;
+    std::string description;
 
 public:
     virtual ~PersonC() = default;
@@ -193,6 +195,8 @@ public:
 class EnemyC : public PersonC
 {
 public:
+    std::string name;
+    std::string description;
     int reward;
     EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward);
 };
