@@ -39,6 +39,7 @@ public:
         {
             hp = 0;
             std::cout << "The character has died!" << std::endl;
+            exit(0);
         }
         else
             hp = new_hp;
@@ -106,7 +107,7 @@ public:
 class BastardC : public PlayerC
 {
 private:
-    static const std::string className;
+    std::string className = "Bastard"; // make a name/description getter's
     static const std::string classDescription;
 
 public:

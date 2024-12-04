@@ -23,7 +23,7 @@ int main()
 
     cin.get();
     srand(time(nullptr));
-
+    int X = 10;
 
     PlayerC* Player = SelectingGameCharacter();
     if (Player != nullptr) 

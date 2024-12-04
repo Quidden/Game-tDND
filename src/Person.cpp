@@ -20,7 +20,6 @@ EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, in
 {
 }
 
-const std::string BastardC::className = "Bastard";
 const std::string BastardC::classDescription = "Test1";
 void BastardC::Abilites()
 {

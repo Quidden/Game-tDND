@@ -182,7 +182,7 @@ PlayerC *SelectingGameCharacter()
         }
         if (temp != nullptr)
         {
-            cout << "You've chosen a hero " << temp->name << endl;
+            cout << "You've chosen a hero " << temp->getname() << endl;
             HeroInfoSelecting(temp, Subverification);
         }
         system("cls");
