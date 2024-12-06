@@ -17,6 +17,8 @@
 #define WHITE   "\033[37m"
 #define BOLD    "\033[1m"
 
+//add a class name getters and rework HP system
+
 using namespace std;
 bool ErrorOutput(std::string error)
 {

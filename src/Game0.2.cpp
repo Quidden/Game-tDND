@@ -39,6 +39,7 @@ int main()
     Player->inventory.AddItem(bow);
     Player->inventory.AddItem(sword);
     Player->inventory.AddItem(healthPotion);
+    //rework
 
     InventoryRealization(*Player);
 

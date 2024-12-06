@@ -108,7 +108,7 @@ class BastardC : public PlayerC
 {
 private:
     std::string className = "Bastard"; // make a name/description getter's
-    static const std::string classDescription;
+    std::string classDescription = "Test class description";
 
 public:
 
@@ -131,8 +131,8 @@ public:
 class KnightC : public PlayerC
 {
 private:
-    static const std::string className;
-    static const std::string classDescription;
+    std::string className = "Knight"; // make a name/description getter's
+    std::string classDescription = "Test class description";
 
 public:
 
@@ -152,8 +152,8 @@ public:
 class BanditC : public PlayerC
 {
 private:
-    static const std::string className;
-    static const std::string classDescription;
+    std::string className = "Bandit"; // make a name/description getter's
+    std::string classDescription = "Test class description";
 
 public:
 
@@ -173,8 +173,8 @@ public:
 class ArcherC : public PlayerC
 {
 private:
-    static const std::string className;
-    static const std::string classDescription;
+    std::string className = "Archer"; // make a name/description getter's
+    std::string classDescription = "Test class description";
 
 public:
 

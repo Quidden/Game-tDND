@@ -33,8 +33,6 @@ void KnightC::Abilites()
     TryAbility(30, skip_hod, "Knight skips the turn");
 }
 
-const std::string BanditC::className = "Bandit";
-const std::string BanditC::classDescription = "Test3";
 void BanditC::Abilites()
 {
     int chance = rand() % 100 + 1;
@@ -45,8 +43,6 @@ void BanditC::Abilites()
     }
 }
 
-const std::string ArcherC::className = "Archer";
-const std::string ArcherC::classDescription = "Test4";
 void ArcherC::Abilites()
 {
     int chance = rand() % 100 + 1;
