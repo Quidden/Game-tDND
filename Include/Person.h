@@ -19,8 +19,6 @@ protected:
     int max_hp;
     int damage;
     int die_bonus;
-    std::string name;
-    std::string description;
 
 public:
     virtual ~PersonC() = default;
@@ -46,6 +44,9 @@ public:
     }
     int GetDamage() const { return damage; }
     int GetDieBonus() const { return die_bonus; }
+
+    virtual const std::string& GetPlayerName() const = 0;
+    virtual const std::string& GetPlayerDescription() const = 0;
 };
 
 class PlayerC : public PersonC
@@ -64,8 +65,8 @@ protected:
 
 public:
 
-    virtual const std::string& GetClassName() const = 0;
-    virtual const std::string& GetClassDescription() const = 0;
+    virtual const std::string& GetPlayerName() const = 0;
+    virtual const std::string& GetPlayerDescription() const = 0;
 
     PlayerC(int hp, int damage, int die_bonus,
             int wallet, int max_num_of_weapons, CharacterType charter_type);
@@ -112,9 +113,8 @@ private:
 
 public:
 
-
-    const std::string& GetClassName() const override { return className; }
-    const std::string& GetClassDescription() const override { return classDescription; }
+    const std::string& GetPlayerName() const override { return className; }
+    const std::string& GetPlayerDescription() const override { return classDescription; }
 
     using PlayerC::PlayerC;
 
@@ -136,8 +136,8 @@ private:
 
 public:
 
-    const std::string& GetClassName() const override { return className; }
-    const std::string& GetClassDescription() const override { return classDescription; }
+    const std::string& GetPlayerName() const override { return className; }
+    const std::string& GetPlayerDescription() const override { return classDescription; }
 
     using PlayerC::PlayerC;
 
@@ -157,8 +157,8 @@ private:
 
 public:
 
-    const std::string& GetClassName() const override { return className; }
-    const std::string& GetClassDescription() const override { return classDescription; }
+    const std::string& GetPlayerName() const override { return className; }
+    const std::string& GetPlayerDescription() const override { return classDescription; }
 
     using PlayerC::PlayerC;
 
@@ -178,8 +178,8 @@ private:
 
 public:
 
-    const std::string& GetClassName() const override { return className; }
-    const std::string& GetClassDescription() const override { return classDescription; }
+    const std::string& GetPlayerName() const override { return className; }
+    const std::string& GetPlayerDescription() const override { return classDescription; }
 
     using PlayerC::PlayerC;
 

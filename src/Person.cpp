@@ -20,14 +20,11 @@ EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, in
 {
 }
 
-const std::string BastardC::classDescription = "Test1";
 void BastardC::Abilites()
 {
     TryAbility(10, exit_the_battle, "Bastard exits the battle");
 }
 
-const std::string KnightC::className = "Knight";
-const std::string KnightC::classDescription = "Test2";
 void KnightC::Abilites()
 {
     TryAbility(30, skip_hod, "Knight skips the turn");
@@ -64,7 +61,7 @@ bool PersonC::IsAlive()
     return hp > 0;
 }
 
-void PersonC::DisplayStatus(const PlayerC& player)
+void PersonC::DisplayStatus(const PersonC& player);
 {
     //int hp_bonus = 0;
     int damage_bonus = 0;
@@ -72,7 +69,7 @@ void PersonC::DisplayStatus(const PlayerC& player)
     if (Player != nullptr)
     {
         //If you want to add a new element, just enter a new value into the internal if as already done here
-        for (const auto& items : Player->equipped_items) //range cycle!!!
+        for (const auto& items :Player->equipped_items) //range cycle!!!
         {
             if (auto* weapon = items->AsType<Equipten_Weapon_Class>())
             {
@@ -81,9 +78,9 @@ void PersonC::DisplayStatus(const PlayerC& player)
         }
     }
     if(damage_bonus >= 0)
-        std::cout << player.GetClassName() << ": " << hp << " HP, Damage " << damage <<GREEN<<"("<<damage_bonus<<")"<<RESET<<", Die Bonus " << die_bonus << std::endl;
+        std::cout << player.GetPlayerName() << ": " << hp << " HP, Damage " << damage <<GREEN<<"("<<damage_bonus<<")"<<RESET<<", Die Bonus " << die_bonus << std::endl;
     else
-        std::cout << player.GetClassName() << ": " << hp << " HP, Damage " << damage <<RED<<"("<<damage_bonus<<")"<<RESET<<", Die Bonus " << die_bonus << std::endl;
+        std::cout << player.GetPlayerName() << ": " << hp << " HP, Damage " << damage <<RED<<"("<<damage_bonus<<")"<<RESET<<", Die Bonus " << die_bonus << std::endl;
 
 }
 
