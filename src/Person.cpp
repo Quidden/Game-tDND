@@ -84,13 +84,13 @@ void PersonC::DisplayStatus(const PersonC& player);
 
 }
 
-void PlayerC::TryAbility(int chanceThreshold, bool &effectFlag, const std::string &abilityMessage)
+void PlayerC::TryAbility(const PlayerC& player, int chanceThreshold, bool &effectFlag, const std::string &abilityMessage)
 {
     int chance = rand() % 100 + 1;
     if (chance <= chanceThreshold)
     {
         effectFlag = true;
-        std::cout << name << " " << abilityMessage << std::endl;
+        std::cout << player.GetPlayerName() << " " << abilityMessage << std::endl;
     } else
     {
         effectFlag = false;
@@ -137,7 +137,7 @@ EquipResult PlayerC::EquipError(int index)
     return {false, equipted_item};
 }
 
-void PlayerC::EquipAction(Equipted_Items_Base* Equipted_Items, int index)
+void PlayerC::EquipAction(const PersonC& player, Equipted_Items_Base* Equipted_Items, int index)
 {
     equipped_items.push_back(Equipted_Items);
     inventory.items.erase(inventory.items.begin() + index);
@@ -149,7 +149,7 @@ void PlayerC::EquipAction(Equipted_Items_Base* Equipted_Items, int index)
 
     //this->damage += Equipted_Items->damage;
 
-    std::cout << this->GetClassName() << " equipped " << Equipted_Items->name << std::endl;
+    std::cout << player.GetPlayerName()  << " equipped " << Equipted_Items->name << std::endl;
 }
 
 bool PlayerC::UseItem(int index)

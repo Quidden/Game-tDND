@@ -65,9 +65,6 @@ protected:
 
 public:
 
-    virtual const std::string& GetPlayerName() const = 0;
-    virtual const std::string& GetPlayerDescription() const = 0;
-
     PlayerC(int hp, int damage, int die_bonus,
             int wallet, int max_num_of_weapons, CharacterType charter_type);
 
@@ -93,12 +90,12 @@ public:
 
     const std::vector<Equipted_Items_Base*>& GetEquippedItems() const { return equipped_items; }
     EquipResult EquipError(int index);
-    void EquipAction(Equipted_Items_Base* Equipted_Items, int index);
+    void EquipAction(const PersonC& player, Equipted_Items_Base* Equipted_Items, int index);
 
     bool UseItem(int index);
     bool SellItem(int index);
 
-    void TryAbility(int chanceThreshold, bool& effectFlag, const std::string& abilityMessage);
+    void TryAbility(const PersonC& player, int chanceThreshold, bool& effectFlag, const std::string& abilityMessage);
     int AdjustDamage(bool add);
 
     virtual void Abilites() = 0;
@@ -198,6 +195,9 @@ class EnemyC : public PersonC
 public:
     std::string name;
     std::string description;
+    const std::string& GetPlayerName() const override { return name; }
+    const std::string& GetPlayerDescription() const override { return description; }
     int reward;
     EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward);
+
 };
