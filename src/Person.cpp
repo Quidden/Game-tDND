@@ -22,12 +22,12 @@ EnemyC::EnemyC(std::string name, std::string description, int hp, int damage, in
 
 void BastardC::Abilites()
 {
-    TryAbility(10, exit_the_battle, "Bastard exits the battle");
+    TryAbility(const BastardC& player, 10, exit_the_battle, "Bastard exits the battle");
 }
 
 void KnightC::Abilites()
 {
-    TryAbility(30, skip_hod, "Knight skips the turn");
+    TryAbility(KnightC, 30, skip_hod, "Knight skips the turn");
 }
 
 void BanditC::Abilites()
@@ -84,7 +84,7 @@ void PersonC::DisplayStatus(const PersonC& player);
 
 }
 
-void PlayerC::TryAbility(const PlayerC& player, int chanceThreshold, bool &effectFlag, const std::string &abilityMessage)
+void TryAbility(const PersonC& player, int chanceThreshold, bool& effectFlag, const std::string& abilityMessage)
 {
     int chance = rand() % 100 + 1;
     if (chance <= chanceThreshold)

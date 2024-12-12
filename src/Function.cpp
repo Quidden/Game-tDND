@@ -123,7 +123,7 @@ void TextToConfirmTheSelection()
 void HeroInfoSelecting(PlayerC *temp, int &Subverification)
 {
     temp->DisplayStatus();
-    cout << temp->description << endl;
+    cout << temp->GetPlayerDescription() << endl;
     cout << endl;
     TextToConfirmTheSelection();
 
@@ -184,7 +184,7 @@ PlayerC *SelectingGameCharacter()
         }
         if (temp != nullptr)
         {
-            cout << "You've chosen a hero " << temp->getname() << endl;
+            cout << "You've chosen a hero " << temp->GetPlayerName() << endl;
             HeroInfoSelecting(temp, Subverification);
         }
         system("cls");
