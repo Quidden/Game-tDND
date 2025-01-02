@@ -17,8 +17,6 @@
 #define WHITE   "\033[37m"
 #define BOLD    "\033[1m"
 
-//add a class name getters and rework HP system
-
 using namespace std;
 bool ErrorOutput(std::string error)
 {
@@ -122,8 +120,8 @@ void TextToConfirmTheSelection()
 
 void HeroInfoSelecting(PlayerC *temp, int &Subverification)
 {
-    temp->DisplayStatus();
-    cout << temp->GetPlayerDescription() << endl;
+    temp->DisplayStatus(*temp);
+    cout << temp->GetCDescription() << endl;
     cout << endl;
     TextToConfirmTheSelection();
 
@@ -184,7 +182,7 @@ PlayerC *SelectingGameCharacter()
         }
         if (temp != nullptr)
         {
-            cout << "You've chosen a hero " << temp->GetPlayerName() << endl;
+            cout << "You've chosen a hero " << temp->getname() << endl;
             HeroInfoSelecting(temp, Subverification);
         }
         system("cls");

@@ -19,12 +19,15 @@ protected:
     int max_hp;
     int damage;
     int die_bonus;
+    std::string className;
+    std::string classDescription;
+    std::vector<Equipted_Items_Base*> equipped_items;
 
 public:
     virtual ~PersonC() = default;
     bool IsAlive();
 
-    void DisplayStatus(const PersonC& player);
+    void DisplayStatus(PersonC& player);
     PersonC(int hp, int damage, int die_bonus);
 
     int GetHP() const { return hp; }
@@ -45,8 +48,9 @@ public:
     int GetDamage() const { return damage; }
     int GetDieBonus() const { return die_bonus; }
 
-    virtual const std::string& GetPlayerName() const = 0;
-    virtual const std::string& GetPlayerDescription() const = 0;
+    virtual const std::string& GetCName() const = 0;
+    virtual const std::string& GetCDescription() const = 0;
+    const std::vector<Equipted_Items_Base*>& GetEquippedItems() const { return equipped_items; }
 };
 
 class PlayerC : public PersonC
@@ -56,7 +60,7 @@ protected:
     int max_num_of_weapons;
 
     InventoryC inventory;
-    std::vector<Equipted_Items_Base*> equipped_items;
+    //std::vector<Equipted_Items_Base*> equipped_items;
 
     bool exit_the_battle = false;
     bool skip_hod = false;
@@ -64,7 +68,6 @@ protected:
     CharacterType charter_type;
 
 public:
-
     PlayerC(int hp, int damage, int die_bonus,
             int wallet, int max_num_of_weapons, CharacterType charter_type);
 
@@ -88,14 +91,13 @@ public:
     const InventoryC& GetInventory() const { return inventory; }
     void AddToInventory(ItemC* item) { inventory.AddItem(item); }
 
-    const std::vector<Equipted_Items_Base*>& GetEquippedItems() const { return equipped_items; }
     EquipResult EquipError(int index);
-    void EquipAction(const PersonC& player, Equipted_Items_Base* Equipted_Items, int index);
+    void EquipAction(Equipted_Items_Base* Equipted_Items, int index);
 
     bool UseItem(int index);
     bool SellItem(int index);
 
-    void TryAbility(const PersonC& player, int chanceThreshold, bool& effectFlag, const std::string& abilityMessage);
+    void TryAbility(int chanceThreshold, bool& effectFlag, const std::string& abilityMessage);
     int AdjustDamage(bool add);
 
     virtual void Abilites() = 0;
@@ -105,13 +107,14 @@ public:
 class BastardC : public PlayerC
 {
 private:
-    std::string className = "Bastard"; // make a name/description getter's
-    std::string classDescription = "Test class description";
+    const std::string className = "Bastard"; // make a name/description getter's
+    const std::string classDescription = "DBastard";
 
 public:
 
-    const std::string& GetPlayerName() const override { return className; }
-    const std::string& GetPlayerDescription() const override { return classDescription; }
+
+    const std::string& GetCName() const override { return className; }
+    const std::string& GetCDescription() const override { return classDescription; }
 
     using PlayerC::PlayerC;
 
@@ -128,13 +131,13 @@ public:
 class KnightC : public PlayerC
 {
 private:
-    std::string className = "Knight"; // make a name/description getter's
-    std::string classDescription = "Test class description";
+    const std::string className = "Knight";
+    const std::string classDescription = "DKnight";
 
 public:
 
-    const std::string& GetPlayerName() const override { return className; }
-    const std::string& GetPlayerDescription() const override { return classDescription; }
+    const std::string& GetCName() const override { return className; }
+    const std::string& GetCDescription() const override { return classDescription; }
 
     using PlayerC::PlayerC;
 
@@ -149,13 +152,13 @@ public:
 class BanditC : public PlayerC
 {
 private:
-    std::string className = "Bandit"; // make a name/description getter's
-    std::string classDescription = "Test class description";
+    const std::string className = "Bandit";
+    const std::string classDescription = "DBandit";
 
 public:
 
-    const std::string& GetPlayerName() const override { return className; }
-    const std::string& GetPlayerDescription() const override { return classDescription; }
+    const std::string& GetCName() const override { return className; }
+    const std::string& GetCDescription() const override { return classDescription; }
 
     using PlayerC::PlayerC;
 
@@ -170,13 +173,13 @@ public:
 class ArcherC : public PlayerC
 {
 private:
-    std::string className = "Archer"; // make a name/description getter's
-    std::string classDescription = "Test class description";
+    const std::string className = "Archer";
+    const std::string classDescription = "DArcher";
 
 public:
 
-    const std::string& GetPlayerName() const override { return className; }
-    const std::string& GetPlayerDescription() const override { return classDescription; }
+    const std::string& GetCName() const override { return className; }
+    const std::string& GetCDescription() const override { return classDescription; }
 
     using PlayerC::PlayerC;
 
@@ -195,9 +198,6 @@ class EnemyC : public PersonC
 public:
     std::string name;
     std::string description;
-    const std::string& GetPlayerName() const override { return name; }
-    const std::string& GetPlayerDescription() const override { return description; }
     int reward;
     EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward);
-
 };
