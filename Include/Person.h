@@ -90,6 +90,9 @@ public:
 
     const InventoryC& GetInventory() const { return inventory; }
     void AddToInventory(ItemC* item) { inventory.AddItem(item); }
+    void DisplayPlayerInventory() {
+        inventory.DisplayInventory();
+    }
 
     EquipResult EquipError(int index);
     void EquipAction(Equipted_Items_Base* Equipted_Items, int index);

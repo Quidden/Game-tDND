@@ -31,7 +31,7 @@ void Inventory(PlayerC &Player)
     while (true)
     {
 
-        Player.inventory.DisplayInventory();
+        Player.DisplayPlayerInventory();
         cout << "What do you want to do?" << endl;
         cout << "1.Equip an item   2.Use item   3.Sell an item   4.Exit inventory" << endl;
 
@@ -50,7 +50,7 @@ void Inventory(PlayerC &Player)
         }
 
         system("cls");
-        Player.inventory.DisplayInventory();
+        Player.DisplayPlayerInventory();
 
         cout << "Select the item you need by its number" << endl;
         int index;
@@ -102,7 +102,7 @@ void InventoryRealization(PlayerC &Player)
 
     system("cls");
 
-    Player.DisplayStatus();
+    Player.DisplayStatus(Player);
     Inventory(Player);
 }
 
@@ -182,7 +182,7 @@ PlayerC *SelectingGameCharacter()
         }
         if (temp != nullptr)
         {
-            cout << "You've chosen a hero " << temp->getname() << endl;
+            cout << "You've chosen a hero " << temp->GetCName() << endl;
             HeroInfoSelecting(temp, Subverification);
         }
         system("cls");
@@ -192,18 +192,18 @@ PlayerC *SelectingGameCharacter()
 
 void TheEnemyMove(PlayerC &Player, EnemyC &Enemy)
 {
-    if (!Player.skip_hod)
+    if (!Player.IsSkippingTurn())
     {
         cout << "" << endl;
         SetTextColor(12);
         cout << "Enemy's move" << endl;
         cout << "" << endl;
 
-        Player.SetHP(Player.GetHP() -= Enemy.GetHP());
+        Player.SetHP(Player.GetHP() - Enemy.GetHP());
         SetTextColor(12);
-        Enemy.DisplayStatus();
+        Enemy.DisplayStatus(Enemy);
         SetTextColor(10);
-        Player.DisplayStatus();
+        Player.DisplayStatus(Player);
     } else
     {
         SetTextColor(3);
@@ -226,14 +226,14 @@ void ThePlayerMove(PlayerC &Player, EnemyC &Enemy)
 
     Player.Abilites();
 
-    Enemy.hp -= Player.damage;
+    Enemy.SetHP(Enemy.GetHP() - Player.GetDamage());
     SetTextColor(10);
-    Player.DisplayStatus();
+    Player.DisplayStatus(Player);
 
     if (Enemy.IsAlive())
     {
         SetTextColor(12);
-        Enemy.DisplayStatus();
+        Enemy.DisplayStatus(Enemy);
     } else
     {
         SetTextColor(6);
@@ -253,26 +253,26 @@ void Battle(PlayerC &Player)
 
     EnemyC &Enemy = Goblin;
 
-    cout << "A fight breaks out between " << Player.name << " end " << Enemy.name << endl;
+    cout << "A fight breaks out between " << Player.GetCName() << " end " << Enemy.name << endl;
     cout << "To make a move in a battle press 'Enter'" << endl;
 
     cin.get();
 
     //Initialization_Check(Player, Enemy);
 
-    while (Player.IsAlive() && Enemy.IsAlive() && !Player.exit_the_battle)
+    while (Player.IsAlive() && Enemy.IsAlive() && !Player.IsExitingBattle())
     {
         ThePlayerMove(Player, Enemy);
         cin.get();
 
-        if (Player.name == "Bastard" && Player.exit_the_battle)
+        if (Player.GetCName() == "Bastard" && Player.IsExitingBattle())
         {
             break;
         }
 
-        if (Player.name == "Knight")
+        if (Player.GetCName() == "Knight")
         {
-            Player.skip_hod = true;
+            Player.SetSkipTurn(true);
         }
 
         if (Enemy.IsAlive())
