@@ -213,7 +213,7 @@ void TheEnemyMove(PlayerC &Player, EnemyC &Enemy)
     if (!Player.IsAlive())
     {
         SetTextColor(6);
-        cout << Enemy.name << " You are defeated" << endl;
+        cout << Enemy.GetCName() << " You are defeated" << endl;
     }
 }
 
@@ -237,7 +237,7 @@ void ThePlayerMove(PlayerC &Player, EnemyC &Enemy)
     } else
     {
         SetTextColor(6);
-        cout << Enemy.name << " defeated! You've won!" << endl;
+        cout << Enemy.GetCName() << " defeated! You've won!" << endl;
     }
 }
 
@@ -251,9 +251,10 @@ void Battle(PlayerC &Player)
     EnemyC Shadow("Shadow", "asdasdasd", 100, 10, 5, 1);
     EnemyC King("King", "asdasdasd", 100, 10, 5, 1);
 
+
     EnemyC &Enemy = Goblin;
 
-    cout << "A fight breaks out between " << Player.GetCName() << " end " << Enemy.name << endl;
+    cout << "A fight breaks out between " << Player.GetCName() << " end " << Enemy.GetCName() << endl;
     cout << "To make a move in a battle press 'Enter'" << endl;
 
     cin.get();

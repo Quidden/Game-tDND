@@ -198,9 +198,13 @@ public:
 
 class EnemyC : public PersonC
 {
-public:
+private:
     std::string name;
     std::string description;
+public:
     int reward;
     EnemyC(std::string name, std::string description, int hp, int damage, int die_bonus, int reward);
+
+    const std::string& GetCName() const override { return className; }
+    const std::string& GetCDescription() const override { return classDescription; }
 };

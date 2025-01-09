@@ -28,7 +28,7 @@ int main()
     PlayerC* Player = SelectingGameCharacter();
     if (Player != nullptr) 
     {
-        std::cout << "Selected Character: " << Player->name << " - " << Player->description << std::endl;
+        std::cout << "Selected Character: " << Player->GetCName() << " - " << Player->GetCDescription() << std::endl;
     }
     else 
     {
@@ -36,15 +36,14 @@ int main()
         return 1; 
     }
 
-    Player->inventory.AddItem(bow);
-    Player->inventory.AddItem(sword);
-    Player->inventory.AddItem(healthPotion);
-    //rework
+    Player->AddToInventory(bow);
+    Player->AddToInventory(sword);
+    Player->AddToInventory(healthPotion);
 
     InventoryRealization(*Player);
 
     cin.get();
-    Player->DisplayStatus();
+    Player->DisplayStatus(*Player);
     cin.get();
 
     cin.get();
