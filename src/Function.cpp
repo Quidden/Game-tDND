@@ -17,6 +17,8 @@
 #define WHITE   "\033[37m"
 #define BOLD    "\033[1m"
 
+//testы
+
 using namespace std;
 bool ErrorOutput(std::string error)
 {

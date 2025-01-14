@@ -19,7 +19,7 @@ int main()
     Equipted_Items_Base* bow = new Equipten_Weapon_Class("Bow", "A ranged weapon", 3, 120, 10, Equipted_Item_Type::Bow);
     ItemC* healthPotion = new Health_PotkaC("Health Potion", "Restores health", 1, 50, 20);
     Equipted_Items_Base* sword = new Equipten_Weapon_Class("Sword", "A sharp blade", 2, 100, 15, Equipted_Item_Type::Sword);
-    std::cout << "Created Sword with type: " << static_cast<int>(sword->Item_Type) << std::endl;
+    std::cout << "Created Sword with type: " << (sword->Item_Type) << std::endl;
 
     cin.get();
     srand(time(nullptr));
