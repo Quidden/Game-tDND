@@ -110,18 +110,8 @@ EquipResult PlayerC::EquipError(int index)
     else
         auto* equipted_item = inventory.items[index]->AsType<Equipted_Items_Base>();
 
-
     if (!equipted_item)
         error_action = ErrorOutput("You've chosen an unequipped item.");
-
-        /*if(!error_action)
-        {
-            std::cin.get();
-            std::cout << RED <<"Trying to equip item of type: " << RESET << static_cast<int>(equipted_item->Item_Type) << std::endl;
-            std::cout << RED <<"Trying to equip item of type: " << RESET <<static_cast<int>(equipted_item->Item_Type) << std::endl;
-            std::cout << RED <<"Knight can equip this type: " << RESET <<(equipted_item->Item_Type == Equipted_Item_Type::Sword ? "Yes" : "No") << std::endl;
-            std::cin.get();
-        }*/
 
     if (!this->CanEquip(equipted_item->Item_Type))
         error_action = ErrorOutput("You cannot equip this type of item on a hero.");
