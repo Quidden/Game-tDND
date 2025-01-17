@@ -4,10 +4,6 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # ignore file
-.idea/
-cmake-build-debug/
-cmake-build-release/
-vs_project/
 
 # User-specific files
 *.rsuser
