@@ -1,0 +1,3 @@
+C:/Users/dogem/CLionProjects/Game-tDND/cmake-build-debug/CMakeFiles/Game_tDND.dir
+C:/Users/dogem/CLionProjects/Game-tDND/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/dogem/CLionProjects/Game-tDND/cmake-build-debug/CMakeFiles/rebuild_cache.dir
