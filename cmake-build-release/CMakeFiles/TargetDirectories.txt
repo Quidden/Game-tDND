@@ -1,3 +1,0 @@
-C:/Users/Quidden Laptop/CLionProjects/Game-tDND/cmake-build-release/CMakeFiles/Game_tDND.dir
-C:/Users/Quidden Laptop/CLionProjects/Game-tDND/cmake-build-release/CMakeFiles/edit_cache.dir
-C:/Users/Quidden Laptop/CLionProjects/Game-tDND/cmake-build-release/CMakeFiles/rebuild_cache.dir
