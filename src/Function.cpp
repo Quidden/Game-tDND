@@ -4,8 +4,6 @@
 #include <conio.h>
 #include "Person.h"
 #include <Windows.h>
-#include "Inventory.h"
-#include "Untill.h"
 #include <limits>
 #define RESET   "\033[0m"
 #define RED     "\033[31m"
@@ -58,7 +56,6 @@ void Inventory(PlayerC &Player)
         if (choice1 == 1)
         {
             EquipResult result = Player.EquipError(index);
-            Player.EquipError(index);
             if(result.success)
             {
                 system("cls");

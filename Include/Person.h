@@ -110,7 +110,7 @@ public:
 class BastardC : public PlayerC
 {
 private:
-    const std::string className = "Bastard"; // make a name/description getter's
+    const std::string className = "Bastard";
     const std::string classDescription = "DBastard";
 
 public:
