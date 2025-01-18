@@ -36,6 +36,7 @@ void Inventory(PlayerC &Player)
         int choice1;
         cin >> choice1;
 
+        //------------------ERRORS TEST-----------------------//
         if (choice1 == 4)
         {
             system("cls");
@@ -46,6 +47,7 @@ void Inventory(PlayerC &Player)
             ErrorOutput("invalid index");
             continue;
         }
+        //------------------ERRORS TEST-----------------------//
 
         system("cls");
         Player.DisplayPlayerInventory();

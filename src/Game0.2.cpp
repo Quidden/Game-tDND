@@ -16,9 +16,9 @@ int RandomNumberDieValue()
 int main()
 {
 
-    Equipted_Items_Base* bow = new Equipten_Weapon_Class("Bow", "A ranged weapon", 3, 120, 10, Equipted_Item_Type::Bow);
+    Equipted_Items_Base* bow = new Equipten_Weapon_Class("Bow", "A ranged weapon", 3, 120, 10,Bow);
     ItemC* healthPotion = new Health_PotkaC("Health Potion", "Restores health", 1, 50, 20);
-    Equipted_Items_Base* sword = new Equipten_Weapon_Class("Sword", "A sharp blade", 2, 100, 15, Equipted_Item_Type::Sword);
+    Equipted_Items_Base* sword = new Equipten_Weapon_Class("Sword", "A sharp blade", 2, 100, 15, Sword);
 
     cin.get();
     srand(time(nullptr));

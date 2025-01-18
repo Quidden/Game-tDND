@@ -102,6 +102,8 @@ EquipResult PlayerC::EquipError(int index)
     bool error_action = false;
     Equipted_Items_Base* equipted_item = nullptr;
 
+    //--------------------------ERROR CHECK-----------------------------//
+
     if (index < 0 || index >= inventory.items.size())
        error_action = ErrorOutput("Invalid index.");
 
@@ -119,12 +121,19 @@ EquipResult PlayerC::EquipError(int index)
     if(equipped_items.size() >= max_num_of_weapons)
         error_action = ErrorOutput("You can't equip more items.");
 
+    //--------------------------ERROR CHECH-----------------------------//
+
+
+    //------------------------------RESULT------------------------------//
+
     if(error_action)
     {
         return {true, nullptr};
     }
 
     return {false, equipted_item};
+
+    //------------------------------RESULT------------------------------//
 }
 
 void PlayerC::EquipAction(Equipted_Items_Base* Equipted_Items, int index)
