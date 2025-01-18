@@ -3,6 +3,7 @@
 #include <memory>
 #include <iostream>
 
+
 enum Equipted_Item_Type {Sword, Bow, Dagger, Armor};
 
 class ItemC
@@ -15,8 +16,12 @@ public:
 	ItemC(std::string name, std::string description, int rarity, int price);
 	virtual ~ItemC() = default;
 
+	virtual std::type_index GetType() const {
+		return typeid(ItemC);
+	}
+
 	template <typename T>
-   bool IsType() const
+    bool IsType() const
 	{
 		return typeid(*this) == typeid(T);
 	}
